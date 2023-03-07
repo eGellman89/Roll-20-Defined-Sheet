@@ -1,0 +1,699 @@
+<!--
+Roll Template
+-->
+<rolltemplate class="sheet-rolltemplate-custom">
+ <div class="sheet-container sheet-color-{{color}}">
+  <div class="sheet-header">
+   {{#title}}
+   <div class="sheet-title">{{title}}</div>
+   {{/title}}
+   {{#subtitle}}
+   <div class="sheet-subtitle">{{subtitle}}</div>
+   {{/subtitle}}
+  </div>
+  <div class="sheet-content">
+   {{#allprops() title subtitle desc color}}
+   <div class="sheet-key">{{key}}</div>
+   <div class="sheet-value">{{value}}</div>
+   {{/allprops() title subtitle desc color}}
+   {{#desc}}
+   <div class="sheet-desc">{{desc}}</div>
+   {{/desc}}
+  </div>
+ </div>
+</rolltemplate>
+<!--
+Below is the sheet's selector buttons
+-->
+<input type="hidden" class="sheet-tabstoggle" name="attr_sheetTab"  value="main"/>
+<div class="SAbutton">
+ <button type="action" name="act_main">Main</button>
+ <button type="action" name="act_definitions">Definitions & Traits</button>
+ <button type="action" name="act_skills">Skills</button>
+ <button type="action" name="act_gear">Gear</button>
+</div>
+<!--
+This is the Main Tab of the sheet
+-->
+<div class="sheet-main">
+ <input type="hidden" name="NLD_max"/>
+ <div class="clearfix characterdetailblock">
+  <div class="titleblock">
+   Character Information
+  </div>
+  <div class="DataBox">
+   Name: <input type="text" name="attr_charname"/>
+  </div>
+  <div class="DataBox">
+   Species: <input type="text" name="attr_species"/>
+  </div>
+  <div class="DataBox">
+   Hit Dice: <input type="number" name="attr_HD"/>
+  </div>
+  <div class="DataBox">
+   Level Gap: <input type="number" name="attr_LG"/>
+  </div>
+  <div class="DataBox">
+   Size: <select type="text" name="attr_size" id="SizeCategory">
+           <option value="Sub Tiny">Sub Tiny</option>
+           <option value="Tiny">Tiny</option>
+           <option value="Very Small">Very Small</option>
+           <option value="Small">Small</option>
+           <option value="Medium">Medium</option>
+           <option value="Large">Large</option>
+           <option value="Very Large">Very Large</option>
+           <option value="Gargantuan">Gargantuan</option>
+           <option value="Super Gargantuan">Super Gargantuan</option>
+          </select>
+  </div>
+  <div class="characterdetailblock">
+   <div class="DataBox">
+    Player: <input type="text"/>
+   </div>
+   <div class="DataBox">
+    Religion: <input type="text"/>
+   </div>
+   <div class="DataBox">
+    Sanctity: <input type="text"/>
+   </div>
+   <div class="DataBox">
+    HDE: <input type="number" name="attr_HDE" readonly="true"/>
+   </div>
+  </div>
+ </div>
+ <div class="leftsidestatblock clearfix">
+  <div>
+   <table class="textright">
+    <tr>
+     <th>Attribute</th>
+     <th>Enhance</th>
+     <th>Bonus</th>
+     <th>Penalty</th>
+     <th>Total</th>
+     <th>Modifier</th>
+     <th></th>
+    </tr>
+    <tr>
+     <td class="Attribute-Name">
+      <strong>Strength</strong>: <input type="number" name="attr_strength"/>
+     </td>
+     <td class="BonusBox">
+      <input type="number" name="attr_StrEnch"/>
+     </td>
+     <td class="BonusBox">
+      <input type="number" name="attr_StrBonus"/>
+     </td>
+     <td class="BonusBox">
+      <input type="number" name="attr_StrPen"/>
+     </td>
+     <td class="Attribute-Mod">
+         <input type="number" name="attr_StrTotal" readonly="true"/>
+     </td>
+     <td class="Attribute-Mod">
+      <input type="number" name="attr_strmod" readonly="true"/>
+     </td>
+     <td>
+      <button title="Strength Check"
+              type="roll"
+              value="&{template:custom}{{title=Strength Check}}{{Strength:= [[1d20+@{strmod}]]}}"
+              name="roll_Strength-Check"></button>
+     </td>
+    </tr>
+    <tr>
+     <td class="Attribute-Name">
+      <strong>Dexterity</strong>: <input type="number" name="attr_dexterity"/>
+     </td>
+     <td class="BonusBox">
+      <input type="number" name="attr_DexEnch"/>
+     </td>
+     <td class="BonusBox">
+      <input type="number" name="attr_DexBonus"/>
+     </td>
+     <td class="BonusBox">
+      <input type="number" name="attr_DexPen"/>
+     </td>
+     <td class="Attribute-Mod">
+     <input type="number" name="attr_DexTotal" readonly="true"/>
+     </td>
+     <td class="Attribute-Mod">
+      <input type="number" name="attr_dexmod" readonly="true"/>
+     </td>
+     <td>
+      <button title="Dexterity Check"
+              type="roll"
+              value="&{template:custom}{{title=Dexterity Check}}{{Dexterity:= [[1d20+@{dexmod}]]}}"
+              name="roll_Dexterity-check"></button>
+     </td>
+    </tr>
+    <tr>
+     <td class="Attribute-Name">
+      <strong>Constitution</strong>: <input type="number" name="attr_constitution"/>
+     </td>
+     <td class="BonusBox">
+      <input type="number" name="attr_ConEnch"/>
+     </td>
+     <td class="BonusBox">
+      <input type="number" name="attr_ConBonus"/>
+     </td>
+     <td class="BonusBox">
+      <input type="number" name="attr_ConPen"/>
+     </td>
+     <td class="Attribute-Mod">
+      <input type="number" name="attr_ConTotal" readonly="true"/>
+     </td>
+     <td class="Attribute-Mod">
+      <input type="number" name="attr_conmod" readonly="true"/>
+     </td>
+     <td>
+      <button title="Constitution Check"
+              type="roll"
+              value="&{template:custom}{{title=Constitution Check}}{{Constitution:= [[1d20+@{conmod}]]}}"
+              name="roll_Constitution-check"></button>
+     </td>
+    </tr>
+    <tr>
+     <td class="Attribute-Name">
+      <strong>Wisdom</strong>: <input type="number" name="attr_wisdom"/>
+     </td>
+     <td class="BonusBox">
+      <input type="number" name="attr_WisEnch"/>
+     </td>
+     <td class="BonusBox">
+      <input type="number" name="attr_WisBonus"/>
+     </td>
+     <td class="BonusBox">
+      <input type="number" name="attr_WisPen"/>
+     </td>
+     <td class="Attribute-Mod">
+      <input type="number" name="attr_WisTotal" readonly="true"/>
+     </td>
+     <td class="Attribute-Mod">
+      <input type="number" name="attr_wismod" readonly="true"/>
+     </td>
+     <td>
+      <button title="Wisdom Check"
+              type="roll"
+              value="&{template:custom}{{title=Wisdom Check}}{{Wisdom:= [[1d20+@{wismod}]]}}"
+              name="roll_Wisdom-check"></button>
+     </td>
+    </tr>
+    <tr>
+     <td class="Attribute-Name">
+      <strong>Intelligence</strong>: <input type="number" name="attr_intelligence"/>
+     </td>
+     <td class="BonusBox">
+      <input type="number" name="attr_IntEnch"/>
+     </td>
+     <td class="BonusBox">
+      <input type="number" name="attr_IntBonus"/>
+     </td>
+     <td class="BonusBox">
+      <input type="number" name="attr_IntPen"/>
+     </td>
+     <td class="Attribute-Mod">
+      <input type="number" name="attr_IntTotal" readonly="true"/>
+     </td>
+     <td class="Attribute-Mod">
+      <input type="number" name="attr_intmod" readonly="true"/>
+     </td>
+     <td>
+      <button title="Intelligence Check"
+              type="roll"
+              value="&{template:custom}{{title=Intelligence Check}}{{Intelligence:= [[1d20+@{intmod}]]}}"
+              name="roll_Intelligence-check"></button>
+     </td>
+    </tr>
+    <tr>
+     <td class="Attribute-Name">
+      <strong>Charisma</strong>: <input type="number" name="attr_charisma"/>
+     </td>
+     <td class="BonusBox">
+      <input type="number" name="attr_ChaEnch"/>
+     </td>
+     <td class="BonusBox">
+      <input type="number" name="attr_ChaBonus"/>
+     </td>
+     <td class="BonusBox">
+      <input type="number" name="attr_ChaPen"/>
+     </td>
+     <td class="Attribute-Mod">
+      <input type="number" name="attr_ChaTotal" readonly="true"/>
+     </td>
+     <td class="Attribute-Mod">
+      <input type="number" name="attr_chamod" readonly="true"/>
+     </td>
+     <td>
+      <button title="Charisma Check"
+              type="roll"
+              value="&{template:custom}{{title=Charisma Check}}{{Charisma:= [[1d20+@{chamod}]]}}"
+              name="roll_Charisma-check"></button>
+     </td>
+    </tr>
+   </table>
+  </div>
+  <div class="clearfix">
+   <hr>
+   <div class="title">
+    Saving Throws
+   </div>
+   <div class="saves">
+    Fortitude: <input type="number" readonly name="attr_FortTotal"/>
+    Base: <input type="number" name="attr_FortBase" readonly="true"/>
+    Con: <input type="number" name="attr_conmod" readonly="true"/>
+    Magic: <input type="number" name="FortMagic"/>
+    Misc: <input type="number" name="FortMisc"/>
+    <button title="Fortitude Save"
+            type="roll"
+            value="&{template:custom}{{title=Fortitude Save}}{{Result:= [[1d20+@{FortTotal}]]}}"
+            name="roll_Fortitude-save"></button>
+   </div>
+   <div class="saves">
+    Reflex: <input type="number" readonly name="attr_RefTotal"/>
+    Base: <input type="number" name="attr_RefBase" readonly="true"/>
+    Dex: <input type="number" name="attr_dexmod" readonly="true"/>
+    Magic: <input type="number" name="RefMagic"/>
+    Misc: <input type="number" name="RefMisc"/>
+    <button title="Reflex Save"
+            type="roll"
+            value="&{template:custom}{{title=Reflex Save}}{{Result:= [[1d20+@{RefTotal}]]}}"
+            name="roll_Reflex-save"></button>
+   </div>
+   <div style="border-radius: 0 0 5px 5px" class="saves">
+    Will: <input type="number" readonly name="attr_WilTotal"/>
+    Base: <input type="number" name="attr_WilBase" readonly="true"/>
+    Wis: <input type="number" name="attr_wismod" readonly="true"/>
+    Magic: <input type="number" name="WisMagic"/>
+    Misc: <input type="number" name="WisMisc"/>
+    <button title="Will Save"
+            type="roll"
+            value="&{template:custom}{{title=Will Save}}{{Result:= [[1d20+@{WilTotal}]]}}"
+            name="roll_Will-save"></button>
+   </div>
+  </div>
+ </div>
+ <div class="clearfix rightsideblock">
+  <table>
+   <tr>
+    <th>Hit Points</th>
+    <th>Armor Class</th>
+   </tr>
+   <tr>
+    <td>Current HP: <input type="number" name="attr_hp"/></td>
+    <td style="border-right: 1px black solid">Total AC: <input type="number" readonly="true" name="attr_TotalAC"/></td>
+   </tr>
+   <tr>
+    <td>Max HP:<input type="number" readonly="true" name="attr_hp_max"/></td>
+    <td style="border-right: 1px black solid">Touch AC: <input type="number" readonly="true" name="attr_TouchAC"/></td>
+   </tr>
+   <tr>
+    <td>Constitution HP:<input type="number" readonly="true" name="attr_ConHP"/></td>
+    <td style="border-right: 1px black solid;border-bottom: 1px solid white">
+     Flat-Footed AC:<input type="number" readonly="true" name="attr_FlatFAC"/>
+    </td>
+   </tr>
+   <tr>
+    <td>Progression HP:<input type="number" readonly="true" name="attr_ProgHP"/></td>
+    <td style="border-right: 1px black solid">Armor: <input type="number" readonly="true" name="attr_ArmorBonus"/></td>
+   </tr>
+   <tr>
+    <td>Misc. HP:<input type="number" name="attr_MiscHP"/></td>
+    <td style="border-right: 1px black solid">Shield: <input type="number" readonly="true" name="attr_Shield"/></td>
+   </tr>
+   <tr>
+    <td>Rolled HP:<input type="number" name="attr_RollHP"/></td>
+    <td style="border-right: 1px black solid">Natural:<input type="number" name="attr_NaturalAC"></td>
+   </tr>
+   <tr>
+    <th style="border-right: white solid 1px; border-top: white solid 1px">Initiative</th>
+    <td style="border-right: 1px black solid">Deflection: <input type="number" name="attr_Deflection"/></td>
+   </tr>
+   <tr>
+    <td>
+     Initiative Total:
+     <input type="number" readonly="true" name="attr_InitTotal"/>
+     <button class="button"
+             title="Initiative"
+             type="roll"
+             value="&{template:custom}{{title=Initiative}}{{Result:= [[1d20+@{InitTotal}+(@{InitTotal}/100)&{tracker}]]}}"
+             name="roll_Intelligence-check"></button>
+    </td>
+    <td style="border-right: 1px black solid">Parry: <input type="number" name="attr_ParryAC"/></td>
+   </tr>
+   <tr>
+    <td>Dex Modifier:<input type="number" readonly="true" name="attr_dexmod"/></td>
+    <td>Dodge: <input type="number" name="attr_DodgeAC"/></td>
+   </tr>
+   <tr>
+    <td>Initiative Bonus: <input type="number" name="attr_InitBonus"/></td>
+    <td>Insight: <input type="number" name="attr_InsightAC"/></td>
+   </tr>
+   <tr>
+    <td></td>
+    <td>Misc. <input type="number" name="attr_MiscAC"/></td>
+   </tr>
+  </table>
+ </div>
+ </div>
+</div>
+<!--
+This is the Skills Tab
+-->
+<div class="sheet-skills">
+ This is the skills page
+</div>
+<!--
+This is the Gear Tab
+-->
+<div class="sheet-gear">
+ <div class="Armor-Off-Hand">
+  <table>
+   <tr>
+    <th colspan="6">Armor and Off-Hand</th>
+   </tr>
+   <tr style="border: 0">
+    <td>Armor</td>
+    <td>Shatter Resistance</td>
+    <td>Item HP</td>
+    <td>Armor Bonus</td>
+    <td>Max Dex</td>
+    <td>Skill Penalty</td>
+   </tr>
+   <tr>
+    <td><input style="width:140px" type="text"/></td>
+    <td><input type="number"/></td>
+    <td><input type="number"/></td>
+    <td><input type="number" name="attr_ArmorBonus"/></td>
+    <td><input type="number" name="attr_DexACLimit"/></td>
+    <td><input type="number" name="attr_CheckPen"/></td>
+   </tr>
+   <tr style="border: 0">
+    <td>Shield</td>
+    <td>Shatter Resistance</td>
+    <td>Item HP</td>
+    <td>Shield Bonus</td>
+    <td>Max Dex</td>
+    <td>Skill Penalty</td>
+   </tr>
+   <tr>
+    <td><input style="width:140px" type="text"/></td>
+    <td><input type="number"/></td>
+    <td><input type="number"/></td>
+    <td><input type="number" name="attr_Shield"/></td>
+    <td><input type="number" name="attr_SDexACLimit"/></td>
+    <td><input type="number" name="attr_SCheckPen"/></td>
+   </tr>
+   <tr style="border: 0">
+    <td>Focus</td>
+    <td>Shatter Resistance</td>
+    <td>Item HP</td>
+    <td>Enhancement</td>
+    <td colspan="2">Notes</td>
+   </tr>
+   <tr>
+    <td><input style="width:140px" type="text"/></td>
+    <td><input type="number"/></td>
+    <td><input type="number"/></td>
+    <td><input type="number" name="attr_FocusEnch"/></td>
+    <td colspan="2"><input style="width: 180px" type="text"/></td>
+   </tr>
+  </table>
+ </div>
+</div>
+<!--
+This is Definitions and traits
+-->
+<div class="sheet-definitions">
+ <div class="clearfix">
+  <table class="DnT">
+   <tr>
+    <th colspan="6">Progression Info</th>
+   </tr>
+   <tr>
+    <th>Attack Curve</th>
+    <th>Magic Type</th>
+    <th>Specialty</th>
+    <th>Natural Int Mod</th>
+    <th>Base Skill Growth</th>
+    <th>Skills Known</th>
+   </tr>
+   <tr>
+    <td>
+     <select type="text" name="attr_AttackCurve" list="AttackOptions">
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+     </select>
+    </td>
+    <td>
+     <select type="text" name="attr_MagicCurve" list="MagicOptions">
+      <option value="None">None</option>
+      <option value="Basic">Basic</option>
+      <option value="Standard">Standard</option>
+      <option value="Advanced">Advanced</option>
+     </select>
+    </td>
+    <td>
+     <select type="text" name="attr_Specialty" list="SpecialtyOptions">
+      <option value="Combatant">Combatant</option>
+      <option value="Generalist">Generalist</option>
+      <option value="Specialist">Specialist</option>
+     </select>
+    </td>
+    <td>
+     <input type="number" name="attr_NatIntMod" readonly="true"/>
+    </td>
+    <td>
+     <input type="number" name="attr_BaseSkillGrowth"/>
+    </td>
+    <td>
+     <input type="number" name="attr_SkillsKnown" readonly="true"/>
+    </td>
+   </tr>
+  </table>
+ </div>
+</div>
+<!--
+type="text/worker"
+-->
+<script>
+
+<!--<script type="text/worker">-->
+
+// AC calculations
+on("change:shield change:size change:armorbonus change:dexmod change:naturalac change:parryac" +
+    "change:miscac change:deflection change:insightac change:dodgeac",function(){
+    getAttrs(["dexmod","ArmorBonus","NaturalAC","Shield","MiscAC",
+        "InsightAC","ParryAC","Deflection","DodgeAC","size"],function(values){
+       let dex = parseFloat(values.dexmod)||0;
+       let armor = parseFloat(values.ArmorBonus)||0;
+       let natural = parseFloat(values.NaturalAC)||0;
+       let shield = parseFloat(values.Shield)||0;
+       let parry = parseFloat(values.ParryAC)||0;
+       let dodge = parseFloat(values.DodgeAC)||0;
+       let deflection = parseFloat(values.Deflection)||0;
+       let insight = parseFloat(values.InsightAC)||0;
+       let misc = parseFloat(values.MiscAC)||0;
+       let size = 0;
+       if(values.size === "Sub Tiny"){
+           size = 8;
+       }if(values.size === "Tiny"){
+           size = 4;
+        }if(values.size === "Very Small"){
+           size = 2;
+        }if(values.size === "Small"){
+           size = 1;
+        }if(values.size === "Medium"){
+           size = 0;
+        }if(values.size === "Large"){
+           size = -1;
+        }if(values.size === "Very Large"){
+           size = -2;
+        }if(values.size === "Gargantuan"){
+           size = -4;
+        }if(values.size === "Super Gargantuan"){
+           size = -8;
+        }
+       let total = 10 + dex + armor + natural + shield + parry + dodge + deflection + insight + misc + size;
+       let flat = 10 + armor + natural + shield + deflection + insight + misc + size;
+       let touch = 10 + dex + parry + dodge + deflection + insight + misc + size;
+       setAttrs({
+           TotalAC: total,
+           FlatFAC: flat,
+           TouchAC: touch,
+       });
+    });
+});
+
+//Initiative Calculations
+
+on("change:dexmox change:initbonus sheet:opened", function(){
+   getAttrs(["dexmod","InitBonus"],function(values){
+      let dex = parseFloat(values.dexmod)||0;
+      let InitBonus = parseFloat(values.InitBonus)||0;
+      let total = dex + InitBonus
+       setAttrs({
+           InitTotal: total
+       });
+   });
+});
+
+//Button tabs
+
+const buttonlist = ["main","skills","gear","definitions"];
+buttonlist.forEach(button => {
+    on(`clicked:${button}`, function() {
+        setAttrs({
+            sheetTab: button
+        });
+    });
+});
+
+// HP Calculations here
+
+on("change:constitution change:mischp change:rollhp sheet:opened", function(){
+   getAttrs(["HD","conmod"],function(values){
+   let HD = parseFloat(values.HD)||0;
+   let conmod = parseFloat(values.conmod)||0;
+   let conhp = HD * conmod
+       setAttrs({
+           ConHP: conhp
+       });
+   });
+});
+
+on("change:constitution change:mischp change:magiccurve change:rollhp sheet:opened", function(){
+    getAttrs(["HD","MagicCurve"],function(values){
+        let progHP = 0;
+        let HD = parseFloat(values.HD)||0;
+        if(values.MagicCurve === "None"){
+            progHP = 6;
+        }if(values.MagicCurve === "Basic"){
+            progHP = 5;
+        }if(values.MagicCurve === "Standard"){
+            progHP = 4;
+        }if(values.MagicCurve === "Advanced"){
+            progHP = 3;
+        }
+        setAttrs({
+            ProgHP: progHP * HD
+        });
+    });
+});
+
+on("change:constitution change:conmod change:mischp change:magiccurve change:rollhp sheet:opened", function(){
+    getAttrs(["ConHP","ProgHP","MiscHP","RollHP"],function(values){
+        let con = parseFloat(values.ConHP)||0;
+        let prog = parseFloat(values.ProgHP)||0;
+        let misc = parseFloat(values.MiscHP)||0;
+        let roll = parseFloat(values.RollHP)||0;
+        let total = con + prog + misc + roll;
+        if(total === 0){
+            total = 1
+        }
+        setAttrs({
+            hp_max: total,
+            NLD_max: total,
+        });
+    });
+});
+
+//hd calculations here
+
+on("change:hd change:lg sheet:opened", function(){
+    getAttrs(["HD", "LG"], function(values){
+       let HD = parseFloat(values.HD)||0;
+       let LG = parseFloat(values.LG)||0;
+       let HDE = HD + LG
+        setAttrs({
+           HDE: HDE
+        });
+    });
+});
+
+// Stat Block calculations here
+
+on("change:strength change:strbonus change:strench change:strpen sheet:opened", function() {
+    getAttrs(["strength", "StrBonus", "StrEnch", "StrPen"], function(values) {
+       let base = parseFloat(values.strength)||0;
+       let bonus = parseFloat(values.StrBonus)||0;
+       let enhancement = parseFloat(values.StrEnch)||0;
+       let penalty = parseFloat(values.StrPen)||0;
+       let total = base + bonus + enhancement - penalty;
+       let mod = Math.floor((total-10)/2)
+       setAttrs({
+          StrTotal: total,
+          strmod: mod
+       });
+    });
+});
+on("change:dexterity change:dexbonus change:dexench change:dexpen sheet:opened", function() {
+    getAttrs(["dexterity", "DexBonus", "DexEnch", "DexPen"], function(values) {
+        let base = parseFloat(values.dexterity)||0;
+        let bonus = parseFloat(values.DexBonus)||0;
+        let enhancement = parseFloat(values.DexEnch)||0;
+        let penalty = parseFloat(values.DexPen)||0;
+        let total = base + bonus + enhancement - penalty;
+        let mod = Math.floor((total-10)/2)
+        setAttrs({
+            DexTotal: total,
+            dexmod: mod
+        });
+    });
+});
+on("change:constitution change:conbonus change:conench change:conpen sheet:opened", function() {
+    getAttrs(["constitution", "ConBonus", "ConEnch", "ConPen"], function(values) {
+        let base = parseFloat(values.constitution)||0;
+        let bonus = parseFloat(values.ConBonus)||0;
+        let enhancement = parseFloat(values.ConEnch)||0;
+        let penalty = parseFloat(values.ConPen)||0;
+        let total = base + bonus + enhancement - penalty;
+        let mod = Math.floor((total-10)/2)
+        setAttrs({
+            ConTotal: total,
+            conmod: mod
+        });
+    });
+});
+on("change:wisdom change:wisbonus change:wisench change:wispen sheet:opened", function() {
+    getAttrs(["wisdom", "WisBonus", "WisEnch", "WisPen"], function(values) {
+        let base = parseFloat(values.wisdom)||0;
+        let bonus = parseFloat(values.WisBonus)||0;
+        let enhancement = parseFloat(values.WisEnch)||0;
+        let penalty = parseFloat(values.WisPen)||0;
+        let total = base + bonus + enhancement - penalty;
+        let mod = Math.floor((total-10)/2)
+        setAttrs({
+            WisTotal: total,
+            wismod: mod
+        });
+    });
+});
+on("change:intelligence change:intbonus change:intench change:intpen sheet:opened", function() {
+    getAttrs(["intelligence", "IntBonus", "IntEnch", "IntPen"], function(values) {
+        let base = parseFloat(values.intelligence)||0;
+        let bonus = parseFloat(values.IntBonus)||0;
+        let enhancement = parseFloat(values.IntEnch)||0;
+        let penalty = parseFloat(values.IntPen)||0;
+        let total = base + bonus + enhancement - penalty;
+        let mod = Math.floor((total-10)/2)
+        setAttrs({
+            IntTotal: total,
+            intmod: mod
+        });
+    });
+});
+on("change:charisma change:chabonus change:chaench change:chapen sheet:opened", function() {
+    getAttrs(["charisma", "ChaBonus", "ChaEnch", "ChaPen"], function(values) {
+        let base = parseFloat(values.charisma)||0;
+        let bonus = parseFloat(values.ChaBonus)||0;
+        let enhancement = parseFloat(values.ChaEnch)||0;
+        let penalty = parseFloat(values.ChaPen)||0;
+        let total = base + bonus + enhancement - penalty;
+        let mod = Math.floor((total-10)/2)
+        setAttrs({
+            ChaTotal: total,
+            chamod: mod
+        });
+    });
+});
+</script>

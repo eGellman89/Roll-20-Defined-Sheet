@@ -1,0 +1,295 @@
+<!--
+Roll Template
+-->
+<rolltemplate class="sheet-rolltemplate-custom">
+ <div class="sheet-container sheet-color-{{color}}">
+  <div class="sheet-header">
+   {{#title}}
+   <div class="sheet-title">{{title}}</div>
+   {{/title}}
+   {{#subtitle}}
+   <div class="sheet-subtitle">{{subtitle}}</div>
+   {{/subtitle}}
+  </div>
+  <div class="sheet-content">
+   {{#allprops() title subtitle desc color}}
+   <div class="sheet-key">{{key}}</div>
+   <div class="sheet-value">{{value}}</div>
+   {{/allprops() title subtitle desc color}}
+   {{#desc}}
+   <div class="sheet-desc">{{desc}}</div>
+   {{/desc}}
+  </div>
+ </div>
+</rolltemplate>
+<!--
+Below is the sheet
+-->
+<div id="characterdetailblock">
+ <div>
+  Name: <input type="text" name="attr_charname"/>
+ </div>
+</div>
+<div class="leftsidestatblock" class="clearfix">
+ <div>
+  <table class="textright">
+   <tr>
+    <th>Attribute</th>
+    <th>Bonus</th>
+    <th>Enhance</th>
+    <th>Penalty</th>
+    <th>Total</th>
+    <th>Modifier</th>
+   </tr>
+   <tr>
+    <td class="Attribute-Name">
+     <strong>Strength</strong>: <input type="number" name="attr_strength"/>
+    </td>
+    <td class="BonusBox">
+     <input type="number" name="attr_StrBonus"/>
+    </td>
+    <td class="BonusBox">
+     <input type="number" name="attr_StrEnch"/>
+    </td>
+    <td class="BonusBox">
+     <input type="number" name="attr_StrPen"/>
+    </td>
+    <td class="Attribute-Mod">
+        <input type="number" name="attr_StrTotal" readonly="true"/>
+    </td>
+    <td class="Attribute-Mod">
+     <input type="number" name="attr_strmod" readonly="true"/>
+    </td>
+    <td>
+     <button title="Strength Check"
+             type="roll"
+             value="&{template:custom}{{title=Strength Check}}{{Strength:= [[1d20+@{strmod}]]}}"
+             name="roll_Strength-Check"></button>
+    </td>
+   </tr>
+   <tr>
+    <td class="Attribute-Name">
+     <strong>Dexterity</strong>: <input type="number" name="attr_dexterity"/>
+    </td>
+    <td class="BonusBox">
+     <input type="number" name="attr_DexBonus"/>
+    </td>
+    <td class="BonusBox">
+     <input type="number" name="attr_DexEnch"/>
+    </td>
+    <td class="BonusBox">
+     <input type="number" name="attr_DexPen"/>
+    </td>
+    <td class="Attribute-Mod">
+    <input type="number" name="attr_DexTotal" readonly="true"/>
+    </td>
+    <td class="Attribute-Mod">
+     <input type="number" name="attr_dexmod" readonly="true"/>
+    </td>
+    <td>
+     <button title="Dexterity Check"
+             type="roll"
+             value="[[1d20+@{dexmod}]]"
+             name="roll_Dexterity-check"></button>
+    </td>
+   </tr>
+   <tr>
+    <td class="Attribute-Name">
+     <strong>Constitution</strong>: <input type="number" name="attr_constitution"/>
+    </td>
+    <td class="BonusBox">
+     <input type="number" name="attr_ConBonus"/>
+    </td>
+    <td class="BonusBox">
+     <input type="number" name="attr_ConEnch"/>
+    </td>
+    <td class="BonusBox">
+     <input type="number" name="attr_ConPen"/>
+    </td>
+    <td class="Attribute-Mod">
+     <input type="number" name="attr_ConTotal" readonly="true"/>
+    </td>
+    <td class="Attribute-Mod">
+     <input type="number" name="attr_conmod" readonly="true"/>
+    </td>
+    <td>
+     <button title="Constitution Check"
+             type="roll"
+             value="[[1d20+@{conmod}]]"
+             name="roll_Constitution-check"></button>
+    </td>
+   </tr>
+   <tr>
+    <td class="Attribute-Name">
+     <strong>Wisdom</strong>: <input type="number" name="attr_wisdom"/>
+    </td>
+    <td class="BonusBox">
+     <input type="number" name="attr_WisBonus"/>
+    </td>
+    <td class="BonusBox">
+     <input type="number" name="attr_WisEnch"/>
+    </td>
+    <td class="BonusBox">
+     <input type="number" name="attr_WisPen"/>
+    </td>
+    <td class="Attribute-Mod">
+     <input type="number" name="attr_WisTotal" readonly="true"/>
+    </td>
+    <td class="Attribute-Mod">
+     <input type="number" name="attr_wismod" readonly="true"/>
+    </td>
+    <td>
+     <button title="Wisdom Check"
+             type="roll"
+             value="[[1d20+@{wismod}]]"
+             name="roll_Wisdom-check"></button>
+    </td>
+   </tr>
+   <tr>
+    <td class="Attribute-Name">
+     <strong>Intelligence</strong>: <input type="number" name="attr_intelligence"/>
+    </td>
+    <td class="BonusBox">
+     <input type="number" name="attr_IntBonus"/>
+    </td>
+    <td class="BonusBox">
+     <input type="number" name="attr_IntEnch"/>
+    </td>
+    <td class="BonusBox">
+     <input type="number" name="attr_IntPen"/>
+    </td>
+    <td class="Attribute-Mod">
+     <input type="number" name="attr_IntTotal" readonly="true"/>
+    </td>
+    <td class="Attribute-Mod">
+     <input type="number" name="attr_intmod" readonly="true"/>
+    </td>
+    <td>
+     <button title="Intelligence Check"
+             type="roll"
+             value="[[1d20+@{intmod}]]"
+             name="roll_Intelligence-check"></button>
+    </td>
+   </tr>
+   <tr>
+    <td class="Attribute-Name">
+     <strong>Charisma</strong>: <input type="number" name="attr_charisma"/>
+    </td>
+    <td class="BonusBox">
+     <input type="number" name="attr_ChaBonus"/>
+    </td>
+    <td class="BonusBox">
+     <input type="number" name="attr_ChaEnch"/>
+    </td>
+    <td class="BonusBox">
+     <input type="number" name="attr_ChaPen"/>
+    </td>
+    <td class="Attribute-Mod">
+     <input type="number" name="attr_ChaTotal" readonly="true"/>
+    </td>
+    <td class="Attribute-Mod">
+     <input type="number" name="attr_chamod" readonly="true"/>
+    </td>
+    <td>
+     <button title="Charisma Check"
+             type="roll"
+             value="[[1d20+@{chamod}]]"
+             name="roll_Charisma-check"></button>
+    </td>
+   </tr>
+  </table>
+ </div>
+</div>
+
+<script>
+    on("change:strength sheet:opened", function(){
+      getAttrs(["strength"],
+      function(value) {
+          let x = value.strength;
+/*          total.array.forEach(element => {
+              x = x + parseFloat(element) || 0;
+          });
+*/          setAttrs({
+             StrTotal: 50
+          });
+      });
+    });
+    /*    on("change:strength change:dexterity change:constitution change:intelligence change:wisdom change:charisma sheet:opened", function () {
+            getAttrs(["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"],
+                function (value) {
+                    value.array.forEach(element => {
+                        let x = parseFloat(element) || 0;
+                        x = Math.floor((x - 10) / 2);
+                        element = x;
+                    });
+                    setAttrs({
+                        strmod: value.strength,
+                        dexmod: value.dexterity,
+                        conmod: value.constitution,
+                        intmod: value.intelligence,
+                        wismod: value.wisdom,
+                        chamod: value.charisma
+                    });
+                });
+        });
+     */
+</script>
+
+<!--
+<script type="text/worker">
+    on("change:strength sheet:opened",function() {
+        getAttrs(["strength"], function(values) {
+            let strength = parseFloat(values.strength)||0;
+            let x = Math.floor((strength-10)/2);
+            setAttrs({
+                        strmod: x
+                        });
+                    });
+                });
+    on("sheet:opened change:dexterity",function() {
+        getAttrs(["dexterity"], function(values) {
+            let dexterity = parseFloat(values.dexterity)||0;
+            let x = Math.floor((dexterity-10)/2);
+            setAttrs({
+                        dexmod: x
+                        });
+                    });
+                });
+    on("sheet:opened change:constitution",function() {
+        getAttrs(["constitution"], function(values) {
+            let constitution = parseFloat(values.constitution)||0;
+            let x = Math.floor((constitution-10)/2);
+            setAttrs({
+                        conmod: x
+                        });
+                    });
+                });
+    on("sheet:opened change:intelligence",function() {
+        getAttrs(["intelligence"], function(values) {
+            let intelligence = parseFloat(values.intelligence)||0;
+            let x = Math.floor((intelligence-10)/2);
+            setAttrs({
+                        intmod: x
+                        });
+                    });
+                });
+    on("sheet:opened change:wisdom",function() {
+        getAttrs(["wisdom"], function(values) {
+            let wisdom = parseFloat(values.wisdom)||0;
+            let x = Math.floor((wisdom-10)/2);
+            setAttrs({
+                        wismod: x
+                        });
+                    });
+                });
+    on("sheet:opened change:charisma",function() {
+        getAttrs(["charisma"], function(values) {
+            let charisma = parseFloat(values.charisma)||0;
+            let x = Math.floor((charisma-10)/2);
+            setAttrs({
+                        chamod: x
+                        });
+                    });
+                });
+</script>
+-->
