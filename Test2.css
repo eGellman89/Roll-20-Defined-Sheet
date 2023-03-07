@@ -159,24 +159,25 @@
   color: #FFFFFF;
   font-weight: bold;
   text-align: center;
-  width: 409px;
+  width: 412px;
   margin-right: 2px;
 }
 
 .leftsidestatblock .saves{
-  width: 409px;
+  display: grid;
+  width: 418px;
+  text-align: left;
+  grid-template-columns: 97px 73px 73px 76px 68px 24px;
+  align-items: center;
+  justify-content: space-between;
   border: 1px solid black;
-  padding: 3px;
-  float: left;
   font-weight: bold;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
-.leftsidestatblock .saves p{
-  float: left;
-}
-
-.leftsidestatblock .saves p .right{
-  float: right;
+.leftsidestatblock .saves :first-child{
+  align-self: center;
 }
 
 .ui-dialog .charsheet .leftsidestatblock .saves input{
@@ -187,6 +188,7 @@
   font-weight: bold;
   font-size: 16px;
   padding: 1px;
+  float: right;
 }
 
 .saves input::-webkit-outer-spin-button,
@@ -194,6 +196,39 @@
   -webkit-appearance: none;
   margin: 0;
 }
+
+.Save-Selection{
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.Save-Selection table{
+  width: 418px;
+  font-weight: bold;
+  border-radius: 5px 5px 0 0;
+}
+
+.Save-Selection table th{
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.ui-dialog .charsheet .Save-Selection table td{
+  font-weight: bold;
+  float: none;
+  text-align: center;
+}
+
+.ui-dialog .charsheet .Save-Selection table td select{
+  padding: 0;
+  border: 1px grey;
+  height: 18px;
+  width: 90px;
+  vertical-align: center;
+  background-color: #DEDEDE;
+  float: none;
+}
+
 
 .ui-dialog .charsheet .leftsidestatblock .saves button[type=roll],
 .ui-dialog .charsheet .leftsidestatblock .saves button[type=compendium]{
@@ -230,11 +265,6 @@
   -moz-appearance: textfield;
   background-color: #5A5A5A;
   color: #FFFFFF;
-}
-
-.ui-dialog .charsheet .leftsidestatblock hr{
-  margin: 4px;
-  border-top: 1px dotted #323232;
 }
 
 .rightsideblock{
@@ -330,6 +360,12 @@
   box-shadow: 0 0px;
   transform: translateY(2px);
 }
+
+.ui-dialog .charsheet .leftsidestatblock hr{
+  margin: 4px;
+  border-top: 1px dotted #323232;
+}
+
 .leftsidestatblock table{
   border: 1px;
   border-radius: 5px;

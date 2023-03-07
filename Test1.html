@@ -251,43 +251,72 @@ This is the Main Tab of the sheet
     </tr>
    </table>
   </div>
+  <hr>
+  <div class="Save-Selection">
+   <table>
+    <tr>
+     <th>Fortitude</th>
+     <th>Reflex</th>
+     <th>Will</th>
+    </tr>
+    <tr>
+     <td>
+      <select type="text" name="attr_basefort" id="FortBase">
+       <option value="Low">Low</option>
+       <option value="High">High</option>
+      </select>
+     </td>
+     <td>
+      <select type="text" name="attr_baseref" id="ReflexBase">
+       <option value="Low">Low</option>
+       <option value="High">High</option>
+      </select>
+     </td>
+     <td>
+      <select type="text" name="attr_basewill" id="WillBase">
+       <option value="Low">Low</option>
+       <option value="High">High</option>
+      </select>
+     </td>
+    </tr>
+   </table>
+  </div>
   <div class="clearfix">
-   <hr>
    <div class="title">
     Saving Throws
    </div>
    <div class="saves">
-    Fortitude: <input type="number" readonly name="attr_FortTotal"/>
-    Base: <input type="number" name="attr_FortBase" readonly="true"/>
-    Con: <input type="number" name="attr_conmod" readonly="true"/>
-    Magic: <input type="number" name="FortMagic"/>
-    Misc: <input type="number" name="FortMisc"/>
-    <button title="Fortitude Save"
+    <div>Fortitude: <input type="number" readonly name="attr_FortTotal"/></div>
+    <div>Base: <input type="number" name="attr_FortBase" readonly="true"/></div>
+    <div>Con: <input type="number" name="attr_conmod" readonly="true"/></div>
+    <div>Magic: <input type="number" name="FortMagic"/></div>
+    <div>Misc: <input type="number" name="FortMisc"/></div>
+    <div><button title="Fortitude Save"
             type="roll"
             value="&{template:custom}{{title=Fortitude Save}}{{Result:= [[1d20+@{FortTotal}]]}}"
-            name="roll_Fortitude-save"></button>
+            name="roll_Fortitude-save"></button></div>
    </div>
    <div class="saves">
-    Reflex: <input type="number" readonly name="attr_RefTotal"/>
-    Base: <input type="number" name="attr_RefBase" readonly="true"/>
-    Dex: <input type="number" name="attr_dexmod" readonly="true"/>
-    Magic: <input type="number" name="RefMagic"/>
-    Misc: <input type="number" name="RefMisc"/>
-    <button title="Reflex Save"
+    <div>Reflex: <input type="number" readonly name="attr_RefTotal"/></div>
+    <div>Base: <input type="number" name="attr_RefBase" readonly="true"/></div>
+    <div>Dex: <input type="number" name="attr_dexmod" readonly="true"/></div>
+    <div>Magic: <input type="number" name="RefMagic"/></div>
+    <div>Misc: <input type="number" name="RefMisc"/></div>
+    <div><button title="Reflex Save"
             type="roll"
             value="&{template:custom}{{title=Reflex Save}}{{Result:= [[1d20+@{RefTotal}]]}}"
-            name="roll_Reflex-save"></button>
+            name="roll_Reflex-save"></button></div>
    </div>
    <div style="border-radius: 0 0 5px 5px" class="saves">
-    Will: <input type="number" readonly name="attr_WilTotal"/>
-    Base: <input type="number" name="attr_WilBase" readonly="true"/>
-    Wis: <input type="number" name="attr_wismod" readonly="true"/>
-    Magic: <input type="number" name="WisMagic"/>
-    Misc: <input type="number" name="WisMisc"/>
-    <button title="Will Save"
+    <div>Will: <input type="number" readonly name="attr_WilTotal"/></div>
+    <div>Base: <input type="number" name="attr_WilBase" readonly="true"/></div>
+    <div>Wis: <input type="number" name="attr_wismod" readonly="true"/></div>
+    <div>Magic: <input type="number" name="WisMagic"/></div>
+    <div>Misc: <input type="number" name="WisMisc"/></div>
+    <div><button title="Will Save"
             type="roll"
             value="&{template:custom}{{title=Will Save}}{{Result:= [[1d20+@{WilTotal}]]}}"
-            name="roll_Will-save"></button>
+            name="roll_Will-save"></button></div>
    </div>
   </div>
  </div>
