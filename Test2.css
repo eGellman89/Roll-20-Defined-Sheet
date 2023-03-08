@@ -473,6 +473,35 @@
   text-align: center;
 }
 
+.ui-dialog .charsheet .SkillsPage button[type=roll],
+.ui-dialog .charsheet .SkillsPage button[type=compendium]{
+  padding: 0;
+  border: 0;
+  margin: 0;
+  width: 22px;
+  height: 24px;
+  text-align: center;
+  background-image: none;
+  content: "";
+  float: right;
+  transition-duration: 0.4s;
+  box-shadow: 0 2px #909090;
+}
+
+.ui-dialog .charsheet .SkillsPage button[type=roll]:hover,
+.ui-dialog .charsheet .SkillsPage button[type=compendium]:hover {
+  background-color: #323232;
+  color: #FFFFFF;
+}
+
+.ui-dialog .charsheet .SkillsPage button[type=roll]:active,
+.ui-dialog .charsheet .SkillsPage button[type=compendium]:active {
+  background-color: #000000;
+  color: #db1c1c;
+  box-shadow: 0 0px;
+  transform: translateY(2px);
+}
+
 .SkillsPage .skill-desc{
   background-color: #A2A2A2;
   color: #000000;

@@ -359,7 +359,7 @@ This is the Main Tab of the sheet
      <button class="button"
              title="Initiative"
              type="roll"
-             value="&{template:custom}{{title=Initiative}}{{subtitle=@{charname}}{{Result:= [[1d20+@{InitTotal}+(@{InitTotal}/100)&{tracker}]]}}"
+             value="&{template:custom}{{title=Initiative}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{InitTotal}+(@{InitTotal}/100)&{tracker}]]}}"
              name="roll_Intelligence-check"></button>
     </td>
     <td style="border-right: 1px black solid">Parry: <input type="number" name="attr_ParryAC"/></td>
@@ -379,9 +379,7 @@ This is the Main Tab of the sheet
   </table>
  </div>
  </div>
-<!--
-This is the Skills Tab
--->
+<!--<editor-fold desc="Skill-Sheet">-->
 <div class="sheet-skills">
  <div class="SkillsPage">
   <table>
@@ -390,8 +388,8 @@ This is the Skills Tab
    </tr>
    <tr class="skill-desc">
     <td>Trained?</td>
+    <td>Skill Name</td>
     <td>Use Untrained?</td>
-    <td>Skill name</td>
     <td>Key</td>
     <td>Roll</td>
     <td>Total</td>
@@ -403,7 +401,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_AcrobaticsTrained"/></td>
     <td>Acrobatics*</td>
     <td>Yes</td>
-    <td>Str</td>
+    <td>Str<input type="hidden" name="attr_KeyStr"/></td>
     <td><button class="button"
                 title="Acrobatics"
                 type="roll"
@@ -418,7 +416,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_BalanceTrained"/></td>
     <td>Balance</td>
     <td>Yes</td>
-    <td>Dex</td>
+    <td>Dex<input type="hidden" name="attr_KeyDex"/></td>
     <td><button class="button"
                 title="Balance"
                 type="roll"
@@ -433,7 +431,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_BeguileTrained"/></td>
     <td>Beguile</td>
     <td>Yes</td>
-    <td>Cha</td>
+    <td>Cha<input type="hidden" name="attr_KeyCha"/></td>
     <td><button class="button"
                 title="Beguile"
                 type="roll"
@@ -448,7 +446,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_BushcraftTrained"/></td>
     <td>Bushcraft</td>
     <td>No</td>
-    <td>Wis</td>
+    <td>Wis<input type="hidden" name="attr_KeyWis"/></td>
     <td><button class="button"
                 title="Bushcraft"
                 type="roll"
@@ -463,7 +461,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_ConcealTrained"/></td>
     <td>Conceal</td>
     <td>Yes</td>
-    <td>Dex</td>
+    <td>Dex<input type="hidden" name="attr_KeyDex"/></td>
     <td><button class="button"
                 title="Conceal"
                 type="roll"
@@ -478,7 +476,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_ConcentrationTrained"/></td>
     <td>Concentration</td>
     <td>Yes</td>
-    <td>Con</td>
+    <td>Con<input type="hidden" name="attr_KeyCon"/></td>
     <td><button class="button"
                 title="Concentration"
                 type="roll"
@@ -493,7 +491,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_CounterfeitTrained"/></td>
     <td>Counterfeit</td>
     <td>No</td>
-    <td>Int</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
     <td><button class="button"
                 title="Counterfeit"
                 type="roll"
@@ -508,7 +506,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_Craft1Trained"/></td>
     <td>Craft: <input type="text" name="attr_Craft1Name"</td>
     <td>No</td>
-    <td>Int</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
     <td><button class="button"
                 title="Craft1"
                 type="roll"
@@ -523,7 +521,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_Craft2Trained"/></td>
     <td>Craft: <input type="text" name="attr_Craft2Name"</td>
     <td>No</td>
-    <td>Int</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
     <td><button class="button"
                 title="Craft2"
                 type="roll"
@@ -538,7 +536,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_Craft3Trained"/></td>
     <td>Craft: <input type="text" name="attr_Craft3Name"</td>
     <td>No</td>
-    <td>Int</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
     <td><button class="button"
                 title="Craft3"
                 type="roll"
@@ -553,7 +551,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_DiscernIntentTrained"/></td>
     <td>Discern Intent</td>
     <td>Yes</td>
-    <td>Wis</td>
+    <td>Wis<input type="hidden" name="attr_KeyWis"/></td>
     <td><button class="button"
                 title="DiscernIntent"
                 type="roll"
@@ -568,7 +566,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_DiplomacyTrained"/></td>
     <td>Diplomacy</td>
     <td>Yes</td>
-    <td>Cha</td>
+    <td>Cha<input type="hidden" name="attr_KeyCha"/></td>
     <td><button class="button"
                 title="Diplomacy"
                 type="roll"
@@ -583,7 +581,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_DisguiseTrained"/></td>
     <td>Disguise</td>
     <td>Yes</td>
-    <td>Cha</td>
+    <td>Cha<input type="hidden" name="attr_KeyCha"/></td>
     <td><button class="button"
                 title="Disguise"
                 type="roll"
@@ -598,7 +596,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_EscapeArtistTrained"/></td>
     <td>Escape Artist</td>
     <td>Yes</td>
-    <td>Dex</td>
+    <td>Dex<input type="hidden" name="attr_KeyDex"/></td>
     <td><button class="button"
                 title="Escape Artist"
                 type="roll"
@@ -613,7 +611,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_GatherInformationTrained"/></td>
     <td>Gather Information</td>
     <td>Yes</td>
-    <td>Cha</td>
+    <td>Cha<input type="hidden" name="attr_KeyCha"/></td>
     <td><button class="button"
                 title="Gather Information"
                 type="roll"
@@ -628,7 +626,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_HaggleTrained"/></td>
     <td>Haggle</td>
     <td>Yes</td>
-    <td>Cha</td>
+    <td>Cha<input type="hidden" name="attr_KeyCha"/></td>
     <td><button class="button"
                 title="Haggle"
                 type="roll"
@@ -643,7 +641,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_HealTrained"/></td>
     <td>Heal</td>
     <td>No</td>
-    <td>Wis</td>
+    <td>Wis<input type="hidden" name="attr_KeyWis"/></td>
     <td><button class="button"
                 title="Heal"
                 type="roll"
@@ -658,7 +656,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_IntimidateTrained"/></td>
     <td>Intimidate</td>
     <td>Yes</td>
-    <td>Cha</td>
+    <td>Cha<input type="hidden" name="attr_KeyCha"/></td>
     <td><button class="button"
                 title="Intimidate"
                 type="roll"
@@ -673,7 +671,7 @@ This is the Skills Tab
     <td><input type="checkbox" name="attr_InvestigateTrained"/></td>
     <td>Investigate</td>
     <td>Yes</td>
-    <td>Int</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
     <td><button class="button"
                 title="Investigate"
                 type="roll"
@@ -687,9 +685,8 @@ This is the Skills Tab
   </table>
  </div>
 </div>
-<!--
-This is the Gear Tab
--->
+<!--</editor-fold>-->
+<!--<editor-fold desc="Gear-Tab">-->
 <div class="sheet-gear">
  <div class="Armor-Off-Hand">
   <table>
@@ -725,8 +722,8 @@ This is the Gear Tab
     <td><input type="number"/></td>
     <td><input type="number"/></td>
     <td><input type="number" name="attr_Shield"/></td>
-    <td><input type="number" name="attr_SDexACLimit"/></td>
-    <td><input type="number" name="attr_SCheckPen"/></td>
+    <td><input type="number" name="attr_ShieldDexACLimit"/></td>
+    <td><input type="number" name="attr_ShieldCheckPen"/></td>
    </tr>
    <tr style="border: 0">
     <td>Focus</td>
@@ -745,6 +742,7 @@ This is the Gear Tab
   </table>
  </div>
 </div>
+<!--</editor-fold>-->
 <!--
 This is Definitions and traits
 -->
@@ -804,23 +802,24 @@ type="text/worker"
 <script>
 
 <!--<script type="text/worker">-->
-
+var skill_cap_calc = function(hitdie, trained){
+    if(trained === "0"){
+        return Math.floor((hitdie + 3)/2);
+    }
+    return hitdie + 3;
+}
 //<editor-fold desc="Skill Fuster Cluck">
-on("change:acrobaticssp change:acrobaticsmisc change:strmod sheet:opened",function(){
-    getAttrs(["AcrobaticsSP","AcrobaticsMisc","strmod","HD","AcrobaticsTrained"],function(values){
+on("change:acrobaticssp change:acrobaticsmisc change:strmod change:checkpen change:shieldcheckpen sheet:opened",function(){
+    getAttrs(["AcrobaticsSP","AcrobaticsMisc","strmod","HD","AcrobaticsTrained","CheckPen","ShieldCheckPen"],function(values){
        let SP = parseFloat(values.AcrobaticsSP)||0;
        let misc = parseFloat(values.AcrobaticsMisc)||0;
        let key = parseFloat(values.strmod)||0;
        let HD = parseFloat(values.HD)||0;
-       let cap;
-       if(values.AcrobaticsTrained === "0"){
-           cap = Math.floor((HD + 3)/2);
-       }else{
-           cap = HD + 3;
-       }
+       let CheckPen = parseFloat(values.CheckPen)||0;
+       CheckPen = CheckPen + (parseFloat(values.ShieldCheckPen)||0);
        setAttrs({
-           AcrobaticsTotal: Math.min(cap,SP) + key + misc,
-           AcrobaticsSP: Math.min(cap,SP)
+           AcrobaticsTotal: Math.min(skill_cap_calc(HD,values.AcrobaticsTrained),SP) + key + misc - CheckPen,
+           AcrobaticsSP: Math.min(skill_cap_calc(HD,values.AcrobaticsTrained),SP)
        });
     });
 });
@@ -831,15 +830,9 @@ on("change:balancesp change:balancemisc change:dexmod sheet:opened",function(){
         let misc = parseFloat(values.BalanceMisc)||0;
         let key = parseFloat(values.dexmod)||0;
         let HD = parseFloat(values.HD)||0;
-        let cap;
-        if(values.BalanceTrained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
         setAttrs({
-            BalanceTotal: Math.min(cap,SP) + key + misc,
-            BalanceSP: Math.min(cap,SP)
+            BalanceTotal: Math.min(skill_cap_calc(HD,values.BalanceTrained),SP) + key + misc,
+            BalanceSP: Math.min(skill_cap_calc(HD,values.BalanceTrained),SP)
         });
     });
 });
@@ -850,15 +843,9 @@ on("change:beguilesp change:beguilemisc change:chamod sheet:opened",function(){
         let misc = parseFloat(values.BeguileMisc)||0;
         let key = parseFloat(values.chamod)||0;
         let HD = parseFloat(values.HD)||0;
-        let cap;
-        if(values.BeguileTrained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
         setAttrs({
-            BeguileTotal: Math.min(cap,SP) + key + misc,
-            BeguileSP: Math.min(cap,SP)
+            BeguileTotal: Math.min(skill_cap_calc(HD,values.BeguileTrained),SP) + key + misc,
+            BeguileSP: Math.min(skill_cap_calc(HD,values.BeguileTrained),SP)
         });
     });
 });
@@ -869,15 +856,9 @@ on("change:bushcraftSP change:bushcraftmisc change:wismod sheet:opened",function
         let misc = parseFloat(values.BushcraftMisc)||0;
         let key = parseFloat(values.wismod)||0;
         let HD = parseFloat(values.HD)||0;
-        let cap;
-        if(values.BushcraftTrained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
         setAttrs({
-            BushcraftTotal: Math.min(cap,SP) + key + misc,
-            BushcraftSP: Math.min(cap,SP)
+            BushcraftTotal: Math.min(skill_cap_calc(HD,values.BushcraftTrained),SP) + key + misc,
+            BushcraftSP: Math.min(skill_cap_calc(HD,values.BushcraftTrained),SP)
         });
     });
 });
@@ -888,15 +869,9 @@ on("change:concealsp change:concealmisc change:dexmod sheet:opened",function(){
         let misc = parseFloat(values.ConcealMisc)||0;
         let key = parseFloat(values.dexmod)||0;
         let HD = parseFloat(values.HD)||0;
-        let cap;
-        if(values.ConcealTrained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
         setAttrs({
-            ConcealTotal: Math.min(cap,SP) + key + misc,
-            ConcealSP: Math.min(cap,SP)
+            ConcealTotal: Math.min(skill_cap_calc(HD,values.ConcealTrained),SP) + key + misc,
+            ConcealSP: Math.min(skill_cap_calc(HD,values.ConcealTrained),SP)
         });
     });
 });
@@ -907,15 +882,9 @@ on("change:concentrationsp change:concentrationmisc change:conmod sheet:opened",
         let misc = parseFloat(values.ConcentrationMisc)||0;
         let key = parseFloat(values.conmod)||0;
         let HD = parseFloat(values.HD)||0;
-        let cap;
-        if(values.ConcentrationTrained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
         setAttrs({
-            ConcentrationTotal: Math.min(cap,SP) + key + misc,
-            ConcentrationSP: Math.min(cap,SP)
+            ConcentrationTotal: Math.min(skill_cap_calc(HD,values.ConcentrationTrained),SP) + key + misc,
+            ConcentrationSP: Math.min(skill_cap_calc(HD,values.ConcentrationTrained),SP)
         });
     });
 });
@@ -926,15 +895,9 @@ on("change:counterfeitsp change:counterfeitmisc change:intmod sheet:opened",func
         let misc = parseFloat(values.CounterfeitMisc)||0;
         let key = parseFloat(values.intmod)||0;
         let HD = parseFloat(values.HD)||0;
-        let cap;
-        if(values.CounterfeitTrained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
         setAttrs({
-            CounterfeitTotal: Math.min(cap,SP) + key + misc,
-            CounterfeitSP: Math.min(cap,SP)
+            CounterfeitTotal: Math.min(skill_cap_calc(HD,values.CounterfeitTrained),SP) + key + misc,
+            CounterfeitSP: Math.min(skill_cap_calc(HD,values.CounterfeitTrained),SP)
         });
     });
 });
@@ -945,15 +908,9 @@ on("change:craft1sp change:craft1misc change:intmod sheet:opened",function(){
         let misc = parseFloat(values.Craft1Misc)||0;
         let key = parseFloat(values.intmod)||0;
         let HD = parseFloat(values.HD)||0;
-        let cap;
-        if(values.Craft1Trained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
         setAttrs({
-            Craft1Total: Math.min(cap,SP) + key + misc,
-            Craft1SP: Math.min(cap,SP)
+            Craft1Total: Math.min(skill_cap_calc(HD,values.Craft1Trained),SP) + key + misc,
+            Craft1SP: Math.min(skill_cap_calc(HD,values.Craft1Trained),SP)
         });
     });
 });
@@ -964,15 +921,9 @@ on("change:craft2sp change:craft2misc change:intmod sheet:opened",function(){
         let misc = parseFloat(values.Craft2Misc)||0;
         let key = parseFloat(values.intmod)||0;
         let HD = parseFloat(values.HD)||0;
-        let cap;
-        if(values.Craft2Trained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
         setAttrs({
-            Craft2Total: Math.min(cap,SP) + key + misc,
-            Craft2SP: Math.min(cap,SP)
+            Craft2Total: Math.min(skill_cap_calc(HD,values.Craft2Trained),SP) + key + misc,
+            Craft2SP: Math.min(skill_cap_calc(HD,values.Craft2Trained),SP)
         });
     });
 });
@@ -983,34 +934,9 @@ on("change:craft3sp change:craft3misc change:intmod sheet:opened",function(){
         let misc = parseFloat(values.Craft3Misc)||0;
         let key = parseFloat(values.intmod)||0;
         let HD = parseFloat(values.HD)||0;
-        let cap;
-        if(values.Craft3Trained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
         setAttrs({
-            Craft3Total: Math.min(cap,SP) + key + misc,
-            Craft3SP: Math.min(cap,SP)
-        });
-    });
-});
-
-on("change:craft3sp change:craft3misc change:intmod sheet:opened",function(){
-    getAttrs(["Craft3SP","Craft3Misc","intmod","HD","Craft3Trained"],function(values){
-        let SP = parseFloat(values.Craft3SP)||0;
-        let misc = parseFloat(values.Craft3Misc)||0;
-        let key = parseFloat(values.intmod)||0;
-        let HD = parseFloat(values.HD)||0;
-        let cap;
-        if(values.Craft3Trained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
-        setAttrs({
-            Craft3Total: Math.min(cap,SP) + key + misc,
-            Craft3SP: Math.min(cap,SP)
+            Craft3Total: Math.min(skill_cap_calc(HD,values.Craft3Trained),SP) + key + misc,
+            Craft3SP: Math.min(skill_cap_calc(HD,values.Craft3Trained),SP)
         });
     });
 });
@@ -1021,15 +947,9 @@ on("change:discernintentsp change:discernintentmisc change:wismod sheet:opened",
         let misc = parseFloat(values.DiscernIntentMisc)||0;
         let key = parseFloat(values.wismod)||0;
         let HD = parseFloat(values.HD)||0;
-        let cap;
-        if(values.DiscernIntentTrained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
         setAttrs({
-            DiscernIntentTotal: Math.min(cap,SP) + key + misc,
-            DiscernIntentSP: Math.min(cap,SP)
+            DiscernIntentTotal: Math.min(skill_cap_calc(HD,values.DiscernTrained),SP) + key + misc,
+            DiscernIntentSP: Math.min(skill_cap_calc(HD,values.DiscernTrained),SP)
         });
     });
 });
@@ -1040,15 +960,9 @@ on("change:diplomacysp change:diplomacymisc change:chamod sheet:opened",function
         let misc = parseFloat(values.DiplomacyMisc)||0;
         let key = parseFloat(values.chamod)||0;
         let HD = parseFloat(values.HD)||0;
-        let cap
-        if(values.DiplomacyTrained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
         setAttrs({
-            DiplomacyTotal: Math.min(cap,SP) + key + misc,
-            DiplomacySP: Math.min(cap,SP)
+            DiplomacyTotal: Math.min(skill_cap_calc(HD,values.DiplomacyTrained),SP) + key + misc,
+            DiplomacySP: Math.min(skill_cap_calc(HD,values.DiplomacyTrained),SP)
         });
     });
 });
@@ -1059,15 +973,9 @@ on("change:disguisesp change:disguisemisc change:chamod sheet:opened",function()
         let misc = parseFloat(values.DisguiseMisc)||0;
         let key = parseFloat(values.chamod)||0;
         let HD = parseFloat(values.HD)||0;
-        let cap
-        if(values.DisguiseTrained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
         setAttrs({
-            DisguiseTotal: Math.min(cap,SP) + key + misc,
-            DisguiseSP: Math.min(cap,SP)
+            DisguiseTotal: Math.min(skill_cap_calc(HD,values.DisguiseTrained),SP) + key + misc,
+            DisguiseSP: Math.min(skill_cap_calc(HD,values.DisguiseTrained),SP)
         });
     });
 });
@@ -1078,15 +986,9 @@ on("change:escapeartistsp change:escapeartistmisc change:dexmod sheet:opened",fu
         let misc = parseFloat(values.EscapeArtistMisc)||0;
         let key = parseFloat(values.dexmod)||0;
         let HD = parseFloat(values.HD)||0;
-        let cap
-        if(values.EscapeArtistTrained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
         setAttrs({
-            EscapeArtistTotal: Math.min(cap,SP) + key + misc,
-            EscapeArtistSP: Math.min(cap,SP)
+            EscapeArtistTotal: Math.min(skill_cap_calc(HD,values.EscapeArtistTrained),SP) + key + misc,
+            EscapeArtistSP: Math.min(skill_cap_calc(HD,values.EscapeArtistTrained),SP)
         });
     });
 });
@@ -1097,15 +999,9 @@ on("change:gatherinformationsp change:gatherinformationmisc change:chamod sheet:
         let misc = parseFloat(values.GatherInformationMisc)||0;
         let key = parseFloat(values.chamod)||0;
         let HD = parseFloat(values.HD)||0;
-        let cap
-        if(values.GatherInformationTrained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
         setAttrs({
-            GatherInformationTotal: Math.min(cap,SP) + key + misc,
-            GatherInformationSP: Math.min(cap,SP)
+            GatherInformationTotal: Math.min(skill_cap_calc(HD,values.GatherInformationTrained),SP) + key + misc,
+            GatherInformationSP: Math.min(skill_cap_calc(HD,values.GatherInformationTrained),SP)
         });
     });
 });
@@ -1116,15 +1012,9 @@ on("change:hagglesp change:hagglemisc change:chamod sheet:opened",function(){
         let misc = parseFloat(values.HaggleMisc)||0;
         let key = parseFloat(values.chamod)||0;
         let HD = parseFloat(values.HD)||0;
-        let cap
-        if(values.HaggleTrained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
         setAttrs({
-            HaggleTotal: Math.min(cap,SP) + key + misc,
-            HaggleSP: Math.min(cap,SP)
+            HaggleTotal: Math.min(skill_cap_calc(HD,values.HaggleTrained),SP) + key + misc,
+            HaggleSP: Math.min(skill_cap_calc(HD,values.HaggleTrained),SP)
         });
     });
 });
@@ -1135,15 +1025,9 @@ on("change:healsp change:healmisc change:wismod sheet:opened",function(){
         let misc = parseFloat(values.HealMisc)||0;
         let key = parseFloat(values.wismod)||0;
         let HD = parseFloat(values.HD)||0;
-        let cap
-        if(values.HealTrained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
         setAttrs({
-            HealTotal: Math.min(cap,SP) + key + misc,
-            HealSP: Math.min(cap,SP)
+            HealTotal: Math.min(skill_cap_calc(HD,values.HealTrained),SP) + key + misc,
+            HealSP: Math.min(skill_cap_calc(HD,values.HealTrained),SP)
         });
     });
 });
@@ -1154,15 +1038,9 @@ on("change:intimidatesp change:intimidatemisc change:chamod sheet:opened",functi
         let misc = parseFloat(values.IntimidateMisc)||0;
         let key = parseFloat(values.chamod)||0;
         let HD = parseFloat(values.HD)||0;
-        let cap
-        if(values.IntimidateTrained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
         setAttrs({
-            IntimidateTotal: Math.min(cap,SP) + key + misc,
-            IntimidateSP: Math.min(cap,SP)
+            IntimidateTotal: Math.min(skill_cap_calc(HD,values.IntimidateTrained),SP) + key + misc,
+            IntimidateSP: Math.min(skill_cap_calc(HD,values.IntimidateTrained),SP)
         });
     });
 });
@@ -1173,22 +1051,16 @@ on("change:investigatesp change:investigatemisc change:intmod sheet:opened",func
         let misc = parseFloat(values.InvestigateMisc)||0;
         let key = parseFloat(values.intmod)||0;
         let HD = parseFloat(values.HD)||0;
-        let cap
-        if(values.InvestigateTrained === "0"){
-            cap = Math.floor((HD + 3)/2);
-        }else{
-            cap = HD + 3;
-        }
         setAttrs({
-            InvestigateTotal: Math.min(cap,SP) + key + misc,
-            InvestigateSP: Math.min(cap,SP)
+            InvestigateTotal: Math.min(skill_cap_calc(HD,values.InvestigateTrained),SP) + key + misc,
+            InvestigateSP: Math.min(skill_cap_calc(HD,values.InvestigateTrained),SP)
         });
     });
 });
 
 //</editor-fold>
 
-//save calculations
+//<editor-fold desc="Saves">
 
 on("change:fortbasestr change:conmod change:constitution change:hd sheet:opened",function (){
     getAttrs(["FortBaseStr","HD"],function(values){
@@ -1220,7 +1092,7 @@ on("change:refbasestr change:dexmod change:dexterity change:hd sheet:opened",fun
     });
 });
 
-on("change:refbasestr change:wismod change:wisdom change:hd sheet:opened",function (){
+on("change:wilbasestr change:wismod change:wisdom change:hd sheet:opened",function (){
     getAttrs(["WilBaseStr","HD"],function(values){
         let HD = parseFloat(values.HD);
         let base = 0;
@@ -1277,13 +1149,14 @@ on("change:wilbasestr change:wismod change:wisdom change:hd change:wilbasenum " 
     });
 });
 
-// end save calcuation
+//</editor-fold>
 
-// AC calculations
+// <editor-fold desc="AC">
 on("change:shield change:size change:armorbonus change:dexmod change:naturalac change:parryac " +
-    "change:miscac change:deflection change:insightac change:dodgeac sheet:opened",function(){
+    "change:miscac change:deflection change:insightac change:dodgeac change:dexaclimit change:shielddexaclimit" +
+    " sheet:opened",function(){
     getAttrs(["dexmod","ArmorBonus","NaturalAC","Shield","MiscAC",
-        "InsightAC","ParryAC","Deflection","DodgeAC","size"],function(values){
+        "InsightAC","ParryAC","Deflection","DodgeAC","size","DexACLimit","ShieldDexACLimit"],function(values){
        let dex = parseFloat(values.dexmod)||0;
        let armor = parseFloat(values.ArmorBonus)||0;
        let natural = parseFloat(values.NaturalAC)||0;
@@ -1293,6 +1166,9 @@ on("change:shield change:size change:armorbonus change:dexmod change:naturalac c
        let deflection = parseFloat(values.Deflection)||0;
        let insight = parseFloat(values.InsightAC)||0;
        let misc = parseFloat(values.MiscAC)||0;
+       let ArmorLimit = parseFloat(values.DexACLimit)||9999;
+       let ShieldLimit = parseFloat(values.ShieldDexACLimit)||9999;
+       let DexLimit = Math.min(ArmorLimit,ShieldLimit);
        let size = 0;
        if(values.size === "Sub Tiny"){
            size = 8;
@@ -1313,9 +1189,9 @@ on("change:shield change:size change:armorbonus change:dexmod change:naturalac c
         }if(values.size === "Super Gargantuan"){
            size = -8;
         }
-       let total = 10 + dex + armor + natural + shield + parry + dodge + deflection + insight + misc + size;
+       let total = 10 + Math.min(DexLimit,dex) + armor + natural + shield + parry + dodge + deflection + insight + misc + size;
        let flat = 10 + armor + natural + shield + deflection + insight + misc + size;
-       let touch = 10 + dex + parry + dodge + deflection + insight + misc + size;
+       let touch = 10 + Math.min(DexLimit,dex) + parry + dodge + deflection + insight + misc + size;
        setAttrs({
            TotalAC: total,
            FlatFAC: flat,
@@ -1323,9 +1199,9 @@ on("change:shield change:size change:armorbonus change:dexmod change:naturalac c
        });
     });
 });
+//</editor-fold>
 
-//Initiative Calculations
-
+//<editor-fold desc="Initiative Calculations"
 on("change:dexmox change:initbonus sheet:opened", function(){
    getAttrs(["dexmod","InitBonus"],function(values){
       let dex = parseFloat(values.dexmod)||0;
@@ -1336,9 +1212,9 @@ on("change:dexmox change:initbonus sheet:opened", function(){
        });
    });
 });
+//</editor-fold>
 
-//Button tabs
-
+//<editor-fold desc="Button-Tabs"
 const buttonlist = ["main","skills","gear","definitions"];
 buttonlist.forEach(button => {
     on(`clicked:${button}`, function() {
@@ -1347,8 +1223,9 @@ buttonlist.forEach(button => {
         });
     });
 });
+//</editor-fold>
 
-// HP Calculations here
+//<editor-fold desc="HP Calculations"
 
 on("change:constitution change:mischp change:rollhp sheet:opened", function(){
    getAttrs(["HD","conmod"],function(values){
@@ -1397,7 +1274,9 @@ on("change:constitution change:conmod change:mischp change:magiccurve change:rol
     });
 });
 
-//hd calculations here
+//</editor-fold>
+
+//<editor-fold desc="HD Calculations">
 
 on("change:hd change:lg sheet:opened", function(){
     getAttrs(["HD", "LG"], function(values){
@@ -1410,7 +1289,9 @@ on("change:hd change:lg sheet:opened", function(){
     });
 });
 
-// Stat Block calculations here
+//</editor-fold>
+
+//<editor-fold desc="Statblock"
 on("change:strength change:strbonus change:strench change:strpen sheet:opened", function() {
     getAttrs(["strength", "StrBonus", "StrEnch", "StrPen"], function(values) {
        let base = parseFloat(values.strength)||0;
@@ -1495,5 +1376,5 @@ on("change:charisma change:chabonus change:chaench change:chapen sheet:opened", 
         });
     });
 });
-// end of statblock
+//</editor-fold>
 </script>
