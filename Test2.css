@@ -118,6 +118,37 @@
   font-weight: bold;
 }
 
+.ui-dialog .charsheet .leftsidestatblock button[type=roll],
+.ui-dialog .charsheet .leftsidestatblock button[type=compendium] {
+  padding: 0;
+  border: 1px black solid;
+  margin: 0;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  background-color: #F0F0F0;
+  color: #000000;
+  background-image: none;
+  content: "";
+  float: right;
+  transition-duration: 0.4s;
+  box-shadow: 0 2px #909090;
+}
+
+.ui-dialog .charsheet .leftsidestatblock button[type=roll]:hover,
+.ui-dialog .charsheet .leftsidestatblock button[type=compendium]:hover {
+  background-color: #323232;
+  color: #FFFFFF;
+}
+
+.ui-dialog .charsheet .leftsidestatblock button[type=roll]:active,
+.ui-dialog .charsheet .leftsidestatblock button[type=compendium]:active {
+  background-color: #000000;
+  color: #db1c1c;
+  box-shadow: 0 0px;
+  transform: translateY(2px);
+}
+
 .Attribute-Name input{
   float: right;
 }
@@ -163,21 +194,24 @@
   margin-right: 2px;
 }
 
-.leftsidestatblock .saves{
+.leftsidestatblock .saves {
   display: grid;
   width: 418px;
   text-align: left;
-  grid-template-columns: 97px 73px 73px 76px 68px 24px;
+  grid-template-columns: auto auto auto auto auto auto;
+  grid-gap: 1px;
   align-items: center;
   justify-content: space-between;
   border: 1px solid black;
   font-weight: bold;
   padding-top: 2px;
   padding-bottom: 2px;
+  border-radius: 0 0 5px 5px;
 }
 
-.leftsidestatblock .saves :first-child{
-  align-self: center;
+.leftsidestatblock .saves div{
+  padding-bottom: 3px;
+  padding-top: 3px;
 }
 
 .ui-dialog .charsheet .leftsidestatblock .saves input{
@@ -217,6 +251,7 @@
   font-weight: bold;
   float: none;
   text-align: center;
+  margin: auto;
 }
 
 .ui-dialog .charsheet .Save-Selection table td select{
@@ -235,8 +270,8 @@
   padding: 0;
   border: 1px black solid;
   margin: 0;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   text-align: center;
   background-color: #F0F0F0;
   color: #000000;
@@ -429,6 +464,55 @@
   padding: 0;
   font-size: 12px;
   margin: 0;
+}
+
+.SkillsPage{
+  width: 800px;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.SkillsPage .skill-desc{
+  background-color: #A2A2A2;
+  color: #000000;
+  font-weight: bold;
+  margin: 6px auto;
+}
+
+.SkillsPage input[type=text]{
+  text-align: left;
+  width: 100px;
+  height: 20px;
+}
+
+.ui-dialog .charsheet .SkillsPage input[type=number]{
+  -moz-appearance: textfield;
+  text-align: right;
+  font-weight: bold;
+}
+
+.ui-dialog .charsheet .SkillsPage input[readonly]{
+  background-color: #5A5A5A;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+.ui-dialog .charsheet .SkillsPage th{
+  text-align: center;
+  width: 800px;
+  background-color: #000000;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+.ui-dialog .charsheet .hoverskill{
+  transition-duration: .05s;
+}
+
+.ui-dialog .charsheet .hoverskill:hover{
+  background-color: #323232;
+  color: #FFFFFF;
 }
 
 .Armor-Off-Hand{

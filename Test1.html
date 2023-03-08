@@ -59,7 +59,7 @@ This is the Main Tab of the sheet
            <option value="Tiny">Tiny</option>
            <option value="Very Small">Very Small</option>
            <option value="Small">Small</option>
-           <option value="Medium">Medium</option>
+           <option selected="selected" value="Medium">Medium</option>
            <option value="Large">Large</option>
            <option value="Very Large">Very Large</option>
            <option value="Gargantuan">Gargantuan</option>
@@ -115,7 +115,7 @@ This is the Main Tab of the sheet
      <td>
       <button title="Strength Check"
               type="roll"
-              value="&{template:custom}{{title=Strength Check}}{{Strength:= [[1d20+@{strmod}]]}}"
+              value="&{template:custom}{{title=Strength Check}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{strmod}]]}}"
               name="roll_Strength-Check"></button>
      </td>
     </tr>
@@ -141,7 +141,7 @@ This is the Main Tab of the sheet
      <td>
       <button title="Dexterity Check"
               type="roll"
-              value="&{template:custom}{{title=Dexterity Check}}{{Dexterity:= [[1d20+@{dexmod}]]}}"
+              value="&{template:custom}{{title=Dexterity Check}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{dexmod}]]}}"
               name="roll_Dexterity-check"></button>
      </td>
     </tr>
@@ -167,7 +167,7 @@ This is the Main Tab of the sheet
      <td>
       <button title="Constitution Check"
               type="roll"
-              value="&{template:custom}{{title=Constitution Check}}{{Constitution:= [[1d20+@{conmod}]]}}"
+              value="&{template:custom}{{title=Constitution Check}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{conmod}]]}}"
               name="roll_Constitution-check"></button>
      </td>
     </tr>
@@ -193,7 +193,7 @@ This is the Main Tab of the sheet
      <td>
       <button title="Wisdom Check"
               type="roll"
-              value="&{template:custom}{{title=Wisdom Check}}{{Wisdom:= [[1d20+@{wismod}]]}}"
+              value="&{template:custom}{{title=Wisdom Check}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{wismod}]]}}"
               name="roll_Wisdom-check"></button>
      </td>
     </tr>
@@ -219,7 +219,7 @@ This is the Main Tab of the sheet
      <td>
       <button title="Intelligence Check"
               type="roll"
-              value="&{template:custom}{{title=Intelligence Check}}{{Intelligence:= [[1d20+@{intmod}]]}}"
+              value="&{template:custom}{{title=Intelligence Check}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{intmod}]]}}"
               name="roll_Intelligence-check"></button>
      </td>
     </tr>
@@ -245,7 +245,7 @@ This is the Main Tab of the sheet
      <td>
       <button title="Charisma Check"
               type="roll"
-              value="&{template:custom}{{title=Charisma Check}}{{Charisma:= [[1d20+@{chamod}]]}}"
+              value="&{template:custom}{{title=Charisma Check}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{chamod}]]}}"
               name="roll_Charisma-check"></button>
      </td>
     </tr>
@@ -261,19 +261,19 @@ This is the Main Tab of the sheet
     </tr>
     <tr>
      <td>
-      <select type="text" name="attr_basefort" id="FortBase">
+      <select type="text" name="attr_FortBaseStr" id="FortBase">
        <option value="Low">Low</option>
        <option value="High">High</option>
       </select>
      </td>
      <td>
-      <select type="text" name="attr_baseref" id="ReflexBase">
+      <select type="text" name="attr_RefBaseStr" id="ReflexBase">
        <option value="Low">Low</option>
        <option value="High">High</option>
       </select>
      </td>
      <td>
-      <select type="text" name="attr_basewill" id="WillBase">
+      <select type="text" name="attr_WilBaseStr" id="WillBase">
        <option value="Low">Low</option>
        <option value="High">High</option>
       </select>
@@ -287,36 +287,32 @@ This is the Main Tab of the sheet
    </div>
    <div class="saves">
     <div>Fortitude: <input type="number" readonly name="attr_FortTotal"/></div>
-    <div>Base: <input type="number" name="attr_FortBase" readonly="true"/></div>
+    <div>Base: <input type="number" name="attr_FortBaseNum" readonly="true"/></div>
     <div>Con: <input type="number" name="attr_conmod" readonly="true"/></div>
-    <div>Magic: <input type="number" name="FortMagic"/></div>
-    <div>Misc: <input type="number" name="FortMisc"/></div>
+    <div>Magic: <input type="number" name="attr_FortMagic"/></div>
+    <div>Misc: <input type="number" name="attr_FortMiscNum"/></div>
     <div><button title="Fortitude Save"
             type="roll"
-            value="&{template:custom}{{title=Fortitude Save}}{{Result:= [[1d20+@{FortTotal}]]}}"
+            value="&{template:custom}{{title=Fortitude Save}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{FortTotal}]]}}"
             name="roll_Fortitude-save"></button></div>
-   </div>
-   <div class="saves">
     <div>Reflex: <input type="number" readonly name="attr_RefTotal"/></div>
-    <div>Base: <input type="number" name="attr_RefBase" readonly="true"/></div>
+    <div>Base: <input type="number" name="attr_RefBaseNum" readonly="true"/></div>
     <div>Dex: <input type="number" name="attr_dexmod" readonly="true"/></div>
-    <div>Magic: <input type="number" name="RefMagic"/></div>
-    <div>Misc: <input type="number" name="RefMisc"/></div>
+    <div>Magic: <input type="number" name="attr_RefMagic"/></div>
+    <div>Misc: <input type="number" name="attr_RefMiscNum"/></div>
     <div><button title="Reflex Save"
-            type="roll"
-            value="&{template:custom}{{title=Reflex Save}}{{Result:= [[1d20+@{RefTotal}]]}}"
-            name="roll_Reflex-save"></button></div>
-   </div>
-   <div style="border-radius: 0 0 5px 5px" class="saves">
+                 type="roll"
+                 value="&{template:custom}{{title=Reflex Save}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{RefTotal}]]}}"
+                 name="roll_Reflex-save"></button></div>
     <div>Will: <input type="number" readonly name="attr_WilTotal"/></div>
-    <div>Base: <input type="number" name="attr_WilBase" readonly="true"/></div>
+    <div>Base: <input type="number" name="attr_WilBaseNum" readonly="true"/></div>
     <div>Wis: <input type="number" name="attr_wismod" readonly="true"/></div>
-    <div>Magic: <input type="number" name="WisMagic"/></div>
-    <div>Misc: <input type="number" name="WisMisc"/></div>
+    <div>Magic: <input type="number" name="attr_WilMagic"/></div>
+    <div>Misc: <input type="number" name="attr_WilMiscNum"/></div>
     <div><button title="Will Save"
-            type="roll"
-            value="&{template:custom}{{title=Will Save}}{{Result:= [[1d20+@{WilTotal}]]}}"
-            name="roll_Will-save"></button></div>
+                 type="roll"
+                 value="&{template:custom}{{title=Will Save}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{WilTotal}]]}}"
+                 name="roll_Will-save"></button></div>
    </div>
   </div>
  </div>
@@ -363,7 +359,7 @@ This is the Main Tab of the sheet
      <button class="button"
              title="Initiative"
              type="roll"
-             value="&{template:custom}{{title=Initiative}}{{Result:= [[1d20+@{InitTotal}+(@{InitTotal}/100)&{tracker}]]}}"
+             value="&{template:custom}{{title=Initiative}}{{subtitle=@{charname}}{{Result:= [[1d20+@{InitTotal}+(@{InitTotal}/100)&{tracker}]]}}"
              name="roll_Intelligence-check"></button>
     </td>
     <td style="border-right: 1px black solid">Parry: <input type="number" name="attr_ParryAC"/></td>
@@ -383,12 +379,313 @@ This is the Main Tab of the sheet
   </table>
  </div>
  </div>
-</div>
 <!--
 This is the Skills Tab
 -->
 <div class="sheet-skills">
- This is the skills page
+ <div class="SkillsPage">
+  <table>
+   <tr>
+    <th colspan="9">Skills</th>
+   </tr>
+   <tr class="skill-desc">
+    <td>Trained?</td>
+    <td>Use Untrained?</td>
+    <td>Skill name</td>
+    <td>Key</td>
+    <td>Roll</td>
+    <td>Total</td>
+    <td>Attribute</td>
+    <td>Skill Points</td>
+    <td>Misc.</td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_AcrobaticsTrained"/></td>
+    <td>Acrobatics*</td>
+    <td>Yes</td>
+    <td>Str</td>
+    <td><button class="button"
+                title="Acrobatics"
+                type="roll"
+                value="&{template:custom}{{title=Acrobatics}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{AcrobaticsTotal}]]}}"
+               name="roll_Acrobatics-check"></button></td>
+    <td><input type="number" readonly name="attr_AcrobaticsTotal"/></td>
+    <td><input type="number" readonly name="attr_strmod"/></td>
+    <td><input type="number" name="attr_AcrobaticsSP"/></td>
+    <td><input type="number" name="attr_AcrobaticsMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_BalanceTrained"/></td>
+    <td>Balance</td>
+    <td>Yes</td>
+    <td>Dex</td>
+    <td><button class="button"
+                title="Balance"
+                type="roll"
+                value="&{template:custom}{{title=Balance}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{BalanceTotal}]]}}"
+                name="roll_Balance-check"></button></td>
+    <td><input type="number" readonly name="attr_BalanceTotal"/></td>
+    <td><input type="number" readonly name="attr_dexmod"/></td>
+    <td><input type="number" name="attr_BalanceSP"/></td>
+    <td><input type="number" name="attr_BalanceMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_BeguileTrained"/></td>
+    <td>Beguile</td>
+    <td>Yes</td>
+    <td>Cha</td>
+    <td><button class="button"
+                title="Beguile"
+                type="roll"
+                value="&{template:custom}{{title=Beguile}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{BeguileTotal}]]}}"
+                name="roll_Beguile-check"></button></td>
+    <td><input type="number" readonly name="attr_BeguileTotal"/></td>
+    <td><input type="number" readonly name="attr_chamod"/></td>
+    <td><input type="number" name="attr_BeguileSP"/></td>
+    <td><input type="number" name="attr_BeguileMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_BushcraftTrained"/></td>
+    <td>Bushcraft</td>
+    <td>No</td>
+    <td>Wis</td>
+    <td><button class="button"
+                title="Bushcraft"
+                type="roll"
+                value="&{template:custom}{{title=Bushcraft}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{BushcraftTotal}]]}}"
+                name="roll_Bushcraft-check"></button></td>
+    <td><input type="number" readonly name="attr_BushcraftTotal"/></td>
+    <td><input type="number" readonly name="attr_wismod"/></td>
+    <td><input type="number" name="attr_BushcraftSP"/></td>
+    <td><input type="number" name="attr_BushcraftMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_ConcealTrained"/></td>
+    <td>Conceal</td>
+    <td>Yes</td>
+    <td>Dex</td>
+    <td><button class="button"
+                title="Conceal"
+                type="roll"
+                value="&{template:custom}{{title=Conceal}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{ConcealTotal}]]}}"
+                name="roll_Conceal-check"></button></td>
+    <td><input type="number" readonly name="attr_ConcealTotal"/></td>
+    <td><input type="number" readonly name="attr_dexmod"/></td>
+    <td><input type="number" name="attr_ConcealSP"/></td>
+    <td><input type="number" name="attr_ConcealMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_ConcentrationTrained"/></td>
+    <td>Concentration</td>
+    <td>Yes</td>
+    <td>Con</td>
+    <td><button class="button"
+                title="Concentration"
+                type="roll"
+                value="&{template:custom}{{title=Concentration}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{ConcentrationTotal}]]}}"
+                name="roll_Concentration-check"></button></td>
+    <td><input type="number" readonly name="attr_ConcentrationTotal"/></td>
+    <td><input type="number" readonly name="attr_conmod"/></td>
+    <td><input type="number" name="attr_ConcentrationSP"/></td>
+    <td><input type="number" name="attr_ConcentrationMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_CounterfeitTrained"/></td>
+    <td>Counterfeit</td>
+    <td>No</td>
+    <td>Int</td>
+    <td><button class="button"
+                title="Counterfeit"
+                type="roll"
+                value="&{template:custom}{{title=Counterfeit}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{CounterfeitTotal}]]}}"
+                name="roll_Counterfeit-check"></button></td>
+    <td><input type="number" readonly name="attr_CounterfeitTotal"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_CounterfeitSP"/></td>
+    <td><input type="number" name="attr_CounterfeitMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_Craft1Trained"/></td>
+    <td>Craft: <input type="text" name="attr_Craft1Name"</td>
+    <td>No</td>
+    <td>Int</td>
+    <td><button class="button"
+                title="Craft1"
+                type="roll"
+                value="&{template:custom}{{title=Craft: @{Craft1Name}}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{Craft1Total}]]}}"
+                name="roll_Craft1-check"></button></td>
+    <td><input type="number" readonly name="attr_Craft1Total"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_Craft1SP"/></td>
+    <td><input type="number" name="attr_Craft1Misc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_Craft2Trained"/></td>
+    <td>Craft: <input type="text" name="attr_Craft2Name"</td>
+    <td>No</td>
+    <td>Int</td>
+    <td><button class="button"
+                title="Craft2"
+                type="roll"
+                value="&{template:custom}{{title=Craft: @{Craft2Name}}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{Craft2Total}]]}}"
+                name="roll_Craft2-check"></button></td>
+    <td><input type="number" readonly name="attr_Craft2Total"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_Craft2SP"/></td>
+    <td><input type="number" name="attr_Craft2Misc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_Craft3Trained"/></td>
+    <td>Craft: <input type="text" name="attr_Craft3Name"</td>
+    <td>No</td>
+    <td>Int</td>
+    <td><button class="button"
+                title="Craft3"
+                type="roll"
+                value="&{template:custom}{{title=Craft: @{Craft3Name}}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{Craft3Total}]]}}"
+                name="roll_Craft3-check"></button></td>
+    <td><input type="number" readonly name="attr_Craft3Total"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_Craft3SP"/></td>
+    <td><input type="number" name="attr_Craft3Misc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_DiscernIntentTrained"/></td>
+    <td>Discern Intent</td>
+    <td>Yes</td>
+    <td>Wis</td>
+    <td><button class="button"
+                title="DiscernIntent"
+                type="roll"
+                value="&{template:custom}{{title=Discern Intent}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{DiscernIntentTotal}]]}}"
+                name="roll_DiscernIntent-check"></button></td>
+    <td><input type="number" readonly name="attr_DiscernIntentTotal"/></td>
+    <td><input type="number" readonly name="attr_wismod"/></td>
+    <td><input type="number" name="attr_DiscernIntentSP"/></td>
+    <td><input type="number" name="attr_DiscernIntentMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_DiplomacyTrained"/></td>
+    <td>Diplomacy</td>
+    <td>Yes</td>
+    <td>Cha</td>
+    <td><button class="button"
+                title="Diplomacy"
+                type="roll"
+                value="&{template:custom}{{title=Diplomacy}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{DiplomacyTotal}]]}}"
+                name="roll_Diplomacy-check"></button></td>
+    <td><input type="number" readonly name="attr_DiplomacyTotal"/></td>
+    <td><input type="number" readonly name="attr_chamod"/></td>
+    <td><input type="number" name="attr_DiplomacySP"/></td>
+    <td><input type="number" name="attr_DiplomacyMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_DisguiseTrained"/></td>
+    <td>Disguise</td>
+    <td>Yes</td>
+    <td>Cha</td>
+    <td><button class="button"
+                title="Disguise"
+                type="roll"
+                value="&{template:custom}{{title=Disguise}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{DisguiseTotal}]]}}"
+                name="roll_Disguise-check"></button></td>
+    <td><input type="number" readonly name="attr_DisguiseTotal"/></td>
+    <td><input type="number" readonly name="attr_chamod"/></td>
+    <td><input type="number" name="attr_DisguiseSP"/></td>
+    <td><input type="number" name="attr_DisguiseMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_EscapeArtistTrained"/></td>
+    <td>Escape Artist</td>
+    <td>Yes</td>
+    <td>Dex</td>
+    <td><button class="button"
+                title="Escape Artist"
+                type="roll"
+                value="&{template:custom}{{title=EscapeArtist}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{EscapeArtistTotal}]]}}"
+                name="roll_EscapeArtist-check"></button></td>
+    <td><input type="number" readonly name="attr_EscapeArtistTotal"/></td>
+    <td><input type="number" readonly name="attr_dexmod"/></td>
+    <td><input type="number" name="attr_EscapeArtistSP"/></td>
+    <td><input type="number" name="attr_EscapeArtistMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_GatherInformationTrained"/></td>
+    <td>Gather Information</td>
+    <td>Yes</td>
+    <td>Cha</td>
+    <td><button class="button"
+                title="Gather Information"
+                type="roll"
+                value="&{template:custom}{{title=GatherInformation}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{GatherInformationTotal}]]}}"
+                name="roll_GatherInformation-check"></button></td>
+    <td><input type="number" readonly name="attr_GatherInformationTotal"/></td>
+    <td><input type="number" readonly name="attr_chamod"/></td>
+    <td><input type="number" name="attr_GatherInformationSP"/></td>
+    <td><input type="number" name="attr_GatherInformationMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_HaggleTrained"/></td>
+    <td>Haggle</td>
+    <td>Yes</td>
+    <td>Cha</td>
+    <td><button class="button"
+                title="Haggle"
+                type="roll"
+                value="&{template:custom}{{title=Haggle}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{HaggleTotal}]]}}"
+                name="roll_Haggle-check"></button></td>
+    <td><input type="number" readonly name="attr_HaggleTotal"/></td>
+    <td><input type="number" readonly name="attr_chamod"/></td>
+    <td><input type="number" name="attr_HaggleSP"/></td>
+    <td><input type="number" name="attr_HaggleMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_HealTrained"/></td>
+    <td>Heal</td>
+    <td>No</td>
+    <td>Wis</td>
+    <td><button class="button"
+                title="Heal"
+                type="roll"
+                value="&{template:custom}{{title=Heal}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{HealTotal}]]}}"
+                name="roll_Heal-check"></button></td>
+    <td><input type="number" readonly name="attr_HealTotal"/></td>
+    <td><input type="number" readonly name="attr_wismod"/></td>
+    <td><input type="number" name="attr_HealSP"/></td>
+    <td><input type="number" name="attr_HealMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_IntimidateTrained"/></td>
+    <td>Intimidate</td>
+    <td>Yes</td>
+    <td>Cha</td>
+    <td><button class="button"
+                title="Intimidate"
+                type="roll"
+                value="&{template:custom}{{title=Intimidate}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{IntimidateTotal}]]}}"
+                name="roll_Intimidate-check"></button></td>
+    <td><input type="number" readonly name="attr_IntimidateTotal"/></td>
+    <td><input type="number" readonly name="attr_chamod"/></td>
+    <td><input type="number" name="attr_IntimidateSP"/></td>
+    <td><input type="number" name="attr_IntimidateMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_InvestigateTrained"/></td>
+    <td>Investigate</td>
+    <td>Yes</td>
+    <td>Int</td>
+    <td><button class="button"
+                title="Investigate"
+                type="roll"
+                value="&{template:custom}{{title=Investigate}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{InvestigateTotal}]]}}"
+                name="roll_Investigate-check"></button></td>
+    <td><input type="number" readonly name="attr_InvestigateTotal"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_InvestigateSP"/></td>
+    <td><input type="number" name="attr_InvestigateMisc"/></td>
+   </tr>
+  </table>
+ </div>
 </div>
 <!--
 This is the Gear Tab
@@ -508,9 +805,483 @@ type="text/worker"
 
 <!--<script type="text/worker">-->
 
+//<editor-fold desc="Skill Fuster Cluck">
+on("change:acrobaticssp change:acrobaticsmisc change:strmod sheet:opened",function(){
+    getAttrs(["AcrobaticsSP","AcrobaticsMisc","strmod","HD","AcrobaticsTrained"],function(values){
+       let SP = parseFloat(values.AcrobaticsSP)||0;
+       let misc = parseFloat(values.AcrobaticsMisc)||0;
+       let key = parseFloat(values.strmod)||0;
+       let HD = parseFloat(values.HD)||0;
+       let cap;
+       if(values.AcrobaticsTrained === "0"){
+           cap = Math.floor((HD + 3)/2);
+       }else{
+           cap = HD + 3;
+       }
+       setAttrs({
+           AcrobaticsTotal: Math.min(cap,SP) + key + misc,
+           AcrobaticsSP: Math.min(cap,SP)
+       });
+    });
+});
+
+on("change:balancesp change:balancemisc change:dexmod sheet:opened",function(){
+    getAttrs(["BalanceSP","BalanceMisc","dexmod","HD","BalanceTrained"],function(values){
+        let SP = parseFloat(values.BalanceSP)||0;
+        let misc = parseFloat(values.BalanceMisc)||0;
+        let key = parseFloat(values.dexmod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap;
+        if(values.BalanceTrained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            BalanceTotal: Math.min(cap,SP) + key + misc,
+            BalanceSP: Math.min(cap,SP)
+        });
+    });
+});
+
+on("change:beguilesp change:beguilemisc change:chamod sheet:opened",function(){
+    getAttrs(["BeguileSP","BeguileMisc","chamod","HD","BeguileTrained"],function(values){
+        let SP = parseFloat(values.BeguileSP)||0;
+        let misc = parseFloat(values.BeguileMisc)||0;
+        let key = parseFloat(values.chamod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap;
+        if(values.BeguileTrained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            BeguileTotal: Math.min(cap,SP) + key + misc,
+            BeguileSP: Math.min(cap,SP)
+        });
+    });
+});
+
+on("change:bushcraftSP change:bushcraftmisc change:wismod sheet:opened",function(){
+    getAttrs(["BushcraftSP","BushcraftMisc","wismod","HD","BushcraftTrained"],function(values){
+        let SP = parseFloat(values.BushcraftSP)||0;
+        let misc = parseFloat(values.BushcraftMisc)||0;
+        let key = parseFloat(values.wismod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap;
+        if(values.BushcraftTrained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            BushcraftTotal: Math.min(cap,SP) + key + misc,
+            BushcraftSP: Math.min(cap,SP)
+        });
+    });
+});
+
+on("change:concealsp change:concealmisc change:dexmod sheet:opened",function(){
+    getAttrs(["ConcealSP","ConcealMisc","dexmod","HD","ConcealTrained"],function(values){
+        let SP = parseFloat(values.ConcealSP)||0;
+        let misc = parseFloat(values.ConcealMisc)||0;
+        let key = parseFloat(values.dexmod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap;
+        if(values.ConcealTrained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            ConcealTotal: Math.min(cap,SP) + key + misc,
+            ConcealSP: Math.min(cap,SP)
+        });
+    });
+});
+
+on("change:concentrationsp change:concentrationmisc change:conmod sheet:opened",function(){
+    getAttrs(["ConcentrationSP","ConcentrationMisc","conmod","HD","ConcentrationTrained"],function(values){
+        let SP = parseFloat(values.ConcentrationSP)||0;
+        let misc = parseFloat(values.ConcentrationMisc)||0;
+        let key = parseFloat(values.conmod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap;
+        if(values.ConcentrationTrained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            ConcentrationTotal: Math.min(cap,SP) + key + misc,
+            ConcentrationSP: Math.min(cap,SP)
+        });
+    });
+});
+
+on("change:counterfeitsp change:counterfeitmisc change:intmod sheet:opened",function(){
+    getAttrs(["CounterfeitSP","CounterfeitMisc","intmod","HD","CounterfeitTrained"],function(values){
+        let SP = parseFloat(values.CounterfeitSP)||0;
+        let misc = parseFloat(values.CounterfeitMisc)||0;
+        let key = parseFloat(values.intmod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap;
+        if(values.CounterfeitTrained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            CounterfeitTotal: Math.min(cap,SP) + key + misc,
+            CounterfeitSP: Math.min(cap,SP)
+        });
+    });
+});
+
+on("change:craft1sp change:craft1misc change:intmod sheet:opened",function(){
+    getAttrs(["Craft1SP","Craft1Misc","intmod","HD","Craft1Trained"],function(values){
+        let SP = parseFloat(values.Craft1SP)||0;
+        let misc = parseFloat(values.Craft1Misc)||0;
+        let key = parseFloat(values.intmod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap;
+        if(values.Craft1Trained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            Craft1Total: Math.min(cap,SP) + key + misc,
+            Craft1SP: Math.min(cap,SP)
+        });
+    });
+});
+
+on("change:craft2sp change:craft2misc change:intmod sheet:opened",function(){
+    getAttrs(["Craft2SP","Craft2Misc","intmod","HD","Craft2Trained"],function(values){
+        let SP = parseFloat(values.Craft2SP)||0;
+        let misc = parseFloat(values.Craft2Misc)||0;
+        let key = parseFloat(values.intmod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap;
+        if(values.Craft2Trained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            Craft2Total: Math.min(cap,SP) + key + misc,
+            Craft2SP: Math.min(cap,SP)
+        });
+    });
+});
+
+on("change:craft3sp change:craft3misc change:intmod sheet:opened",function(){
+    getAttrs(["Craft3SP","Craft3Misc","intmod","HD","Craft3Trained"],function(values){
+        let SP = parseFloat(values.Craft3SP)||0;
+        let misc = parseFloat(values.Craft3Misc)||0;
+        let key = parseFloat(values.intmod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap;
+        if(values.Craft3Trained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            Craft3Total: Math.min(cap,SP) + key + misc,
+            Craft3SP: Math.min(cap,SP)
+        });
+    });
+});
+
+on("change:craft3sp change:craft3misc change:intmod sheet:opened",function(){
+    getAttrs(["Craft3SP","Craft3Misc","intmod","HD","Craft3Trained"],function(values){
+        let SP = parseFloat(values.Craft3SP)||0;
+        let misc = parseFloat(values.Craft3Misc)||0;
+        let key = parseFloat(values.intmod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap;
+        if(values.Craft3Trained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            Craft3Total: Math.min(cap,SP) + key + misc,
+            Craft3SP: Math.min(cap,SP)
+        });
+    });
+});
+
+on("change:discernintentsp change:discernintentmisc change:wismod sheet:opened",function(){
+    getAttrs(["DiscernIntentSP","DiscernIntentMisc","wismod","HD","DiscernIntentTrained"],function(values){
+        let SP = parseFloat(values.DiscernIntentSP)||0;
+        let misc = parseFloat(values.DiscernIntentMisc)||0;
+        let key = parseFloat(values.wismod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap;
+        if(values.DiscernIntentTrained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            DiscernIntentTotal: Math.min(cap,SP) + key + misc,
+            DiscernIntentSP: Math.min(cap,SP)
+        });
+    });
+});
+
+on("change:diplomacysp change:diplomacymisc change:chamod sheet:opened",function(){
+    getAttrs(["DiplomacySP","DiplomacyMisc","chamod","HD","DiplomacyTrained"],function(values){
+        let SP = parseFloat(values.DiplomacySP)||0;
+        let misc = parseFloat(values.DiplomacyMisc)||0;
+        let key = parseFloat(values.chamod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap
+        if(values.DiplomacyTrained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            DiplomacyTotal: Math.min(cap,SP) + key + misc,
+            DiplomacySP: Math.min(cap,SP)
+        });
+    });
+});
+
+on("change:disguisesp change:disguisemisc change:chamod sheet:opened",function(){
+    getAttrs(["DisguiseSP","DisguiseMisc","chamod","HD","DisguiseTrained"],function(values){
+        let SP = parseFloat(values.DisguiseSP)||0;
+        let misc = parseFloat(values.DisguiseMisc)||0;
+        let key = parseFloat(values.chamod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap
+        if(values.DisguiseTrained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            DisguiseTotal: Math.min(cap,SP) + key + misc,
+            DisguiseSP: Math.min(cap,SP)
+        });
+    });
+});
+
+on("change:escapeartistsp change:escapeartistmisc change:dexmod sheet:opened",function(){
+    getAttrs(["EscapeArtistSP","EscapeArtistMisc","dexmod","HD","EscapeArtistTrained"],function(values){
+        let SP = parseFloat(values.EscapeArtistSP)||0;
+        let misc = parseFloat(values.EscapeArtistMisc)||0;
+        let key = parseFloat(values.dexmod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap
+        if(values.EscapeArtistTrained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            EscapeArtistTotal: Math.min(cap,SP) + key + misc,
+            EscapeArtistSP: Math.min(cap,SP)
+        });
+    });
+});
+
+on("change:gatherinformationsp change:gatherinformationmisc change:chamod sheet:opened",function(){
+    getAttrs(["GatherInformationSP","GatherInformationMisc","chamod","HD","GatherInformationTrained"],function(values){
+        let SP = parseFloat(values.GatherInformationSP)||0;
+        let misc = parseFloat(values.GatherInformationMisc)||0;
+        let key = parseFloat(values.chamod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap
+        if(values.GatherInformationTrained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            GatherInformationTotal: Math.min(cap,SP) + key + misc,
+            GatherInformationSP: Math.min(cap,SP)
+        });
+    });
+});
+
+on("change:hagglesp change:hagglemisc change:chamod sheet:opened",function(){
+    getAttrs(["HaggleSP","HaggleMisc","chamod","HD","HaggleTrained"],function(values){
+        let SP = parseFloat(values.HaggleSP)||0;
+        let misc = parseFloat(values.HaggleMisc)||0;
+        let key = parseFloat(values.chamod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap
+        if(values.HaggleTrained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            HaggleTotal: Math.min(cap,SP) + key + misc,
+            HaggleSP: Math.min(cap,SP)
+        });
+    });
+});
+
+on("change:healsp change:healmisc change:wismod sheet:opened",function(){
+    getAttrs(["HealSP","HealMisc","wismod","HD","HealTrained"],function(values){
+        let SP = parseFloat(values.HealSP)||0;
+        let misc = parseFloat(values.HealMisc)||0;
+        let key = parseFloat(values.wismod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap
+        if(values.HealTrained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            HealTotal: Math.min(cap,SP) + key + misc,
+            HealSP: Math.min(cap,SP)
+        });
+    });
+});
+
+on("change:intimidatesp change:intimidatemisc change:chamod sheet:opened",function(){
+    getAttrs(["IntimidateSP","IntimidateMisc","chamod","HD","IntimidateTrained"],function(values){
+        let SP = parseFloat(values.IntimidateSP)||0;
+        let misc = parseFloat(values.IntimidateMisc)||0;
+        let key = parseFloat(values.chamod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap
+        if(values.IntimidateTrained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            IntimidateTotal: Math.min(cap,SP) + key + misc,
+            IntimidateSP: Math.min(cap,SP)
+        });
+    });
+});
+
+on("change:investigatesp change:investigatemisc change:intmod sheet:opened",function(){
+    getAttrs(["InvestigateSP","InvestigateMisc","intmod","HD","InvestigateTrained"],function(values){
+        let SP = parseFloat(values.InvestigateSP)||0;
+        let misc = parseFloat(values.InvestigateMisc)||0;
+        let key = parseFloat(values.intmod)||0;
+        let HD = parseFloat(values.HD)||0;
+        let cap
+        if(values.InvestigateTrained === "0"){
+            cap = Math.floor((HD + 3)/2);
+        }else{
+            cap = HD + 3;
+        }
+        setAttrs({
+            InvestigateTotal: Math.min(cap,SP) + key + misc,
+            InvestigateSP: Math.min(cap,SP)
+        });
+    });
+});
+
+//</editor-fold>
+
+//save calculations
+
+on("change:fortbasestr change:conmod change:constitution change:hd sheet:opened",function (){
+    getAttrs(["FortBaseStr","HD"],function(values){
+       let HD = parseFloat(values.HD);
+       let base = 0;
+       if(values.FortBaseStr === "Low") {
+           base = Math.min(6, Math.floor(HD / 3));
+       }if(values.FortBaseStr === "High"){
+           base = Math.min(12, Math.floor(2+(HD / 2)));
+        }
+       setAttrs({
+           FortBaseNum: base
+       });
+    });
+});
+
+on("change:refbasestr change:dexmod change:dexterity change:hd sheet:opened",function (){
+    getAttrs(["RefBaseStr","HD"],function(values){
+        let HD = parseFloat(values.HD);
+        let base = 0;
+        if(values.RefBaseStr === "Low") {
+            base = Math.min(6, Math.floor(HD / 3));
+        }if(values.RefBaseStr === "High"){
+            base = Math.min(12, Math.floor(2+(HD / 2)));
+        }
+        setAttrs({
+            RefBaseNum: base
+        });
+    });
+});
+
+on("change:refbasestr change:wismod change:wisdom change:hd sheet:opened",function (){
+    getAttrs(["WilBaseStr","HD"],function(values){
+        let HD = parseFloat(values.HD);
+        let base = 0;
+        if(values.WilBaseStr === "Low") {
+            base = Math.min(6, Math.floor(HD / 3));
+        }if(values.WilBaseStr === "High"){
+            base = Math.min(12, Math.floor(2+(HD / 2)));
+        }
+        setAttrs({
+            WilBaseNum: base
+        });
+    });
+});
+
+on("change:fortbasestr change:conmod change:constitution change:hd change:fortbasenum " +
+    "change:fortmiscnum change:fortmagic sheet:opened",function (){
+   getAttrs(["FortBaseNum","conmod","FortMagic","FortMiscNum"],function(values){
+      let base = parseFloat(values.FortBaseNum)||0;
+      let stat = parseFloat(values.conmod)||0;
+      let magic = parseFloat(values.FortMagic)||0;
+      let misc = parseFloat(values.FortMiscNum)||0;
+      let total = base + stat + magic + misc;
+      setAttrs({
+          FortTotal: total
+      });
+   });
+});
+
+on("change:refbasestr change:dexmod change:dexterity change:hd change:refbasenum " +
+    "change:refmiscnum change:refmagic sheet:opened",function (){
+    getAttrs(["RefBaseNum","dexmod","RefMagic","RefMiscNum"],function(values){
+        let base = parseFloat(values.RefBaseNum)||0;
+        let stat = parseFloat(values.dexmod)||0;
+        let magic = parseFloat(values.RefMagic)||0;
+        let misc = parseFloat(values.RefMiscNum)||0;
+        let total = base + stat + magic + misc;
+        setAttrs({
+            RefTotal: total
+        });
+    });
+});
+
+on("change:wilbasestr change:wismod change:wisdom change:hd change:wilbasenum " +
+    "change:wilmiscnum change:wilmagic sheet:opened",function (){
+    getAttrs(["WilBaseNum","wismod","WilMagic","WilMiscNum"],function(values){
+        let base = parseFloat(values.WilBaseNum)||0;
+        let stat = parseFloat(values.wismod)||0;
+        let magic = parseFloat(values.WilMagic)||0;
+        let misc = parseFloat(values.WilMiscNum)||0;
+        let total = base + stat + magic + misc;
+        setAttrs({
+            WilTotal: total
+        });
+    });
+});
+
+// end save calcuation
+
 // AC calculations
-on("change:shield change:size change:armorbonus change:dexmod change:naturalac change:parryac" +
-    "change:miscac change:deflection change:insightac change:dodgeac",function(){
+on("change:shield change:size change:armorbonus change:dexmod change:naturalac change:parryac " +
+    "change:miscac change:deflection change:insightac change:dodgeac sheet:opened",function(){
     getAttrs(["dexmod","ArmorBonus","NaturalAC","Shield","MiscAC",
         "InsightAC","ParryAC","Deflection","DodgeAC","size"],function(values){
        let dex = parseFloat(values.dexmod)||0;
@@ -640,7 +1411,6 @@ on("change:hd change:lg sheet:opened", function(){
 });
 
 // Stat Block calculations here
-
 on("change:strength change:strbonus change:strench change:strpen sheet:opened", function() {
     getAttrs(["strength", "StrBonus", "StrEnch", "StrPen"], function(values) {
        let base = parseFloat(values.strength)||0;
@@ -725,4 +1495,5 @@ on("change:charisma change:chabonus change:chaench change:chapen sheet:opened", 
         });
     });
 });
+// end of statblock
 </script>
