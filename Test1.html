@@ -1325,16 +1325,16 @@ Below is the sheet's selector buttons
  </div>
   <div class="sheet-repeating-fields">
    <fieldset class="repeating_abilities">
+    <input type="hidden" class="ability-toggle" name="attr_minimizeability" value="1"/>
     <div class="abilitytitle">
      <button type="action" class="Small-Button" name="act_minabilitytog">-</button>
-     <input type="hidden" class="ability-toggle" name="attr_minimizeability" value="1"/>
      <input type="text" name="attr_abilityname" placeholder="<Ability Name Here>"/>
      <button type="roll" name="roll_ability_card" value=
       "
 &{template:custom}{{title=@{abilityname} }}{{subtitle=@{charname} }}{{Action = @{abilityaction} }}{{Range=@{abilityrange} }}{{Target=@{abilitytarget} }}{{Duration=@{abilitydurationnumber} @{abilitydurationtype} }}{{Save Type=@{absavethrow} }}{{DC=@{abilitydc} }}{{SR Required?= @{abilitysrconfirm}}} {{SR Roll = [[1d20+@{hd}+(0?{Do you have onuses to Spell Resistance Checks?|0})]]}} {{Damage=[[@{abilitydicenum}@{abilitydicetype}+(@{asprof}*@{abilitydicenum})]]}}{{Description=@{abilitydescriptiontext} }}
       "></button>
     </div>
-    <div class="abilitydescription">
+    <div class="ability_description">
      <div class="Details-1">
       <div>Use: <input type="text" name="attr_userdescription" value="per day"/><input type="text" name="attr_uses"/></div>
       <div>Target: <input type="text" name="attr_abilitytarget"/></div>
@@ -2245,6 +2245,17 @@ type="text/worker"
         on(`clicked:${button}`, function() {
             setAttrs({
                 sheetTab: button
+            });
+        });
+    });
+
+    const maxAbilityList = ["minabilitytog"];
+    maxAbilityList.forEach(button => {
+        on(`clicked:repeating_abilities:${button}`, function() {
+            getAttrs(['repeating_abilities_minimizeability'], function(v) {
+                setAttrs({
+                    repeating_abilities_minimizeability: 1 - parseInt(v.repeating_abilities_minimizeability)
+                });
             });
         });
     });

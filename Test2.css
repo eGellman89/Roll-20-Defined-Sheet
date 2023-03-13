@@ -796,7 +796,7 @@
   border: 0;
 }
 
-.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .abilitydescription{
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .ability_description{
   float: left;
   width: 388px;
   background-color: #FFFFFF;
@@ -813,11 +813,11 @@
     "Description Description";
 }
 
-.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem input.ability-toggle[value="1"] ~ div.abilitydescription{
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .ability-toggle[value="1"] ~ div.ability_description{
   display: grid;
 }
 
-.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .abilitydescription .abilitysaving{
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .ability_description .abilitysaving{
   padding: 0;
   border: 0;
   text-align: center;
@@ -849,20 +849,20 @@
 
 .charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .Description { grid-area: Description; }
 
-.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .abilitydescription input[type=number]{
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .ability_description input[type=number]{
   height: 18px;
   text-align: center;
   float: right;
 }
 
-.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .abilitydescription input[type=text]{
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .ability_description input[type=text]{
   height: 18px;
   width: 56px;
   text-align: center;
   float: right;
 }
 
-.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .abilitydescription textarea{
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .ability_description textarea{
   vertical-align: top;
   text-align: left;
   height: 54px;
