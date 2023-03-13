@@ -355,11 +355,11 @@ Below is the sheet's selector buttons
     <td>
      Initiative Total:
      <input type="number" readonly="true" name="attr_InitTotal"/>
-     <button class="button"
+     <button class="button tokenaction"
              title="Initiative"
              type="roll"
-             value="&{template:custom}{{title=Initiative}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{InitTotal}+(@{InitTotal}/100)&{tracker}]]}}"
-             name="roll_Inintiative"></button>
+             value="&{template:custom}{{title=Initiative}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{InitTotal}+(@{InitTotal}/100)+([[d10-1]]/1000)&{tracker}]]}}"
+             name="roll_00-Inintiative"></button>
     </td>
     <td style="border-right: 1px black solid">Parry: <input type="number" name="attr_ParryAC"/></td>
    </tr>
@@ -1315,9 +1315,58 @@ Below is the sheet's selector buttons
 <!--</editor-fold>-->
 
 <!--<editor-fold desc="Abilities">-->
-
 <div class="sheet-abilities">
- This is where the abilities go.
+ <div class="titleblock">
+  Abilities<br>
+  Close Range: <input type="number" name="attr_CloseRange" readonly/>
+  Medium Range: <input type="number" name="attr_MediumRange" readonly/>
+  Long: <input type="number" name="attr_LongRange" readonly/>&nbsp&nbsp&nbsp||&nbsp
+  Spell Proficiency: <input type="number" name="attr_SpellProf" readonly/>
+ </div>
+  <div class="sheet-repeating-fields">
+   <fieldset class="repeating_abilities">
+    <div class="abilitytitle">
+     <button type="action" class="Small-Button" name="act_minabilitytog">-</button>
+     <input type="hidden" class="ability-toggle" name="attr_minimizeability" value="1"/>
+     <input type="text" name="attr_abilityname" placeholder="<Ability Name Here>"/>
+     <button type="roll" name="roll_ability_card" value=
+      "
+&{template:custom}{{title=@{abilityname} }}{{subtitle=@{charname} }}{{Action = @{abilityaction} }}{{Range=@{abilityrange} }}{{Target=@{abilitytarget} }}{{Duration=@{abilitydurationnumber} @{abilitydurationtype} }}{{Save Type=@{absavethrow} }}{{DC=@{abilitydc} }}{{SR Required?= @{abilitysrconfirm}}} {{SR Roll = [[1d20+@{hd}+(0?{Do you have onuses to Spell Resistance Checks?|0})]]}} {{Damage=[[@{abilitydicenum}@{abilitydicetype}+(@{asprof}*@{abilitydicenum})]]}}{{Description=@{abilitydescriptiontext} }}
+      "></button>
+    </div>
+    <div class="abilitydescription">
+     <div class="Details-1">
+      <div>Use: <input type="text" name="attr_userdescription" value="per day"/><input type="text" name="attr_uses"/></div>
+      <div>Target: <input type="text" name="attr_abilitytarget"/></div>
+      <div>
+       Duration:<input type="text" name="attr_abilitydurationtype" placeholder="Rounds"/>
+       <input type="text" name="attr_abilitydurationnumber" placeholder="#"/>
+      </div>
+      <div>DC: <input type="text" name="attr_abilitydc"/></div>
+      <div>Damage/Healing?:
+       <input style="width: 30px" type="text" name="attr_abilitydicetype" placeholder="d6"/>
+       <input style="width: 30px" type="text" name="attr_abilitydicenum" placeholder="10"/>
+      </div>
+     </div>
+     <div class="Details-2">
+      <div>Range: <input type="text" name="attr_abilityrange"/></div>
+      <div>Action: <input style="width: 96px" type="text" name="attr_abilityaction"/></div>
+      <div>Saving Throw:
+       <select name="attr_absavethrow" value="N/A" class="abilitysaving">
+        <option value="N/A">N/A</option>
+        <option value="Fortitude">Fortitude</option>
+        <option value="Reflex">Reflex</option>
+        <option value="Will">Will</option>
+       </select>
+      </div>
+      <div>Spell Resistance?: <input type="text" name="attr_abilitysrconfirm" placeholder="Y/N?"/></div>
+      <div>Spell Proficiency?: <input style="vertical-align:center; float:right"type="checkbox" name="attr_asprof" value="@{SpellProf}"/></div>
+     </div>
+     <div class="Description">Ability Description:<br><textarea name="attr_abilitydescriptiontext"></textarea><br>
+     </div>
+    </div>
+   </fieldset>
+  </div>
 </div>
 <!--</editor-fold>-->
 
@@ -2260,7 +2309,7 @@ type="text/worker"
 
     //<editor-fold desc="HP Calculations"
 
-    on("change:constitution change:mischp change:rollhp sheet:opened", function(){
+    on("change:conmod change:hd sheet:opened", function(){
         getAttrs(["HD","conmod"],function(values){
             let HD = parseFloat(values.HD)||0;
             let conmod = parseFloat(values.conmod)||0;
@@ -2271,7 +2320,7 @@ type="text/worker"
         });
     });
 
-    on("change:constitution change:mischp change:magiccurve change:rollhp sheet:opened", function(){
+    on("change:hd change:magiccurve sheet:opened", function(){
         getAttrs(["HD","MagicCurve"],function(values){
             let progHP = 0;
             let HD = parseFloat(values.HD)||0;
@@ -2290,7 +2339,7 @@ type="text/worker"
         });
     });
 
-    on("change:constitution change:conmod change:mischp change:magiccurve change:rollhp sheet:opened", function(){
+    on("change:conhp change:mischp change:proghp change:rollhp sheet:opened", function(){
         getAttrs(["ConHP","ProgHP","MiscHP","RollHP"],function(values){
             let con = parseFloat(values.ConHP)||0;
             let prog = parseFloat(values.ProgHP)||0;
@@ -2408,6 +2457,42 @@ type="text/worker"
                 chamod: mod
             });
         });
+    });
+    //</editor-fold>
+
+    // <editor-fold desc="Spellcasting Calculations">
+    on("change:hd change:magiccurve sheet:opened",function(){
+       getAttrs(["HD","MagicCurve"],function(values){
+           let HD = parseFloat(values.HD)||0;
+           if(values.MagicCurve === "Basic"){
+               SP = Math.floor(HD/10);
+           }if(values.MagicCurve === "Standard"){
+               SP = 1 + Math.floor(HD/8);
+           }if(values.MagicCurve === "Advanced"){
+               SP = 1 + Math.floor(HD/6);
+           }if(values.MagicCurve === "None"){
+               SP = 0;
+           }
+           setAttrs({
+               SpellProf: SP
+           });
+       });
+    });
+    //</editor-fold>
+
+    // <editor-fold desc="Ability Info Calculations">
+    on("change:hd sheet:opened",function(){
+       getAttrs(["HD","CloseRange","MediumRange","LongRange"],function(values){
+           let HD = parseFloat(values.HD)||0;
+           let Close = 25 + (Math.floor(HD/2)*5);
+           let Medium = 100 + (HD*10);
+           let Long = 400 + (HD*40);
+           setAttrs({
+              CloseRange: Close,
+              MediumRange: Medium,
+              LongRange: Long
+           });
+       }) ;
     });
     //</editor-fold>
 </script>

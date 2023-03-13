@@ -747,8 +747,7 @@
   display: none;
 }
 
-.charsheet .repcontainer[data-groupname="repeating_afflictions"] >
-.repitem input.afflictions-toggle[value="1"] ~ div.afflictions_description{
+.charsheet .repcontainer[data-groupname="repeating_afflictions"] > .repitem input.afflictions-toggle[value="1"] ~ div.afflictions_description{
   display: block;
 }
 
@@ -763,6 +762,117 @@
   margin: 3px 0 0;
   padding: 0;
 }
+/*</editor-fold>*/
+
+/*<editor-fold desc="Abilities Repeating Styles"*/
+
+.sheet-abilities{
+  display: inline-block;
+  text-align: center;
+}
+
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem{
+  width: 392px;
+  margin: 3px;
+  float: left;
+}
+
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .abilitytitle{
+  width: 388px;
+  background-color: #000000;
+  border: 1px solid black;
+  border-radius: 5px 5px 0 0;
+  display: inline-block;
+  text-align: center;
+}
+
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .abilitytitle input[type=text]{
+  width: 50%;
+  height: 18px;
+  text-align: center;
+  background-color: #000000;
+  color: #FFFFFF;
+  font-weight: bold;
+  border: 0;
+}
+
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .abilitydescription{
+  float: left;
+  width: 388px;
+  background-color: #FFFFFF;
+  color: #000000;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  display: none;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto auto;
+  gap: 1px 1px;
+  grid-template-areas:
+    "Details-1 Details-2"
+    "Description Description";
+}
+
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem input.ability-toggle[value="1"] ~ div.abilitydescription{
+  display: grid;
+}
+
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .abilitydescription .abilitysaving{
+  padding: 0;
+  border: 0;
+  text-align: center;
+  height: 18px;
+  width: 96px;
+  margin: 0;
+}
+
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .Details-1 {
+  grid-area: Details-1;
+  padding: 3px;
+  justify-items: start;
+  text-align: left;
+}
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .Details-1 input{
+  justify-self: end;
+}
+
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .Details-2 {
+  grid-area: Details-2;
+  justify-itms: start;
+  padding: 3px;
+  text-align: left;
+}
+
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .Details-2 input{
+  justify-self: end;
+}
+
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .Description { grid-area: Description; }
+
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .abilitydescription input[type=number]{
+  height: 18px;
+  text-align: center;
+  float: right;
+}
+
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .abilitydescription input[type=text]{
+  height: 18px;
+  width: 56px;
+  text-align: center;
+  float: right;
+}
+
+.charsheet .repcontainer[data-groupname="repeating_abilities"] > .repitem .abilitydescription textarea{
+  vertical-align: top;
+  text-align: left;
+  height: 54px;
+  width: 94%;
+  border: 1px solid black;
+  border-radius: 5px 5px 5px 5px;
+  resize: vertical;
+  padding: 0;
+}
+
 /*</editor-fold>*/
 
 /* More Definitions and Traits stuff */
