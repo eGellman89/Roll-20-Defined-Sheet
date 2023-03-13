@@ -1072,6 +1072,34 @@
   align-items: center;
 }
 
+.charsheet .repcontainer[data-groupname="repeating_weapons"] > .repitem .w-atck-crt{
+  display: none;
+  border: 1px black solid;
+  border-radius: 0 0 5px 5px;
+  padding: 3px;
+}
+
+.charsheet .repcontainer[data-groupname="repeating_weapons"] > .repitem input.critconfirm-toggle[value="1"] ~ div div.w-atck-crt{
+  display: block;
+}
+
+.charsheet .repcontainer[data-groupname="repeating_weapons"] > .repitem .w-atck-crt>div{
+  padding: 3px;
+}
+
+.charsheet .repcontainer[data-groupname="repeating_weapons"] > .repitem .w-atck-crt button[type=roll],
+.charsheet .repcontainer[data-groupname="repeating_weapons"] > .repitem .w-atck-crt button[type=compendium]{
+  box-shadow: 0 2px #404040;
+  height: 16px;
+  width: 18px;
+}
+
+.charsheet .repcontainer[data-groupname="repeating_weapons"] > .repitem div.w-atck-crt>div:nth-of-type(even){
+  background: #C0C0C0;
+  border-radius: 5px;
+}
+
+
 .charsheet .repcontainer[data-groupname="repeating_weapons"] > .repitem .w-atck-dmg{
   border: 1px black solid;
   border-radius: 0 0 5px 5px;

@@ -1076,8 +1076,16 @@ Below is the sheet's selector buttons
   <div class="Title-Div"><h3>Weapons</h3></div>
   <fieldset class="repeating_weapons">
    <button type="action" class="Small-Button" name="act_weaponminimize">-</button>
-   <input type="hidden" class="weapon-toggle" name="attr_weapontoggle" value="1"/>
-   <div class="repeatweaponname"><h2 style="text-align: center">
+   <input type="hidden" class="weapon-toggle" name="attr_weaponminimizetoggle" value="1"/>
+   <input type="hidden" class="critconfirm-toggle" name="attr_critconfirmminimizetoggle" value="0"/>
+   <div class="repeatweaponname">
+    <input type="hidden" name="attr_fullattackroll"/>
+    <button
+     type="roll"
+     style="float:right"
+     name="roll_fullattackroll"
+     value="@{fullattackroll}"></button><br>
+    <h2 style="text-align: center">
     <input name="attr_weaponname" type="text" readonly/></h2>
    </div>
    <div class="weapongrid">
@@ -1090,7 +1098,10 @@ Below is the sheet's selector buttons
      <option value="@{chamod}">Cha</option>
     </select></div>
     <div>Bonus to Attack:<input type="text" name="attr_bonustoattack" class="accuracy" value=""/></div>
-    <div>Damage Dice:<input type="text" name="attr_dtype" class="dtype"/></div>
+    <div>
+     Damage Dice:<input type="text" name="attr_dtype" class="dtype" placeholder="d6"/>
+     <input type="text" name="attr_dnum" class="dtype" placeholder="1"/>
+    </div>
     <div>Damage Mod:<select name="attr_weapontodamage" value="" class="accuracy">
      <option value="@{strmod}">Str</option>
      <option value="@{dexmod}">Dex</option>
@@ -1111,46 +1122,47 @@ Below is the sheet's selector buttons
    </div>
    <div>
     <div class="Title-Div">
-     Attacks
+     <button style="color: #000000" type="action" class="Small-Button" name="act_critconfirmminimize">-</button>
+     Confirm Criticals
     </div>
-    <div class="w-atck-dmg">
-     <div>1 Attack
+    <div class="w-atck-crt">
+     <div>First Attack
       <button
        type="roll"
        name="roll_attack1"
        value=
         "
-         &{template:custom}{{title=Attacks}}{{subtitle= with @{charname}'s @{weaponname} }}{{with a=[[1d20cs>@{critlow}+(0@{BAB})[Base Attack]+(0@{weapontohit})[Key Ability]+(0@{bonustoattack})[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
+         &{template:custom}{{title=Critical Confirm}}{{subtitle= Attack 1}}{{with a=[[1d20cs>@{critlow}+(0@{BAB})[Base Attack]+(0@{weapontohit})[Key Ability]+(0@{bonustoattack})[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
          "
       ></button>
      </div>
-     <div>2 Attacks
+     <div>Second Attack
       <button
        type="roll"
        name="roll_attack2"
        value=
         "
-         &{template:custom}{{title=Attacks Twice}}{{subtitle= with @{charname}'s @{weaponname} }}{{First with a=[[1d20cs>@{critlow}+(0@{BAB})[Base Attack]+(0@{weapontohit})[Key Ability]+(0@{bonustoattack})[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}{{Second with a=[[1d20cs>@{critlow}+(0@{BAB}-5)[Base Attack]+(0@{weapontohit})[Key Ability]+(0@{bonustoattack})[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
+         &{template:custom}{{title=Critical Confirm:}}{{subtitle=Attack 2}}{{with a=[[1d20cs>@{critlow}+(0@{BAB}-5)[Base Attack]+(0@{weapontohit})[Key Ability]+(0@{bonustoattack})[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
          "
       ></button><br>
      </div>
-     <div>3 Attacks
+     <div>Third Attack
       <button
        type="roll"
        name="roll_attack3"
        value=
         "
-        &{template:custom}{{title=Attacks Thrice}}{{subtitle= with @{charname}'s @{weaponname} }}{{First with a=[[1d20cs>@{critlow}+(0@{BAB})[Base Attack]+(0@{weapontohit})[Key Ability]+(0@{bonustoattack})[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}{{Second with a=[[1d20cs>@{critlow}+(0@{BAB}-5)[Base Attack]+(0@{weapontohit})[Key Ability]+(0@{bonustoattack})[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}{{third with a=[[1d20cs>@{critlow}+(0@{BAB}-10)[Base Attack]+(0@{weapontohit})[Key Ability]+(0@{bonustoattack})[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
+        &{template:custom}{{title=Critical Confirm:}}{{subtitle= Attack 3}}{{with a=[[1d20cs>@{critlow}+(0@{BAB}-10)[Base Attack]+(0@{weapontohit})[Key Ability]+(0@{bonustoattack})[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
         "
       ></button><br>
      </div >
-     <div>4 Attacks
+     <div>Fourth Attacks
       <button
        type="roll"
        name="roll_attack4"
        value=
         "
-        &{template:custom}{{title=Attacks Quarce}}{{subtitle= with @{charname}'s @{weaponname} }}{{First with a=[[1d20cs>@{critlow}+(0@{BAB})[Base Attack]+(0@{weapontohit})[Key Ability]+(0@{bonustoattack})[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}{{Second with a=[[1d20cs>@{critlow}+(0@{BAB}-5)[Base Attack]+(0@{weapontohit})[Key Ability]+(0@{bonustoattack})[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}{{third with a=[[1d20cs>@{critlow}+(0@{BAB}-10)[Base Attack]+(0@{weapontohit})[Key Ability]+(0@{bonustoattack})[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}{{fourth with a=[[1d20cs>@{critlow}+(0@{BAB}-15)[Base Attack]+(0@{weapontohit})[Key Ability]+(0@{bonustoattack})[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
+        &{template:custom}{{title=Critical Confirm:}}{{subtitle= Attack 4}}{{with a=[[1d20cs>@{critlow}+(0@{BAB}-15)[Base Attack]+(0@{weapontohit})[Key Ability]+(0@{bonustoattack})[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
         "
       ></button><br>
      </div>
@@ -1166,7 +1178,7 @@ Below is the sheet's selector buttons
        name="roll_weapondamage"
        value=
         "
-        &{template:custom}{{title=Damage}}{{subtitle= with @{charname}'s @{weaponname} }} {{Deals [[(0@{dtype})[Dice]+(0@{weapontodamage})[Key Ability]+(0@{bonustodamage})[Feats and Magic]+(0@{enchdamagedice}[Bonus])+(0?{Do you have a miscellaneaous bonus to damage?|0})]] damage to their target.}}
+        &{template:custom}{{title=Damage}}{{subtitle= with @{charname}'s @{weaponname} }} {{Deals [[(0@{dnum}@{dtype})[Dice]+(0@{weapontodamage})[Key Ability]+(0@{bonustodamage})[Feats and Magic]+(0@{enchdamagedice}[Bonus])+(0?{Do you have a miscellaneaous bonus to damage?|0})]] damage to their target.}}
         "
       ></button><br>
      </div>
@@ -1177,7 +1189,7 @@ Below is the sheet's selector buttons
        name="roll_critweapondamage"
        value=
         "
-        &{template:custom}{{title=Damage}}{{subtitle= with @{charname}'s @{weaponname} }} {{Deals an astonishing [[(0@{weaponcritmod}*@{dtype}) [Dice]+(0@{weaponcritmod}*@{weapontodamage})[Key Ability]+(@{weaponcritmod}*0@{bonustodamage})[Feats and Magic]+(0@{enchdamagedice})+(0@{extraenchdicecrit})+(0?{Do you have a miscellaneaous bonus to damage?|0})]] damage to their target.}}
+        &{template:custom}{{title=Damage}}{{subtitle= with @{charname}'s @{weaponname} }} {{Deals an astonishing [[[[@{weaponcritmod}*@{dnum}]]@{dtype}[Dice]+(0@{weaponcritmod}*@{weapontodamage})[Key Ability]+(@{weaponcritmod}*0@{bonustodamage})[Feats and Magic]+(0@{enchdamagedice})+(0@{extraenchdicecrit})+(0?{Do you have a miscellaneaous bonus to damage?|0})]] damage to their target.}}
         "
       ></button><br>
      </div>
@@ -2298,19 +2310,19 @@ type="text/worker"
         on(`clicked:repeating_species:${button}`, function() {
             getAttrs(['repeating_species_minspeciestrait'], function(v) {
                 setAttrs({
-                    repeating_species_minspeciestrait: 1 - parseInt(v.repeating_species_minspeciestrait)
+                    repeating_species_minspeciestrait: 1 - parseInt(v["repeating_species_minspeciestrait"])
                 });
             });
         });
     });
 
-    const maxMinWeaponList = ["weaponminimize"];
+    const maxMinWeaponList = ["weaponminimize","critconfirmminimize"];
     maxMinWeaponList.forEach(button => {
         on(`clicked:repeating_weapons:${button}`, function() {
-            getAttrs(['repeating_weapons_weapontoggle'], function(v) {
-                setAttrs({
-                    repeating_weapons_weapontoggle: 1 - parseInt(v.repeating_weapons_weapontoggle)
-                });
+            getAttrs([`repeating_weapons_${button}toggle`], function(v) {
+                toSetAttrs = {};
+                toSetAttrs[`repeating_weapons_${button}toggle`] = 1 - parseInt(v[`repeating_weapons_${button}toggle`]);
+                setAttrs(toSetAttrs);
             });
         });
     });
@@ -2475,13 +2487,17 @@ type="text/worker"
     on("change:hd change:magiccurve sheet:opened",function(){
        getAttrs(["HD","MagicCurve"],function(values){
            let HD = parseFloat(values.HD)||0;
+           let SP = 0;
            if(values.MagicCurve === "Basic"){
                SP = Math.floor(HD/10);
-           }if(values.MagicCurve === "Standard"){
+           }
+           if(values.MagicCurve === "Standard"){
                SP = 1 + Math.floor(HD/8);
-           }if(values.MagicCurve === "Advanced"){
+           }
+           if(values.MagicCurve === "Advanced"){
                SP = 1 + Math.floor(HD/6);
-           }if(values.MagicCurve === "None"){
+           }
+           if(values.MagicCurve === "None"){
                SP = 0;
            }
            setAttrs({
@@ -2506,4 +2522,54 @@ type="text/worker"
        }) ;
     });
     //</editor-fold>
+
+    // <editor-fold desc="Attack Bonuses">
+
+    on("sheet:opened change:bab",function(){
+        getAttrs(["BAB"],function(values){
+            getSectionIDs("repeating_weapons",function(array){
+                let rows = {};
+                for (let arrayID of array){
+                    rows['repeating_weapons_' + arrayID + `_weaponbab`] = values.BAB;
+                }
+                if(rows){
+                    setAttrs(rows);
+                }
+            });
+        });
+    });
+
+    on("change:repeating_weapons:bonustoattack change:repeating_weapons:dtype change:repeating_weapons:dnum " +
+        "change:repeating_weapons:bonustodamage change:repeating_weapons:enchdamagedice change:repeating_weapons:weaponcritmod " +
+        "change:repeating_weapons:critlow change:repeating_weapons:extraenchdicecrit change:repeating_weapons:reach " +
+        "change:repeating_weapons:weapondamagtype change:repeating_weapons:weaponbab clicked:repeating_weapons:weaponminimize",
+        function(){
+        getAttrs(["repeating_weapons_bonustoattack","repeating_weapons_dtype","repeating_weapons_dnum",
+            "repeating_weapons_bonustodamage","repeating_weapons_enchdamagedice",
+            "repeating_weapons_weaponcritmod","repeating_weapons_critlow","repeating_weapons_extraenchdicecrit"
+            ,"repeating_weapons_reach","repeating_weapons_weapondamagetype","repeating_weapons_weaponbab"],function(values){
+            let attackbonus = parseFloat(values.repeating_weapons_bonustoattack)||0;
+            let mincrit = parseFloat(values.repeating_weapons_critlow)||0;
+            let BAB = parseFloat(values.repeating_weapons_weaponbab);
+            let Macro = `&{template:custom}{{title=Attack(s)}}{{subtitle=@{charname}'s @{weaponname}}}`+
+            `{{First Attack=[[1d20cs>${mincrit}+${BAB}[Base Attack]+@{weapontohit}[Key Attribute]+${attackbonus}[Other Bonuses]+?(0?{`+
+            `Do you have any miscellaneous bonuses?|0})]]}}`;
+            if(BAB - 5 > 0) {
+                Macro = Macro + `{{Second Attack=[[1d20cs>${mincrit}+${BAB - 5}[Base Attack]+@{weapontohit}[Key Attribute]` +
+                    "+@{attackbonus}[Other Bonuses]+?(0?{Do you have any miscellaneous bonuses?|0})]]}}";
+            }
+            if(BAB - 10 > 0){
+                Macro = Macro + `{{Third Attack=[[1d20cs>${mincrit}+${BAB - 10}[Base Attack]+@{weapontohit}[Key Attribute]` +
+                    "+@{attackbonus}[Other Bonuses]+?(0?{Do you have any miscellaneous bonuses?|0})]]}}";
+            }
+            if(BAB -15 > 0){
+                Macro = Macro + `{{Fourth Attack=[[1d20cs>${mincrit}+${BAB - 15}[Base Attack]+@{weapontohit}[Key Attribute]` +
+                    "+@{attackbonus}[Other Bonuses]+?(0?{Do you have any miscellaneous bonuses?|0})]]}}";
+            }
+            setAttrs({
+                repeating_weapons_fullattackroll: Macro
+            });
+        });
+   });
+    // </editor-fold>
 </script>
