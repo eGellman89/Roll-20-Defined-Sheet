@@ -2119,9 +2119,11 @@ type="text/worker"
         });
     });
 
-    on("change:refbasestr change:dexmod change:dexterity change:hd sheet:opened",function (){
-        getAttrs(["RefBaseStr","HD"],function(values){
+    on("change:refbasestr change:dexmod change:dexterity change:hd change:haste change:slow sheet:opened",function (){
+        getAttrs(["RefBaseStr","HD","haste","slow"],function(values){
             let HD = parseFloat(values.HD);
+            let haste = parseFloat(values.haste);
+            let slow = parseFloat(values.slow);
             let base = 0;
             if(values.RefBaseStr === "Low") {
                 base = Math.min(6, Math.floor(HD / 3));
@@ -2129,7 +2131,7 @@ type="text/worker"
                 base = Math.min(12, Math.floor(2+(HD / 2)));
             }
             setAttrs({
-                RefBaseNum: base
+                RefBaseNum: base + haste - slow
             });
         });
     });
@@ -2194,12 +2196,14 @@ type="text/worker"
     //</editor-fold>
 
     // <editor-fold desc="AC">
-    on("change:shield change:size change:armorbonus change:dexmod change:naturalac change:parryac " +
+    on("change:shield change:size change:armorbonus change:dexmod change:naturalac change:parryac change:haste change:slow "+
         "change:miscac change:deflection change:insightac change:dodgeac change:dexaclimit change:shielddexaclimit" +
         " sheet:opened",function(){
-        getAttrs(["dexmod","ArmorBonus","NaturalAC","Shield","MiscAC",
+        getAttrs(["dexmod","ArmorBonus","NaturalAC","Shield","MiscAC","haste","slow",
             "InsightAC","ParryAC","Deflection","DodgeAC","size","DexACLimit","ShieldDexACLimit"],function(values){
             let dex = parseFloat(values.dexmod)||0;
+            let haste = parseFloat(values.haste)||0;
+            let slow = parseFloat(values.slow)
             let armor = parseFloat(values.ArmorBonus)||0;
             let natural = parseFloat(values.NaturalAC)||0;
             let shield = parseFloat(values.Shield)||0;
@@ -2231,9 +2235,9 @@ type="text/worker"
             }if(values.size === "Super Gargantuan"){
                 size = -8;
             }
-            let total = 10 + Math.min(DexLimit,dex) + armor + natural + shield + parry + dodge + deflection + insight + misc + size;
+            let total = 10 + Math.min(DexLimit,dex) + armor + natural + shield + haste + parry + dodge + deflection + insight + misc + size - slow;
             let flat = 10 + armor + natural + shield + deflection + insight + misc + size;
-            let touch = 10 + Math.min(DexLimit,dex) + parry + dodge + deflection + insight + misc + size;
+            let touch = 10 + Math.min(DexLimit,dex) + parry + dodge + deflection + insight + misc + size + haste - slow;
             setAttrs({
                 TotalAC: total,
                 FlatFAC: flat,
