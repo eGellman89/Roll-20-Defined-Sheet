@@ -1073,7 +1073,11 @@ Below is the sheet's selector buttons
   </table>
  </div>
  <div class="gear-weapons">
-  <div class="Title-Div"><h3>Weapons</h3></div>
+  <div class="Title-Div">
+   <h3>Weapons</h3>
+   Hasted?<input type="checkbox" name="attr_haste" value="1"/>
+   Slowed?<input type="checkbox" name="attr_slow" value="1"/>
+  </div>
   <fieldset class="repeating_weapons">
    <button type="action" class="Small-Button" name="act_weaponminimize">-</button>
    <input type="hidden" class="weapon-toggle" name="attr_weaponminimizetoggle" value="1"/>
@@ -1119,6 +1123,7 @@ Below is the sheet's selector buttons
     <div>Extra Damage Dice<br>on Critical: <input type="text" name="attr_extraenchdicecrit" class="accuracy" value=""/></div>
     <div>Reach: <input type="text" name="attr_reach" class="accuracy" value=""/></div>
     <div>Damage Type: <input type="text" name="attr_weapondamagtype" class="wname" value=""/></div>
+    <div>Two Handed? <input type="checkbox" name="attr_twohanded" value=".5"/></div>
    </div>
    <div>
     <div class="Title-Div">
@@ -1178,7 +1183,7 @@ Below is the sheet's selector buttons
        name="roll_weapondamage"
        value=
         "
-        &{template:custom}{{title=Damage}}{{subtitle= with @{charname}'s @{weaponname} }} {{Deals [[(0@{dnum}@{dtype})[Dice]+(0@{weapontodamage})[Key Ability]+(0@{bonustodamage})[Feats and Magic]+(0@{enchdamagedice}[Bonus])+(0?{Do you have a miscellaneaous bonus to damage?|0})]] damage to their target.}}
+        &{template:custom}{{title=Damage}}{{subtitle= with @{charname}'s @{weaponname} }} {{Deals [[(0@{dnum}@{dtype})[Dice]+(0@{weapontodamage})+(floor(0@{weapontodamage}*@{twohanded}))[Key Ability]+(0@{bonustodamage})[Feats and Magic]+(0@{enchdamagedice}[Bonus])+(0?{Do you have a miscellaneaous bonus to damage?|0})]] damage to their target.}}
         "
       ></button><br>
      </div>
@@ -1189,7 +1194,7 @@ Below is the sheet's selector buttons
        name="roll_critweapondamage"
        value=
         "
-        &{template:custom}{{title=Damage}}{{subtitle= with @{charname}'s @{weaponname} }} {{Deals an astonishing [[[[@{weaponcritmod}*@{dnum}]]@{dtype}[Dice]+(0@{weaponcritmod}*@{weapontodamage})[Key Ability]+(@{weaponcritmod}*0@{bonustodamage})[Feats and Magic]+(0@{enchdamagedice})+(0@{extraenchdicecrit})+(0?{Do you have a miscellaneaous bonus to damage?|0})]] damage to their target.}}
+        &{template:custom}{{title=Damage}}{{subtitle= with @{charname}'s @{weaponname} }} {{Deals an astonishing [[[[@{weaponcritmod}*@{dnum}]]@{dtype}[Dice]+(0@{weaponcritmod}*(@{weapontodamage}+(floor(0@{weapontodamage}*@{twohanded}))))[Key Ability]+(@{weaponcritmod}*@{bonustodamage})[Feats and Magic]+(0@{enchdamagedice})+(0@{extraenchdicecrit})+(0?{Do you have a miscellaneaous bonus to damage?|0})]] damage to their target.}}
         "
       ></button><br>
      </div>
@@ -2525,12 +2530,14 @@ type="text/worker"
 
     // <editor-fold desc="Attack Bonuses">
 
-    on("sheet:opened change:bab",function(){
-        getAttrs(["BAB"],function(values){
+    on("sheet:opened change:bab change:slow change:haste",function(){
+        getAttrs(["BAB","slow","haste"],function(values){
             getSectionIDs("repeating_weapons",function(array){
                 let rows = {};
                 for (let arrayID of array){
                     rows['repeating_weapons_' + arrayID + `_weaponbab`] = values.BAB;
+                    rows['repeating_weapons_' + arrayID + `_`+`weaponhaste`] = values.haste;
+                    rows['repeating_weapons_' + arrayID + `_`+`weaponslow`] = values.slow;
                 }
                 if(rows){
                     setAttrs(rows);
@@ -2539,32 +2546,34 @@ type="text/worker"
         });
     });
 
-    on("change:repeating_weapons:bonustoattack change:repeating_weapons:dtype change:repeating_weapons:dnum " +
-        "change:repeating_weapons:bonustodamage change:repeating_weapons:enchdamagedice change:repeating_weapons:weaponcritmod " +
-        "change:repeating_weapons:critlow change:repeating_weapons:extraenchdicecrit change:repeating_weapons:reach " +
-        "change:repeating_weapons:weapondamagtype change:repeating_weapons:weaponbab clicked:repeating_weapons:weaponminimize",
+    on("change:repeating_weapons:bonustoattack change:repeating_weapons:weaponhaste change:repeating_weapons:weaponslow" +
+        "change:repeating_weapons:critlow change:repeating_weapons:weaponbab clicked:repeating_weapons:weaponminimize",
         function(){
-        getAttrs(["repeating_weapons_bonustoattack","repeating_weapons_dtype","repeating_weapons_dnum",
-            "repeating_weapons_bonustodamage","repeating_weapons_enchdamagedice",
-            "repeating_weapons_weaponcritmod","repeating_weapons_critlow","repeating_weapons_extraenchdicecrit"
-            ,"repeating_weapons_reach","repeating_weapons_weapondamagetype","repeating_weapons_weaponbab"],function(values){
+        getAttrs(["repeating_weapons_bonustoattack","repeating_weapons_critlow","repeating_weapons_weaponhaste"
+            ,"repeating_weapons_weaponbab","repeating_weapons_weaponslow"],function(values){
             let attackbonus = parseFloat(values.repeating_weapons_bonustoattack)||0;
             let mincrit = parseFloat(values.repeating_weapons_critlow)||0;
             let BAB = parseFloat(values.repeating_weapons_weaponbab);
             let Macro = `&{template:custom}{{title=Attack(s)}}{{subtitle=@{charname}'s @{weaponname}}}`+
             `{{First Attack=[[1d20cs>${mincrit}+${BAB}[Base Attack]+@{weapontohit}[Key Attribute]+${attackbonus}[Other Bonuses]+?(0?{`+
             `Do you have any miscellaneous bonuses?|0})]]}}`;
-            if(BAB - 5 > 0) {
-                Macro = Macro + `{{Second Attack=[[1d20cs>${mincrit}+${BAB - 5}[Base Attack]+@{weapontohit}[Key Attribute]` +
-                    "+@{attackbonus}[Other Bonuses]+?(0?{Do you have any miscellaneous bonuses?|0})]]}}";
+            if(values.repeating_weapons_weaponhaste === "1"){
+                Macro = Macro + `{{Haste Attack=[[1d20cs>${mincrit}+${BAB}[Base Attack]+@{weapontohit}[Key Attribute]` +
+                    `+${attackbonus}[Other Bonuses]+?(0?{Do you have any miscellaneous bonuses?|0})]]}}`;
             }
-            if(BAB - 10 > 0){
-                Macro = Macro + `{{Third Attack=[[1d20cs>${mincrit}+${BAB - 10}[Base Attack]+@{weapontohit}[Key Attribute]` +
-                    "+@{attackbonus}[Other Bonuses]+?(0?{Do you have any miscellaneous bonuses?|0})]]}}";
-            }
-            if(BAB -15 > 0){
-                Macro = Macro + `{{Fourth Attack=[[1d20cs>${mincrit}+${BAB - 15}[Base Attack]+@{weapontohit}[Key Attribute]` +
-                    "+@{attackbonus}[Other Bonuses]+?(0?{Do you have any miscellaneous bonuses?|0})]]}}";
+            if(values.repeating_weapons_weaponslow === "0") {
+                if (BAB - 5 > 0) {
+                    Macro = Macro + `{{Second Attack=[[1d20cs>${mincrit}+${BAB - 5}[Base Attack]+@{weapontohit}[Key Attribute]` +
+                        `+${attackbonus}[Other Bonuses]+?(0?{Do you have any miscellaneous bonuses?|0})]]}}`;
+                }
+                if (BAB - 10 > 0) {
+                    Macro = Macro + `{{Third Attack=[[1d20cs>${mincrit}+${BAB - 10}[Base Attack]+@{weapontohit}[Key Attribute]` +
+                        `+${attackbonus}[Other Bonuses]+?(0?{Do you have any miscellaneous bonuses?|0})]]}}`;
+                }
+                if (BAB - 15 > 0) {
+                    Macro = Macro + `{{Fourth Attack=[[1d20cs>${mincrit}+${BAB - 15}[Base Attack]+@{weapontohit}[Key Attribute]` +
+                        `+${attackbonus}[Other Bonuses]+?(0?{Do you have any miscellaneous bonuses?|0})]]}}`;
+                }
             }
             setAttrs({
                 repeating_weapons_fullattackroll: Macro
