@@ -21,6 +21,20 @@
   display: inline-block;
 }
 
+.color{
+  display: inline-block;
+}
+.titleinputhidden[value=""] ~ .color{
+  display: None;
+}
+
+.shadow{
+  display: None;
+}
+.titleinputhidden[value=""] ~ .shadow{
+  display: inline-block;
+}
+
 .FloatLeft{
   float: left;
 }
