@@ -1272,7 +1272,7 @@
     <div class="species_trait_title"><button style="color:black" type="action" class="Small-Button" name="act_minspecies">-</button><input type="text" name="attr_speciestraitname" placeholder="<Trait name here>">
     </div>
     <div class="species_trait_description">
-     <textarea id="text" type="text" name="attr_speciestraitdescription" placeholder="<Description here>"></textarea>
+     <textarea name="attr_speciestraitdescription" placeholder="<Description here>"></textarea>
     </div>
    </fieldset>
   </div>
@@ -1284,7 +1284,7 @@
     <input type="text" name="attr_primarydefinitionname" placeholder="<Primary Definition here>">
    </div>
    <div class="primarydefdesc">
-    <textarea id="text" type="text" name="attr_primarydescription" placeholder="<Description here>"></textarea>
+    <textarea name="attr_primarydescription" placeholder="<Description here>"></textarea>
    </div>
    <!-- Repeating Secondary Definitions -->
   <div class="sheet-repeating-fields">
@@ -1293,7 +1293,7 @@
     <div class="secdef_title"><button style="color:black" type="action" class="Small-Button" name="act_minsecdefdesc">-</button><input type="text" name="attr_secdefname" placeholder="<Secondary Definition here>">
     </div>
     <div class="secdef_description">
-     <textarea id="text" type="text" name="attr_secdefdescription" placeholder="<Description here>"></textarea>
+     <textarea name="attr_secdefdescription" placeholder="<Description here>"></textarea>
     </div>
    </fieldset>
   </div>
@@ -1307,7 +1307,7 @@
     <div class="feats_title"><button style="color:black" type="action" class="Small-Button" name="act_minfeats">-</button><input type="text" name="attr_featsname" placeholder="<Feat name here>">
     </div>
     <div class="feats_description">
-     <textarea id="text" type="text" name="attr_featsdescription" placeholder="<Description here>"></textarea>
+     <textarea name="attr_featsdescription" placeholder="<Description here>"></textarea>
     </div>
    </fieldset>
   </div>
@@ -1321,7 +1321,7 @@
     <div class="afflictions_title"><button style="color:black" type="action" class="Small-Button" name="act_minafflictions">-</button><input type="text" name="attr_afflictionsname" placeholder="<Affliction name here>">
     </div>
     <div class="afflictions_description">
-     <textarea id="text" type="text" name="attr_afflictionsdescription" placeholder="<Description here>"></textarea>
+     <textarea name="attr_afflictionsdescription" placeholder="<Description here>"></textarea>
     </div>
    </fieldset>
   </div>
@@ -1338,6 +1338,7 @@
   Long: <input type="number" name="attr_LongRange" readonly/>&nbsp&nbsp&nbsp||&nbsp
   Spell Proficiency: <input type="number" name="attr_SpellProf" readonly/>
  </div>
+
   <div class="sheet-repeating-fields">
    <fieldset class="repeating_abilities">
     <input type="hidden" class="ability-toggle" name="attr_minimizeability" value="1"/>
@@ -1345,20 +1346,27 @@
      <button type="action" class="Small-Button" name="act_minabilitytog">-</button>
      <input type="text" name="attr_abilityname" placeholder="<Ability Name Here>"/>
      <button type="roll" name="roll_ability_card" value=
-      "
-&{template:custom}{{title=@{abilityname} }}{{subtitle=@{charname} }}{{Action = @{abilityaction} }}{{Range=@{abilityrange} }}{{Target=@{abilitytarget} }}{{Duration=@{abilitydurationnumber} @{abilitydurationtype} }}{{Save Type=@{absavethrow} }}{{DC=@{abilitydc} }}{{SR Required?= @{abilitysrconfirm}}} {{SR Roll = [[1d20+@{hd}+(0?{Do you have onuses to Spell Resistance Checks?|0})]]}} {{Damage=[[@{abilitydicenum}@{abilitydicetype}+(@{asprof}*@{abilitydicenum})]]}}{{Description=@{abilitydescriptiontext} }}
-      "></button>
+      "@{abilityroll}"></button>
+     <br>
+     Uses Remaining: <input class="abilityinput" type="text" name="attr_userdescription" placeholder="per day"/>
+     Max Uses: <input class="abilityinput" type="text" name="attr_uses"/>
+     <input type="hidden" name="attr_abilityroll"/>
     </div>
     <div class="ability_description">
      <div class="Details-1">
-      <div>Use: <input type="text" name="attr_userdescription" value="per day"/><input type="text" name="attr_uses"/></div>
       <div>Target: <input type="text" name="attr_abilitytarget"/></div>
       <div>
-       Duration:<input type="text" name="attr_abilitydurationtype" placeholder="Rounds"/>
-       <input type="text" name="attr_abilitydurationnumber" placeholder="#"/>
+       Duration:<input type="text" name="attr_abilityduration" placeholder="Rounds"/>
       </div>
-      <div>DC: <input type="text" name="attr_abilitydc"/></div>
-      <div>Damage/Healing?:
+      <div>DC: <input type="text" name="attr_abilitydc" /></div>
+      <div>Ability Type?: <select name="attr_abilitytype" class="abilitysaving">
+       <option value="0">Utility</option>
+       <option value="Damage">Damage</option>
+       <option value="Healing">Healing</option>
+       <option value="Warding">Warding</option>
+       </select>
+      </div>
+      <div>Dice Rolled?:
        <input style="width: 30px" type="text" name="attr_abilitydicetype" placeholder="d#"/>
        <input style="width: 30px" type="text" name="attr_abilitydicenum" placeholder="#"/>
       </div>
@@ -1373,8 +1381,8 @@
         <option value="Will">Will</option>
        </select>
       </div>
-      <div>Spell Resistance?: <input type="text" name="attr_abilitysrconfirm" placeholder="Y/N?"/></div>
-      <div>Spell Proficiency?: <input style="vertical-align:center; float:right"type="checkbox" name="attr_asprof" value="@{SpellProf}"/></div>
+      <div>Spell Resistance?: <input style="float:right" type="checkbox" name="attr_abilitysrconfirm" value="1"/></div>
+      <div>Spell Proficiency?: <input style="vertical-align:center; float:right"type="checkbox" name="attr_asprof" value="1"/></div>
      </div>
      <div class="Description">Ability Description:<br><textarea name="attr_abilitydescriptiontext"></textarea><br>
      </div>
@@ -1386,6 +1394,7 @@
 
 <!--<editor-fold desc="Spells"-->
 <div class="sheet-spells">
+ <div class="gridarea">
  <div class="titleblock">
   <h3 style="color:white">Spell Casting</h3>
   Primary Mental Attribute(PMA): <select name="attr_PMA" value="" class="small-select">
@@ -1396,15 +1405,17 @@
   <option value="@{chamod}">Cha</option>
  </select><br>
   Caster Level: <input type="number" name="attr_cl" readonly/>
-  Spell Penetration Bonus:<input type="number" name="attr_spellpenetrationbonus">
+  Spell Penetration Bonus:<input type="number" name="attr_spellpenetrationbonus" value="0">
   Spell Proficiency: <input type="number" name="attr_SpellProf" readonly/><br>
   Close Range: <input type="number" name="attr_CloseRange" readonly/>
   Medium Range: <input type="number" name="attr_MediumRange" readonly/>
   Long: <input type="number" name="attr_LongRange" readonly/>
  </div>
- <div class="Spell-Level">
+ <div class="Column1">
+  <div class="Spell-Level">
   <input class="sptoggle" type="hidden" name="attr_spell0minimizetoggle" value="1"/>
-  <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell0minimize">-</button>Simplex Spells<br>
+  <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell0minimize">-</button>
+   <span>Simplex Spells</span><br>
    Per Day: <input type="text" readonly name="attr_0perday" value="&infin;"/>
    Remaining: <input type="text" readonly name="attr_0remaining" value="&infin;"/>
   </div>
@@ -1470,417 +1481,495 @@
    </fieldset>
   </div>
  </div>
- <div class="Spell-Level">
-  <input class="sptoggle" type="hidden" name="attr_spell1minimizetoggle" value="1"/>
-  <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell1minimize">-</button>Level 1 Spells<br>
-   Per Day: <input type="number" name="attr_1perday"/>
-   Remaining: <input type="number" name="attr_1remaining"/>
-  </div>
-  <div class="sheet-repeating-fields">
-   <fieldset class="repeating_spells-1">
-    <div class="minimizable-repeat-spells">
-     <input type="hidden" class="spells-toggle" name="attr_spell1minimizetoggle" value="1"/>
-     <div class="spelltitle">
-      <button type="action" class="Small-Button" name="act_spell1minimize">-</button>
-      <button style="float:right" type="roll" name="roll-spell-card" value="@{spellcard}"></button>
-      <input type="text" name="attr_spellname" placeholder="<Spell Name Here>"/>
-      <input type="hidden" name="attr_spellcard"/><br>
-      <span style="float:left; color: #FFFFFF">
+  <div class="Spell-Level">
+   <input class="sptoggle" type="hidden" name="attr_spell2minimizetoggle" value="1"/>
+   <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell2minimize">-</button>
+    <span>Level 2 Spells</span><br>
+    Per Day: <input type="number" name="attr_2perday"/>
+    Remaining: <input type="number" name="attr_2remaining"/>
+   </div>
+   <div class="sheet-repeating-fields">
+    <fieldset class="repeating_spells-2">
+     <div class="minimizable-repeat-spells">
+      <input type="hidden" class="spells-toggle" name="attr_spell2minimizetoggle" value="1"/>
+      <div class="spelltitle">
+       <button type="action" class="Small-Button" name="act_spell2minimize">-</button>
+       <button style="float:right" type="roll" name="roll-spell-card" value="@{spellcard}"></button>
+       <input type="text" name="attr_spellname" placeholder="<Spell Name Here>"/>
+       <input type="hidden" name="attr_spellcard"/><br>
+       <span style="float:left; color: #FFFFFF">
       Known&nbsp;
      </span>
-      <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_known">
-      <span style="float:left; color: #FFFFFF">
+       <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_known">
+       <span style="float:left; color: #FFFFFF">
       &nbsp;&nbsp;Memorized&nbsp;
      </span>
-      <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_memorized">
-      <input style="float:right; width: 40px;" type="text" name="attr_prepared" placeholder="#">
-      <span style="float:right; color: #FFFFFF">
+       <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_memorized">
+       <input style="float:right; width: 40px;" type="text" name="attr_prepared" placeholder="#">
+       <span style="float:right; color: #FFFFFF">
       Number Prepared:&nbsp;
      </span>
-     </div>
-     <div class="spells_description">
-      <div class="Details-1">
-       <div>School: <input type="text" name=attr_school"/></div>
-       <div>Casting Time: <input type="text" name="attr_castingtime"/></div>
-       <div>Effect: <input type="text" name="attr_effect"/></div>
-       <div>Saving Throw:
-        <select name="attr_spellsaving" value="N/A" class="spellselect">
-         <option value="No">None</option>
-         <option value="Fortitude">Fortitude</option>
-         <option value="Reflex">Reflex</option>
-         <option value="Will">Will</option>
-        </select>
+      </div>
+      <div class="spells_description">
+       <div class="Details-1">
+        <div>School: <input type="text" name=attr_school"/></div>
+        <div>Casting Time: <input type="text" name="attr_castingtime"/></div>
+        <div>Effect: <input type="text" name="attr_effect"/></div>
+        <div>Saving Throw:
+         <select name="attr_spellsaving" value="N/A" class="spellselect">
+          <option value="No">None</option>
+          <option value="Fortitude">Fortitude</option>
+          <option value="Reflex">Reflex</option>
+          <option value="Will">Will</option>
+         </select>
+        </div>
+        <div>
+         Type of Spell:
+         <select style="font-size: 12px" name="attr_category" value="" class="spellselect">
+          <option value="0">Utility</option>
+          <option value="Healing">Healing</option>
+          <option value="Damage">Damage</option>
+          <option value="Warding">Warding</option>
+         </select>
+        </div>
+        <div>Harmless?<input type="checkbox" name="attr_harmless" value="; harmless"/></div>
        </div>
-       <div>
-        Type of Spell:
-        <select style="font-size: 12px" name="attr_category" value="" class="spellselect">
-         <option value="0">Utility</option>
-         <option value="Healing">Healing</option>
-         <option value="Damage">Damage</option>
-         <option value="Warding">Warding</option>
-        </select>
+       <div class="Details-2">
+        <div>Components: <input type="text" name="attr_components"/></div>
+        <div>Range: <input type="text" name="attr_range"/></div>
+        <div>Duration: <input type="text" name="attr_duration"/></div>
+        <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
+         <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
+        <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
        </div>
-       <div>Harmless?<input type="checkbox" name="attr_harmless" value="; harmless"/></div>
-      </div>
-      <div class="Details-2">
-       <div>Components: <input type="text" name="attr_components"/></div>
-       <div>Range: <input type="text" name="attr_range"/></div>
-       <div>Duration: <input type="text" name="attr_duration"/></div>
-       <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
-        <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
-       <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
-      </div>
-      <div class="Description">
-       <div>Description:<br><textarea name="attr_spelldescription"></textarea></div>
+       <div class="Description">
+        <div>Description:<br><textarea name="attr_spelldescription"></textarea></div>
+       </div>
       </div>
      </div>
-    </div>
-   </fieldset>
+    </fieldset>
+   </div>
   </div>
- </div>
- <div class="Spell-Level">
-  <input class="sptoggle" type="hidden" name="attr_spell2minimizetoggle" value="1"/>
-  <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell2minimize">-</button>Level 2 Spells<br>
-   Per Day: <input type="number" name="attr_2perday"/>
-   Remaining: <input type="number" name="attr_2remaining"/>
-  </div>
-  <div class="sheet-repeating-fields">
-   <fieldset class="repeating_spells-2">
-    <div class="minimizable-repeat-spells">
-     <input type="hidden" class="spells-toggle" name="attr_spell2minimizetoggle" value="1"/>
-     <div class="spelltitle">
-      <button type="action" class="Small-Button" name="act_spell2minimize">-</button>
-      <button style="float:right" type="roll" name="roll-spell-card" value="@{spellcard}"></button>
-      <input type="text" name="attr_spellname" placeholder="<Spell Name Here>"/>
-      <input type="hidden" name="attr_spellcard"/><br>
-      <span style="float:left; color: #FFFFFF">
+  <div class="Spell-Level">
+   <input class="sptoggle" type="hidden" name="attr_spell4minimizetoggle" value="1"/>
+   <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell4minimize">-</button>
+    <span>Level 4 Spells</span><br>
+    Per Day: <input type="number" name="attr_4perday"/>
+    Remaining: <input type="number" name="attr_4remaining"/>
+   </div>
+   <div class="sheet-repeating-fields">
+    <fieldset class="repeating_spells-4">
+     <div class="minimizable-repeat-spells">
+      <input type="hidden" class="spells-toggle" name="attr_spell4minimizetoggle" value="1"/>
+      <div class="spelltitle">
+       <button type="action" class="Small-Button" name="act_spell4minimize">-</button>
+       <button style="float:right" type="roll" name="roll-spell-card" value="@{spellcard}"></button>
+       <input type="text" name="attr_spellname" placeholder="<Spell Name Here>"/>
+       <input type="hidden" name="attr_spellcard"/><br>
+       <span style="float:left; color: #FFFFFF">
       Known&nbsp;
      </span>
-      <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_known">
-      <span style="float:left; color: #FFFFFF">
+       <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_known">
+       <span style="float:left; color: #FFFFFF">
       &nbsp;&nbsp;Memorized&nbsp;
      </span>
-      <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_memorized">
-      <input style="float:right; width: 40px;" type="text" name="attr_prepared" placeholder="#">
-      <span style="float:right; color: #FFFFFF">
+       <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_memorized">
+       <input style="float:right; width: 40px;" type="text" name="attr_prepared" placeholder="#">
+       <span style="float:right; color: #FFFFFF">
       Number Prepared:&nbsp;
      </span>
-     </div>
-     <div class="spells_description">
-      <div class="Details-1">
-       <div>School: <input type="text" name=attr_school"/></div>
-       <div>Casting Time: <input type="text" name="attr_castingtime"/></div>
-       <div>Effect: <input type="text" name="attr_effect"/></div>
-       <div>Saving Throw:
-        <select name="attr_spellsaving" value="N/A" class="spellselect">
-         <option value="No">None</option>
-         <option value="Fortitude">Fortitude</option>
-         <option value="Reflex">Reflex</option>
-         <option value="Will">Will</option>
-        </select>
+      </div>
+      <div class="spells_description">
+       <div class="Details-1">
+        <div>School: <input type="text" name=attr_school"/></div>
+        <div>Casting Time: <input type="text" name="attr_castingtime"/></div>
+        <div>Effect: <input type="text" name="attr_effect"/></div>
+        <div>Saving Throw:
+         <select name="attr_spellsaving" value="N/A" class="spellselect">
+          <option value="No">None</option>
+          <option value="Fortitude">Fortitude</option>
+          <option value="Reflex">Reflex</option>
+          <option value="Will">Will</option>
+         </select>
+        </div>
+        <div>
+         Type of Spell:
+         <select style="font-size: 12px" name="attr_category" value="" class="spellselect">
+          <option value="0">Utility</option>
+          <option value="Healing">Healing</option>
+          <option value="Damage">Damage</option>
+          <option value="Warding">Warding</option>
+         </select>
+        </div>
+        <div>Harmless?<input type="checkbox" name="attr_harmless" value="; harmless"/></div>
        </div>
-       <div>
-        Type of Spell:
-        <select style="font-size: 12px" name="attr_category" value="" class="spellselect">
-         <option value="0">Utility</option>
-         <option value="Healing">Healing</option>
-         <option value="Damage">Damage</option>
-         <option value="Warding">Warding</option>
-        </select>
+       <div class="Details-2">
+        <div>Components: <input type="text" name="attr_components"/></div>
+        <div>Range: <input type="text" name="attr_range"/></div>
+        <div>Duration: <input type="text" name="attr_duration"/></div>
+        <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
+         <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
+        <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
        </div>
-       <div>Harmless?<input type="checkbox" name="attr_harmless" value="; harmless"/></div>
-      </div>
-      <div class="Details-2">
-       <div>Components: <input type="text" name="attr_components"/></div>
-       <div>Range: <input type="text" name="attr_range"/></div>
-       <div>Duration: <input type="text" name="attr_duration"/></div>
-       <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
-        <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
-       <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
-      </div>
-      <div class="Description">
-       <div>Description:<br><textarea name="attr_spelldescription"></textarea></div>
+       <div class="Description">
+        <div>Description:<br><textarea name="attr_spelldescription"></textarea></div>
+       </div>
       </div>
      </div>
-    </div>
-   </fieldset>
+    </fieldset>
+   </div>
   </div>
- </div>
- <div class="Spell-Level">
-  <input class="sptoggle" type="hidden" name="attr_spell3minimizetoggle" value="1"/>
-  <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell3minimize">-</button>Level 3 Spells<br>
-   Per Day: <input type="number" name="attr_3perday"/>
-   Remaining: <input type="number" name="attr_3remaining"/>
-  </div>
-  <div class="sheet-repeating-fields">
-   <fieldset class="repeating_spells-3">
-    <div class="minimizable-repeat-spells">
-     <input type="hidden" class="spells-toggle" name="attr_spell3minimizetoggle" value="1"/>
-     <div class="spelltitle">
-      <button type="action" class="Small-Button" name="act_spell3minimize">-</button>
-      <button style="float:right" type="roll" name="roll-spell-card" value="@{spellcard}"></button>
-      <input type="text" name="attr_spellname" placeholder="<Spell Name Here>"/>
-      <input type="hidden" name="attr_spellcard"/><br>
-      <span style="float:left; color: #FFFFFF">
+  <div class="Spell-Level">
+   <input class="sptoggle" type="hidden" name="attr_spell6minimizetoggle" value="1"/>
+   <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell6minimize">-</button>
+    <span>Level 6 Spells</span><br>
+    Per Day: <input type="number" name="attr_6perday"/>
+    Remaining: <input type="number" name="attr_6remaining"/>
+   </div>
+   <div class="sheet-repeating-fields">
+    <fieldset class="repeating_spells-6">
+     <div class="minimizable-repeat-spells">
+      <input type="hidden" class="spells-toggle" name="attr_spell6minimizetoggle" value="1"/>
+      <div class="spelltitle">
+       <button type="action" class="Small-Button" name="act_spell6minimize">-</button>
+       <button style="float:right" type="roll" name="roll-spell-card" value="@{spellcard}"></button>
+       <input type="text" name="attr_spellname" placeholder="<Spell Name Here>"/>
+       <input type="hidden" name="attr_spellcard"/><br>
+       <span style="float:left; color: #FFFFFF">
       Known&nbsp;
      </span>
-      <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_known">
-      <span style="float:left; color: #FFFFFF">
+       <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_known">
+       <span style="float:left; color: #FFFFFF">
       &nbsp;&nbsp;Memorized&nbsp;
      </span>
-      <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_memorized">
-      <input style="float:right; width: 40px;" type="text" name="attr_prepared" placeholder="#">
-      <span style="float:right; color: #FFFFFF">
+       <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_memorized">
+       <input style="float:right; width: 40px;" type="text" name="attr_prepared" placeholder="#">
+       <span style="float:right; color: #FFFFFF">
       Number Prepared:&nbsp;
      </span>
-     </div>
-     <div class="spells_description">
-      <div class="Details-1">
-       <div>School: <input type="text" name=attr_school"/></div>
-       <div>Casting Time: <input type="text" name="attr_castingtime"/></div>
-       <div>Effect: <input type="text" name="attr_effect"/></div>
-       <div>Saving Throw:
-        <select name="attr_spellsaving" value="N/A" class="spellselect">
-         <option value="No">None</option>
-         <option value="Fortitude">Fortitude</option>
-         <option value="Reflex">Reflex</option>
-         <option value="Will">Will</option>
-        </select>
+      </div>
+      <div class="spells_description">
+       <div class="Details-1">
+        <div>School: <input type="text" name=attr_school"/></div>
+        <div>Casting Time: <input type="text" name="attr_castingtime"/></div>
+        <div>Effect: <input type="text" name="attr_effect"/></div>
+        <div>Saving Throw:
+         <select name="attr_spellsaving" value="N/A" class="spellselect">
+          <option value="No">None</option>
+          <option value="Fortitude">Fortitude</option>
+          <option value="Reflex">Reflex</option>
+          <option value="Will">Will</option>
+         </select>
+        </div>
+        <div>
+         Type of Spell:
+         <select style="font-size: 12px" name="attr_category" value="" class="spellselect">
+          <option value="0">Utility</option>
+          <option value="Healing">Healing</option>
+          <option value="Damage">Damage</option>
+          <option value="Warding">Warding</option>
+         </select>
+        </div>
+        <div>Harmless?<input type="checkbox" name="attr_harmless" value="; harmless"/></div>
        </div>
-       <div>
-        Type of Spell:
-        <select style="font-size: 12px" name="attr_category" value="" class="spellselect">
-         <option value="0">Utility</option>
-         <option value="Healing">Healing</option>
-         <option value="Damage">Damage</option>
-         <option value="Warding">Warding</option>
-        </select>
+       <div class="Details-2">
+        <div>Components: <input type="text" name="attr_components"/></div>
+        <div>Range: <input type="text" name="attr_range"/></div>
+        <div>Duration: <input type="text" name="attr_duration"/></div>
+        <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
+         <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
+        <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
        </div>
-       <div>Harmless?<input type="checkbox" name="attr_harmless" value="; harmless"/></div>
-      </div>
-      <div class="Details-2">
-       <div>Components: <input type="text" name="attr_components"/></div>
-       <div>Range: <input type="text" name="attr_range"/></div>
-       <div>Duration: <input type="text" name="attr_duration"/></div>
-       <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
-        <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
-       <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
-      </div>
-      <div class="Description">
-       <div>Description:<br><textarea name="attr_spelldescription"></textarea></div>
+       <div class="Description">
+        <div>Description:<br><textarea name="attr_spelldescription"></textarea></div>
+       </div>
       </div>
      </div>
-    </div>
-   </fieldset>
+    </fieldset>
+   </div>
   </div>
- </div>
- <div class="Spell-Level">
-  <input class="sptoggle" type="hidden" name="attr_spell4minimizetoggle" value="1"/>
-  <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell4minimize">-</button>Level 4 Spells<br>
-   Per Day: <input type="number" name="attr_4perday"/>
-   Remaining: <input type="number" name="attr_4remaining"/>
-  </div>
-  <div class="sheet-repeating-fields">
-   <fieldset class="repeating_spells-4">
-    <div class="minimizable-repeat-spells">
-     <input type="hidden" class="spells-toggle" name="attr_spell4minimizetoggle" value="1"/>
-     <div class="spelltitle">
-      <button type="action" class="Small-Button" name="act_spell4minimize">-</button>
-      <button style="float:right" type="roll" name="roll-spell-card" value="@{spellcard}"></button>
-      <input type="text" name="attr_spellname" placeholder="<Spell Name Here>"/>
-      <input type="hidden" name="attr_spellcard"/><br>
-      <span style="float:left; color: #FFFFFF">
+  <div class="Spell-Level">
+   <input class="sptoggle" type="hidden" name="attr_spell8minimizetoggle" value="1"/>
+   <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell8minimize">-</button>
+    <span>Level 8 Spells</span><br>
+    Per Day: <input type="number" name="attr_8perday"/>
+    Remaining: <input type="number" name="attr_8remaining"/>
+   </div>
+   <div class="sheet-repeating-fields">
+    <fieldset class="repeating_spells-8">
+     <div class="minimizable-repeat-spells">
+      <input type="hidden" class="spells-toggle" name="attr_spell8minimizetoggle" value="1"/>
+      <div class="spelltitle">
+       <button type="action" class="Small-Button" name="act_spell8minimize">-</button>
+       <button style="float:right" type="roll" name="roll-spell-card" value="@{spellcard}"></button>
+       <input type="text" name="attr_spellname" placeholder="<Spell Name Here>"/>
+       <input type="hidden" name="attr_spellcard"/><br>
+       <span style="float:left; color: #FFFFFF">
       Known&nbsp;
      </span>
-      <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_known">
-      <span style="float:left; color: #FFFFFF">
+       <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_known">
+       <span style="float:left; color: #FFFFFF">
       &nbsp;&nbsp;Memorized&nbsp;
      </span>
-      <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_memorized">
-      <input style="float:right; width: 40px;" type="text" name="attr_prepared" placeholder="#">
-      <span style="float:right; color: #FFFFFF">
+       <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_memorized">
+       <input style="float:right; width: 40px;" type="text" name="attr_prepared" placeholder="#">
+       <span style="float:right; color: #FFFFFF">
       Number Prepared:&nbsp;
      </span>
-     </div>
-     <div class="spells_description">
-      <div class="Details-1">
-       <div>School: <input type="text" name=attr_school"/></div>
-       <div>Casting Time: <input type="text" name="attr_castingtime"/></div>
-       <div>Effect: <input type="text" name="attr_effect"/></div>
-       <div>Saving Throw:
-        <select name="attr_spellsaving" value="N/A" class="spellselect">
-         <option value="No">None</option>
-         <option value="Fortitude">Fortitude</option>
-         <option value="Reflex">Reflex</option>
-         <option value="Will">Will</option>
-        </select>
+      </div>
+      <div class="spells_description">
+       <div class="Details-1">
+        <div>School: <input type="text" name=attr_school"/></div>
+        <div>Casting Time: <input type="text" name="attr_castingtime"/></div>
+        <div>Effect: <input type="text" name="attr_effect"/></div>
+        <div>Saving Throw:
+         <select name="attr_spellsaving" value="N/A" class="spellselect">
+          <option value="No">None</option>
+          <option value="Fortitude">Fortitude</option>
+          <option value="Reflex">Reflex</option>
+          <option value="Will">Will</option>
+         </select>
+        </div>
+        <div>
+         Type of Spell:
+         <select style="font-size: 12px" name="attr_category" value="" class="spellselect">
+          <option value="0">Utility</option>
+          <option value="Healing">Healing</option>
+          <option value="Damage">Damage</option>
+          <option value="Warding">Warding</option>
+         </select>
+        </div>
+        <div>Harmless?<input type="checkbox" name="attr_harmless" value="; harmless"/></div>
        </div>
-       <div>
-        Type of Spell:
-        <select style="font-size: 12px" name="attr_category" value="" class="spellselect">
-         <option value="0">Utility</option>
-         <option value="Healing">Healing</option>
-         <option value="Damage">Damage</option>
-         <option value="Warding">Warding</option>
-        </select>
+       <div class="Details-2">
+        <div>Components: <input type="text" name="attr_components"/></div>
+        <div>Range: <input type="text" name="attr_range"/></div>
+        <div>Duration: <input type="text" name="attr_duration"/></div>
+        <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
+         <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
+        <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
        </div>
-       <div>Harmless?<input type="checkbox" name="attr_harmless" value="; harmless"/></div>
-      </div>
-      <div class="Details-2">
-       <div>Components: <input type="text" name="attr_components"/></div>
-       <div>Range: <input type="text" name="attr_range"/></div>
-       <div>Duration: <input type="text" name="attr_duration"/></div>
-       <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
-        <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
-       <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
-      </div>
-      <div class="Description">
-       <div>Description:<br><textarea name="attr_spelldescription"></textarea></div>
+       <div class="Description">
+        <div>Description:<br><textarea name="attr_spelldescription"></textarea></div>
+       </div>
       </div>
      </div>
-    </div>
-   </fieldset>
+    </fieldset>
+   </div>
   </div>
  </div>
- <div class="Spell-Level">
-  <input class="sptoggle" type="hidden" name="attr_spell5minimizetoggle" value="1"/>
-  <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell5minimize">-</button>Level 5 Spells<br>
-   Per Day: <input type="number" name="attr_5perday"/>
-   Remaining: <input type="number" name="5attr_5remaining"/>
-  </div>
-  <div class="sheet-repeating-fields">
-   <fieldset class="repeating_spells-5">
-    <div class="minimizable-repeat-spells">
-     <input type="hidden" class="spells-toggle" name="attr_spell5minimizetoggle" value="1"/>
-     <div class="spelltitle">
-      <button type="action" class="Small-Button" name="act_spell5minimize">-</button>
-      <button style="float:right" type="roll" name="roll-spell-card" value="@{spellcard}"></button>
-      <input type="text" name="attr_spellname" placeholder="<Spell Name Here>"/>
-      <input type="hidden" name="attr_spellcard"/><br>
-      <span style="float:left; color: #FFFFFF">
+ <div class="Column2">
+  <div class="Spell-Level">
+   <input class="sptoggle" type="hidden" name="attr_spell1minimizetoggle" value="1"/>
+   <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell1minimize">-</button>
+    <span>Level 1 Spells</span><br>
+    Per Day: <input type="number" name="attr_1perday"/>
+    Remaining: <input type="number" name="attr_1remaining"/>
+   </div>
+   <div class="sheet-repeating-fields">
+    <fieldset class="repeating_spells-1">
+     <div class="minimizable-repeat-spells">
+      <input type="hidden" class="spells-toggle" name="attr_spell1minimizetoggle" value="1"/>
+      <div class="spelltitle">
+       <button type="action" class="Small-Button" name="act_spell1minimize">-</button>
+       <button style="float:right" type="roll" name="roll-spell-card" value="@{spellcard}"></button>
+       <input type="text" name="attr_spellname" placeholder="<Spell Name Here>"/>
+       <input type="hidden" name="attr_spellcard"/><br>
+       <span style="float:left; color: #FFFFFF">
       Known&nbsp;
      </span>
-      <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_known">
-      <span style="float:left; color: #FFFFFF">
+       <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_known">
+       <span style="float:left; color: #FFFFFF">
       &nbsp;&nbsp;Memorized&nbsp;
      </span>
-      <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_memorized">
-      <input style="float:right; width: 40px;" type="text" name="attr_prepared" placeholder="#">
-      <span style="float:right; color: #FFFFFF">
+       <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_memorized">
+       <input style="float:right; width: 40px;" type="text" name="attr_prepared" placeholder="#">
+       <span style="float:right; color: #FFFFFF">
       Number Prepared:&nbsp;
      </span>
-     </div>
-     <div class="spells_description">
-      <div class="Details-1">
-       <div>School: <input type="text" name=attr_school"/></div>
-       <div>Casting Time: <input type="text" name="attr_castingtime"/></div>
-       <div>Effect: <input type="text" name="attr_effect"/></div>
-       <div>Saving Throw:
-        <select name="attr_spellsaving" value="N/A" class="spellselect">
-         <option value="No">None</option>
-         <option value="Fortitude">Fortitude</option>
-         <option value="Reflex">Reflex</option>
-         <option value="Will">Will</option>
-        </select>
+      </div>
+      <div class="spells_description">
+       <div class="Details-1">
+        <div>School: <input type="text" name=attr_school"/></div>
+        <div>Casting Time: <input type="text" name="attr_castingtime"/></div>
+        <div>Effect: <input type="text" name="attr_effect"/></div>
+        <div>Saving Throw:
+         <select name="attr_spellsaving" value="N/A" class="spellselect">
+          <option value="No">None</option>
+          <option value="Fortitude">Fortitude</option>
+          <option value="Reflex">Reflex</option>
+          <option value="Will">Will</option>
+         </select>
+        </div>
+        <div>
+         Type of Spell:
+         <select style="font-size: 12px" name="attr_category" value="" class="spellselect">
+          <option value="0">Utility</option>
+          <option value="Healing">Healing</option>
+          <option value="Damage">Damage</option>
+          <option value="Warding">Warding</option>
+         </select>
+        </div>
+        <div>Harmless?<input type="checkbox" name="attr_harmless" value="; harmless"/></div>
        </div>
-       <div>
-        Type of Spell:
-        <select style="font-size: 12px" name="attr_category" value="" class="spellselect">
-         <option value="0">Utility</option>
-         <option value="Healing">Healing</option>
-         <option value="Damage">Damage</option>
-         <option value="Warding">Warding</option>
-        </select>
+       <div class="Details-2">
+        <div>Components: <input type="text" name="attr_components"/></div>
+        <div>Range: <input type="text" name="attr_range"/></div>
+        <div>Duration: <input type="text" name="attr_duration"/></div>
+        <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
+         <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
+        <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
        </div>
-       <div>Harmless?<input type="checkbox" name="attr_harmless" value="; harmless"/></div>
-      </div>
-      <div class="Details-2">
-       <div>Components: <input type="text" name="attr_components"/></div>
-       <div>Range: <input type="text" name="attr_range"/></div>
-       <div>Duration: <input type="text" name="attr_duration"/></div>
-       <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
-        <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
-       <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
-      </div>
-      <div class="Description">
-       <div>Description:<br><textarea name="attr_spelldescription"></textarea></div>
+       <div class="Description">
+        <div>Description:<br><textarea name="attr_spelldescription"></textarea></div>
+       </div>
       </div>
      </div>
-    </div>
-   </fieldset>
+    </fieldset>
+   </div>
   </div>
- </div>
- <div class="Spell-Level">
-  <input class="sptoggle" type="hidden" name="attr_spell6minimizetoggle" value="1"/>
-  <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell6minimize">-</button>Level 6 Spells<br>
-   Per Day: <input type="number" name="attr_6perday"/>
-   Remaining: <input type="number" name="attr_6remaining"/>
-  </div>
-  <div class="sheet-repeating-fields">
-   <fieldset class="repeating_spells-6">
-    <div class="minimizable-repeat-spells">
-     <input type="hidden" class="spells-toggle" name="attr_spell6minimizetoggle" value="1"/>
-     <div class="spelltitle">
-      <button type="action" class="Small-Button" name="act_spell6minimize">-</button>
-      <button style="float:right" type="roll" name="roll-spell-card" value="@{spellcard}"></button>
-      <input type="text" name="attr_spellname" placeholder="<Spell Name Here>"/>
-      <input type="hidden" name="attr_spellcard"/><br>
-      <span style="float:left; color: #FFFFFF">
+  <div class="Spell-Level">
+   <input class="sptoggle" type="hidden" name="attr_spell3minimizetoggle" value="1"/>
+   <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell3minimize">-</button>
+    <span>Level 3 Spells</span><br>
+    Per Day: <input type="number" name="attr_3perday"/>
+    Remaining: <input type="number" name="attr_3remaining"/>
+   </div>
+   <div class="sheet-repeating-fields">
+    <fieldset class="repeating_spells-3">
+     <div class="minimizable-repeat-spells">
+      <input type="hidden" class="spells-toggle" name="attr_spell3minimizetoggle" value="1"/>
+      <div class="spelltitle">
+       <button type="action" class="Small-Button" name="act_spell3minimize">-</button>
+       <button style="float:right" type="roll" name="roll-spell-card" value="@{spellcard}"></button>
+       <input type="text" name="attr_spellname" placeholder="<Spell Name Here>"/>
+       <input type="hidden" name="attr_spellcard"/><br>
+       <span style="float:left; color: #FFFFFF">
       Known&nbsp;
      </span>
-      <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_known">
-      <span style="float:left; color: #FFFFFF">
+       <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_known">
+       <span style="float:left; color: #FFFFFF">
       &nbsp;&nbsp;Memorized&nbsp;
      </span>
-      <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_memorized">
-      <input style="float:right; width: 40px;" type="text" name="attr_prepared" placeholder="#">
-      <span style="float:right; color: #FFFFFF">
+       <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_memorized">
+       <input style="float:right; width: 40px;" type="text" name="attr_prepared" placeholder="#">
+       <span style="float:right; color: #FFFFFF">
       Number Prepared:&nbsp;
      </span>
-     </div>
-     <div class="spells_description">
-      <div class="Details-1">
-       <div>School: <input type="text" name=attr_school"/></div>
-       <div>Casting Time: <input type="text" name="attr_castingtime"/></div>
-       <div>Effect: <input type="text" name="attr_effect"/></div>
-       <div>Saving Throw:
-        <select name="attr_spellsaving" value="N/A" class="spellselect">
-         <option value="No">None</option>
-         <option value="Fortitude">Fortitude</option>
-         <option value="Reflex">Reflex</option>
-         <option value="Will">Will</option>
-        </select>
+      </div>
+      <div class="spells_description">
+       <div class="Details-1">
+        <div>School: <input type="text" name=attr_school"/></div>
+        <div>Casting Time: <input type="text" name="attr_castingtime"/></div>
+        <div>Effect: <input type="text" name="attr_effect"/></div>
+        <div>Saving Throw:
+         <select name="attr_spellsaving" value="N/A" class="spellselect">
+          <option value="No">None</option>
+          <option value="Fortitude">Fortitude</option>
+          <option value="Reflex">Reflex</option>
+          <option value="Will">Will</option>
+         </select>
+        </div>
+        <div>
+         Type of Spell:
+         <select style="font-size: 12px" name="attr_category" value="" class="spellselect">
+          <option value="0">Utility</option>
+          <option value="Healing">Healing</option>
+          <option value="Damage">Damage</option>
+          <option value="Warding">Warding</option>
+         </select>
+        </div>
+        <div>Harmless?<input type="checkbox" name="attr_harmless" value="; harmless"/></div>
        </div>
-       <div>
-        Type of Spell:
-        <select style="font-size: 12px" name="attr_category" value="" class="spellselect">
-         <option value="0">Utility</option>
-         <option value="Healing">Healing</option>
-         <option value="Damage">Damage</option>
-         <option value="Warding">Warding</option>
-        </select>
+       <div class="Details-2">
+        <div>Components: <input type="text" name="attr_components"/></div>
+        <div>Range: <input type="text" name="attr_range"/></div>
+        <div>Duration: <input type="text" name="attr_duration"/></div>
+        <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
+         <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
+        <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
        </div>
-       <div>Harmless?<input type="checkbox" name="attr_harmless" value="; harmless"/></div>
-      </div>
-      <div class="Details-2">
-       <div>Components: <input type="text" name="attr_components"/></div>
-       <div>Range: <input type="text" name="attr_range"/></div>
-       <div>Duration: <input type="text" name="attr_duration"/></div>
-       <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
-        <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
-       <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
-      </div>
-      <div class="Description">
-       <div>Description:<br><textarea name="attr_spelldescription"></textarea></div>
+       <div class="Description">
+        <div>Description:<br><textarea name="attr_spelldescription"></textarea></div>
+       </div>
       </div>
      </div>
-    </div>
-   </fieldset>
+    </fieldset>
+   </div>
   </div>
- </div>
- <div class="Spell-Level">
+  <div class="Spell-Level">
+   <input class="sptoggle" type="hidden" name="attr_spell5minimizetoggle" value="1"/>
+   <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell5minimize">-</button>
+    <span>Level 5 Spells</span><br>
+    Per Day: <input type="number" name="attr_5perday"/>
+    Remaining: <input type="number" name="5attr_5remaining"/>
+   </div>
+   <div class="sheet-repeating-fields">
+    <fieldset class="repeating_spells-5">
+     <div class="minimizable-repeat-spells">
+      <input type="hidden" class="spells-toggle" name="attr_spell5minimizetoggle" value="1"/>
+      <div class="spelltitle">
+       <button type="action" class="Small-Button" name="act_spell5minimize">-</button>
+       <button style="float:right" type="roll" name="roll-spell-card" value="@{spellcard}"></button>
+       <input type="text" name="attr_spellname" placeholder="<Spell Name Here>"/>
+       <input type="hidden" name="attr_spellcard"/><br>
+       <span style="float:left; color: #FFFFFF">
+      Known&nbsp;
+     </span>
+       <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_known">
+       <span style="float:left; color: #FFFFFF">
+      &nbsp;&nbsp;Memorized&nbsp;
+     </span>
+       <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_memorized">
+       <input style="float:right; width: 40px;" type="text" name="attr_prepared" placeholder="#">
+       <span style="float:right; color: #FFFFFF">
+      Number Prepared:&nbsp;
+     </span>
+      </div>
+      <div class="spells_description">
+       <div class="Details-1">
+        <div>School: <input type="text" name=attr_school"/></div>
+        <div>Casting Time: <input type="text" name="attr_castingtime"/></div>
+        <div>Effect: <input type="text" name="attr_effect"/></div>
+        <div>Saving Throw:
+         <select name="attr_spellsaving" value="N/A" class="spellselect">
+          <option value="No">None</option>
+          <option value="Fortitude">Fortitude</option>
+          <option value="Reflex">Reflex</option>
+          <option value="Will">Will</option>
+         </select>
+        </div>
+        <div>
+         Type of Spell:
+         <select style="font-size: 12px" name="attr_category" value="" class="spellselect">
+          <option value="0">Utility</option>
+          <option value="Healing">Healing</option>
+          <option value="Damage">Damage</option>
+          <option value="Warding">Warding</option>
+         </select>
+        </div>
+        <div>Harmless?<input type="checkbox" name="attr_harmless" value="; harmless"/></div>
+       </div>
+       <div class="Details-2">
+        <div>Components: <input type="text" name="attr_components"/></div>
+        <div>Range: <input type="text" name="attr_range"/></div>
+        <div>Duration: <input type="text" name="attr_duration"/></div>
+        <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
+         <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
+        <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
+       </div>
+       <div class="Description">
+        <div>Description:<br><textarea name="attr_spelldescription"></textarea></div>
+       </div>
+      </div>
+     </div>
+    </fieldset>
+   </div>
+  </div>
+  <div class="Spell-Level">
   <input class="sptoggle" type="hidden" name="attr_spell7minimizetoggle" value="1"/>
-  <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell7minimize">-</button>Level 7 Spells<br>
+  <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell7minimize">-</button>
+   <span>Level 7 Spells</span><br>
    Per Day: <input type="number" name="attr_7perday"/>
    Remaining: <input type="number" name="attr_7remaining"/>
   </div>
@@ -1946,77 +2035,10 @@
    </fieldset>
   </div>
  </div>
- <div class="Spell-Level">
-  <input class="sptoggle" type="hidden" name="attr_spell8minimizetoggle" value="1"/>
-  <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell8minimize">-</button>Level 8 Spells<br>
-   Per Day: <input type="number" name="attr_8perday"/>
-   Remaining: <input type="number" name="attr_8remaining"/>
-  </div>
-  <div class="sheet-repeating-fields">
-   <fieldset class="repeating_spells-8">
-    <div class="minimizable-repeat-spells">
-     <input type="hidden" class="spells-toggle" name="attr_spell8minimizetoggle" value="1"/>
-     <div class="spelltitle">
-      <button type="action" class="Small-Button" name="act_spell8minimize">-</button>
-      <button style="float:right" type="roll" name="roll-spell-card" value="@{spellcard}"></button>
-      <input type="text" name="attr_spellname" placeholder="<Spell Name Here>"/>
-      <input type="hidden" name="attr_spellcard"/><br>
-      <span style="float:left; color: #FFFFFF">
-      Known&nbsp;
-     </span>
-      <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_known">
-      <span style="float:left; color: #FFFFFF">
-      &nbsp;&nbsp;Memorized&nbsp;
-     </span>
-      <input style="margin-top: 3px; float:left;" type="checkbox" name="attr_memorized">
-      <input style="float:right; width: 40px;" type="text" name="attr_prepared" placeholder="#">
-      <span style="float:right; color: #FFFFFF">
-      Number Prepared:&nbsp;
-     </span>
-     </div>
-     <div class="spells_description">
-      <div class="Details-1">
-       <div>School: <input type="text" name=attr_school"/></div>
-       <div>Casting Time: <input type="text" name="attr_castingtime"/></div>
-       <div>Effect: <input type="text" name="attr_effect"/></div>
-       <div>Saving Throw:
-        <select name="attr_spellsaving" value="N/A" class="spellselect">
-         <option value="No">None</option>
-         <option value="Fortitude">Fortitude</option>
-         <option value="Reflex">Reflex</option>
-         <option value="Will">Will</option>
-        </select>
-       </div>
-       <div>
-        Type of Spell:
-        <select style="font-size: 12px" name="attr_category" value="" class="spellselect">
-         <option value="0">Utility</option>
-         <option value="Healing">Healing</option>
-         <option value="Damage">Damage</option>
-         <option value="Warding">Warding</option>
-        </select>
-       </div>
-       <div>Harmless?<input type="checkbox" name="attr_harmless" value="; harmless"/></div>
-      </div>
-      <div class="Details-2">
-       <div>Components: <input type="text" name="attr_components"/></div>
-       <div>Range: <input type="text" name="attr_range"/></div>
-       <div>Duration: <input type="text" name="attr_duration"/></div>
-       <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
-        <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
-       <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
-      </div>
-      <div class="Description">
-       <div>Description:<br><textarea name="attr_spelldescription"></textarea></div>
-      </div>
-     </div>
-    </div>
-   </fieldset>
-  </div>
- </div>
- <div class="Spell-Level">
+  <div class="Spell-Level">
   <input class="sptoggle" type="hidden" name="attr_spell9minimizetoggle" value="1"/>
-  <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell9minimize">-</button>Level 9 Spells<br>
+  <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell9minimize">-</button>
+   <span>Level 9 Spells</span><br>
    Per Day: <input type="number" name="attr_9perday"/>
    Remaining: <input type="number" name="attr_9remaining"/>
   </div>
@@ -2081,6 +2103,8 @@
     </div>
    </fieldset>
   </div>
+ </div>
+ </div>
  </div>
 </div>
 
@@ -2153,10 +2177,13 @@
  </div>
 </div>
 <!--</editor-fold>-->
-<!--
-type="text/worker"
--->
 
+<!--<editor-fold desc="Java Script">-->
+
+
+
+
+<!--type="text/worker"-->
 
 <script>
 
@@ -3355,6 +3382,39 @@ type="text/worker"
     //</editor-fold>
 
     // <editor-fold desc="Ability Info Calculations">
+
+    on("change:repeating_abilities:minimizeability change_repeating_abilities:absavethrow " +
+        "change:repeating_abilities:abilitytype change:repeating_abilities:abilitysrconfirm " +
+        "change:repeating_abilities:asprof", function(){
+       getAttrs(["repeating_abilities_absavethrow","repeating_abilities_abilitytype",
+       "repeating_abilities_abilitysrconfirm","repeating_abilities_asprof"],function(values){
+           let savethrow = (values.repeating_abilities_absavethrow);
+           let type = (values.repeating_abilities_abilitytype);
+           let sr = (values.repeating_abilities_abilitysrconfirm);
+           let SpellProf = (values.repeating_abilities_asprof);
+           let Macro = `&{template:custom}{{title=@{abilityname}}}{{subtitle=@{charname}}}{{Range=@{abilityrange}}}`+
+               `{{Target=@{abilitytarget}}}{{Duration=@{abilityduration}}}`;
+           if(savethrow !== "N/A"){
+               Macro = Macro + `{{${savethrow} save=@{abilitydc}}}`;
+           }
+           if(type !== "0"){
+               Macro = Macro + `{{${type}=[[(@{abilitydicenum}@{abilitydicetype})]]}}`;
+           }
+           if(SpellProf === "1"){
+               Macro = Macro.replace(`{{${type}=[[(@{abilitydicenum}@{abilitydicetype})]]}}`,
+                   `{{${type}=[[(@{abilitydicenum}@{abilitydicetype})+(@{SpellProf}*@{abilitydicenum})]]}}`);
+           }
+           if(sr === "1"){
+               Macro = Macro + `{{Spell Resistance=[[1d20+@{HD}+@{spellpenetrationbonus}+`+
+                   `(0?{Do you have any Spell penetration Bonuses?|0})]]}}`;
+           }
+           Macro = Macro + `{{Description=@{abilitydescriptiontext}}}`
+           setAttrs({
+               repeating_abilities_abilityroll: Macro
+           });
+       });
+    });
+
     on("change:hd sheet:opened",function(){
        getAttrs(["HD","CloseRange","MediumRange","LongRange"],function(values){
            let HD = parseFloat(values.HD)||0;
@@ -3389,7 +3449,7 @@ type="text/worker"
     });
 
     on("change:repeating_weapons:bonustoattack change:repeating_weapons:weaponhaste change:repeating_weapons:weaponslow" +
-        "change:repeating_weapons:critlow change:repeating_weapons:weaponbab clicked:repeating_weapons:weaponminimize",
+        "change:repeating_weapons:critlow change:repeating_weapons:weaponbab change:repeating_weapons:weaponminimize",
         function(){
         getAttrs(["repeating_weapons_bonustoattack","repeating_weapons_critlow","repeating_weapons_weaponhaste"
             ,"repeating_weapons_weaponbab","repeating_weapons_weaponslow"],function(values){
@@ -3425,3 +3485,5 @@ type="text/worker"
     // </editor-fold>
 
 </script>
+
+<!--</editor-fold-->
