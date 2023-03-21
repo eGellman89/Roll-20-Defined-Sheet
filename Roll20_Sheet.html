@@ -30,6 +30,7 @@
  <button type="action" name="act_skills">Skills</button>
  <button type="action" name="act_gear">Gear</button>
  <button type="action" name="act_accessories">Accessories</button>
+ <button type="action" name="act_inventory">Inventory</button>
 </div>
 <!--<editor-fold desc="Main Tab"-->
 <div class="sheet-main">
@@ -78,177 +79,192 @@
    </div>
   </div>
  </div>
- <div class="leftsidestatblock clearfix">
-  <div>
-   <table class="textright">
-    <tr>
-     <th>Attribute</th>
-     <th>Enhance</th>
-     <th>Bonus</th>
-     <th>Penalty</th>
-     <th>Total</th>
-     <th>Modifier</th>
-     <th></th>
-    </tr>
-    <tr>
-     <td class="Attribute-Name">
-      <strong>Strength</strong>: <input type="number" name="attr_strength"/>
-     </td>
-     <td class="BonusBox">
-      <input type="number" name="attr_StrEnch"/>
-     </td>
-     <td class="BonusBox">
-      <input type="number" name="attr_StrBonus"/>
-     </td>
-     <td class="BonusBox">
-      <input type="number" name="attr_StrPen"/>
-     </td>
-     <td class="Attribute-Mod">
-      <input type="number" name="attr_StrTotal" readonly="true"/>
-     </td>
-     <td class="Attribute-Mod">
-      <input type="number" name="attr_strmod" readonly="true"/>
-     </td>
-     <td>
+ <div class="attributes-and-armor">
+  <div class="attribute-grid clearfix">
+   <div class="Attribute-0">
+    <div><u>Attribute</u></div>
+    <div>Strength</div>
+    <div>Dexterity</div>
+    <div>Constitution</div>
+    <div>Intelligence</div>
+    <div>Wisdom</div>
+    <div>Charisma</div>
+   </div>
+    <div class="Attribute-1">
+     <div class="grid-head" style="color: #FFFFFF">Base</div>
+     <div><input type="number" name="attr_strength"/></div>
+     <div><input type="number" name="attr_dexterity"/></div>
+     <div><input type="number" name="attr_constitution"/></div>
+     <div><input type="number" name="attr_intelligence"/></div>
+     <div><input type="number" name="attr_wisdom"/></div>
+     <div><input type="number" name="attr_charisma"/></div>
+    </div>
+    <div class="Attribute-2">
+     <div class="grid-head">Enhance</div>
+     <div><input type="number" name="attr_StrEnch"/></div>
+     <div><input type="number" name="attr_DexEnch"/></div>
+     <div><input type="number" name="attr_ConEnch"/></div>
+     <div><input type="number" name="attr_IntEnch"/></div>
+     <div><input type="number" name="attr_WisEnch"/></div>
+     <div><input type="number" name="attr_ChaEnch"/></div>
+    </div>
+    <div class="Attribute-3">
+     <div class="grid-head">Bonus</div>
+     <div><input type="number" name="attr_StrBonus"/></div>
+     <div><input type="number" name="attr_DexBonus"/></div>
+     <div><input type="number" name="attr_ConBonus"/></div>
+     <div><input type="number" name="attr_IntBonus"/></div>
+     <div><input type="number" name="attr_WisBonus"/></div>
+     <div><input type="number" name="attr_ChaBonus"/></div>
+    </div>
+    <div class="Attribute-4">
+     <div class="grid-head">Penalty</div>
+     <div><input type="number" name="attr_StrPen"/></div>
+     <div><input type="number" name="attr_DexPen"/></div>
+     <div><input type="number" name="attr_ConPen"/></div>
+     <div><input type="number" name="attr_IntPen"/></div>
+     <div><input type="number" name="attr_WisPen"/></div>
+     <div><input type="number" name="attr_ChaPen"/></div>
+    </div>
+    <div class="Attribute-5">
+     <div class="grid-head">Total</div>
+     <div><input type="number" name="attr_StrTotal" readonly="true"/></div>
+     <div><input type="number" name="attr_DexTotal" readonly="true"/></div>
+     <div><input type="number" name="attr_ConTotal" readonly="true"/></div>
+     <div><input type="number" name="attr_IntTotal" readonly="true"/></div>
+     <div><input type="number" name="attr_WisTotal" readonly="true"/></div>
+     <div><input type="number" name="attr_ChaTotal" readonly="true"/></div>
+    </div>
+    <div class="Attribute-6">
+     <div class="grid-head">Modifier</div>
+     <div><input type="number" name="attr_strmod" readonly="true"/></div>
+     <div><input type="number" name="attr_dexmod" readonly="true"/></div>
+     <div><input type="number" name="attr_conmod" readonly="true"/></div>
+     <div><input type="number" name="attr_intmod" readonly="true"/></div>
+     <div><input type="number" name="attr_wismod" readonly="true"/></div>
+     <div><input type="number" name="attr_chamod" readonly="true"/></div>
+    </div>
+    <div class="Attribute-7">
+     <div class="grid-head">Roll</div>
+     <div>
       <button title="Strength Check"
               type="roll"
               value="&{template:custom}{{title=Strength Check}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{strmod}]]}}"
               name="roll_Strength-Check"></button>
-     </td>
-    </tr>
-    <tr>
-     <td class="Attribute-Name">
-      <strong>Dexterity</strong>: <input type="number" name="attr_dexterity"/>
-     </td>
-     <td class="BonusBox">
-      <input type="number" name="attr_DexEnch"/>
-     </td>
-     <td class="BonusBox">
-      <input type="number" name="attr_DexBonus"/>
-     </td>
-     <td class="BonusBox">
-      <input type="number" name="attr_DexPen"/>
-     </td>
-     <td class="Attribute-Mod">
-      <input type="number" name="attr_DexTotal" readonly="true"/>
-     </td>
-     <td class="Attribute-Mod">
-      <input type="number" name="attr_dexmod" readonly="true"/>
-     </td>
-     <td>
+     </div>
+     <div>
       <button title="Dexterity Check"
               type="roll"
               value="&{template:custom}{{title=Dexterity Check}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{dexmod}]]}}"
               name="roll_Dexterity-check"></button>
-     </td>
-    </tr>
-    <tr>
-     <td class="Attribute-Name">
-      <strong>Constitution</strong>: <input type="number" name="attr_constitution"/>
-     </td>
-     <td class="BonusBox">
-      <input type="number" name="attr_ConEnch"/>
-     </td>
-     <td class="BonusBox">
-      <input type="number" name="attr_ConBonus"/>
-     </td>
-     <td class="BonusBox">
-      <input type="number" name="attr_ConPen"/>
-     </td>
-     <td class="Attribute-Mod">
-      <input type="number" name="attr_ConTotal" readonly="true"/>
-     </td>
-     <td class="Attribute-Mod">
-      <input type="number" name="attr_conmod" readonly="true"/>
-     </td>
-     <td>
+     </div>
+     <div>
       <button title="Constitution Check"
               type="roll"
               value="&{template:custom}{{title=Constitution Check}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{conmod}]]}}"
               name="roll_Constitution-check"></button>
-     </td>
-    </tr>
-    <tr>
-     <td class="Attribute-Name">
-      <strong>Wisdom</strong>: <input type="number" name="attr_wisdom"/>
-     </td>
-     <td class="BonusBox">
-      <input type="number" name="attr_WisEnch"/>
-     </td>
-     <td class="BonusBox">
-      <input type="number" name="attr_WisBonus"/>
-     </td>
-     <td class="BonusBox">
-      <input type="number" name="attr_WisPen"/>
-     </td>
-     <td class="Attribute-Mod">
-      <input type="number" name="attr_WisTotal" readonly="true"/>
-     </td>
-     <td class="Attribute-Mod">
-      <input type="number" name="attr_wismod" readonly="true"/>
-     </td>
-     <td>
-      <button title="Wisdom Check"
-              type="roll"
-              value="&{template:custom}{{title=Wisdom Check}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{wismod}]]}}"
-              name="roll_Wisdom-check"></button>
-     </td>
-    </tr>
-    <tr>
-     <td class="Attribute-Name">
-      <strong>Intelligence</strong>: <input type="number" name="attr_intelligence"/>
-     </td>
-     <td class="BonusBox">
-      <input type="number" name="attr_IntEnch"/>
-     </td>
-     <td class="BonusBox">
-      <input type="number" name="attr_IntBonus"/>
-     </td>
-     <td class="BonusBox">
-      <input type="number" name="attr_IntPen"/>
-     </td>
-     <td class="Attribute-Mod">
-      <input type="number" name="attr_IntTotal" readonly="true"/>
-     </td>
-     <td class="Attribute-Mod">
-      <input type="number" name="attr_intmod" readonly="true"/>
-     </td>
-     <td>
+     </div>
+     <div>
       <button title="Intelligence Check"
               type="roll"
               value="&{template:custom}{{title=Intelligence Check}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{intmod}]]}}"
               name="roll_Intelligence-check"></button>
-     </td>
-    </tr>
-    <tr>
-     <td class="Attribute-Name">
-      <strong>Charisma</strong>: <input type="number" name="attr_charisma"/>
-     </td>
-     <td class="BonusBox">
-      <input type="number" name="attr_ChaEnch"/>
-     </td>
-     <td class="BonusBox">
-      <input type="number" name="attr_ChaBonus"/>
-     </td>
-     <td class="BonusBox">
-      <input type="number" name="attr_ChaPen"/>
-     </td>
-     <td class="Attribute-Mod">
-      <input type="number" name="attr_ChaTotal" readonly="true"/>
-     </td>
-     <td class="Attribute-Mod">
-      <input type="number" name="attr_chamod" readonly="true"/>
-     </td>
-     <td>
+     </div>
+     <div>
+      <button title="Wisdom Check"
+              type="roll"
+              value="&{template:custom}{{title=Wisdom Check}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{wismod}]]}}"
+              name="roll_Wisdom-check"></button>
+     </div>
+     <div>
       <button title="Charisma Check"
               type="roll"
               value="&{template:custom}{{title=Charisma Check}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{chamod}]]}}"
               name="roll_Charisma-check"></button>
+     </div>
+    </div>
+   </div>
+  <div class="rightsideblock">
+   <table>
+    <tr>
+     <th>Hit Points</th>
+     <th>Armor Class</th>
+    </tr>
+    <tr>
+     <td>Current HP: <input type="number" name="attr_hp"/></td>
+     <td style="border-right: 1px black solid">Total AC: <input type="number" readonly="true" name="attr_TotalAC"/></td>
+    </tr>
+    <tr>
+     <td>Max HP:<input type="number" readonly="true" name="attr_hp_max"/></td>
+     <td style="border-right: 1px black solid">Touch AC: <input type="number" readonly="true" name="attr_TouchAC"/></td>
+    </tr>
+    <tr>
+     <td>Constitution HP:<input type="number" readonly="true" name="attr_ConHP"/></td>
+     <td style="border-right: 1px black solid;border-bottom: 1px solid white">
+      Flat-Footed AC:<input type="number" readonly="true" name="attr_FlatFAC"/>
      </td>
     </tr>
+    <tr>
+     <td>Progression HP:<input type="number" readonly="true" name="attr_ProgHP"/></td>
+     <td style="border-right: 1px black solid">Armor: <input type="number" readonly="true" name="attr_ArmorBonus"/></td>
+    </tr>
+    <tr>
+     <td>Misc. HP:<input type="number" name="attr_MiscHP"/></td>
+     <td style="border-right: 1px black solid">Shield: <input type="number" readonly="true" name="attr_Shield"/></td>
+    </tr>
+    <tr>
+     <td>Rolled HP:<input type="number" name="attr_RollHP"/></td>
+     <td style="border-right: 1px black solid">Natural:<input type="number" name="attr_NaturalAC"></td>
+    </tr>
+    <tr>
+     <th style="border-right: white solid 1px; border-top: white solid 1px">Initiative</th>
+     <td style="border-right: 1px black solid">Deflection: <input type="number" name="attr_Deflection"/></td>
+    </tr>
+    <tr>
+     <td>
+      Initiative Total:
+      <input type="number" readonly="true" name="attr_InitTotal"/>
+      <button class="button tokenaction"
+              title="Initiative"
+              type="roll"
+              value="&{template:custom}{{title=Initiative}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{InitTotal}+(@{InitTotal}/100)+([[d10-1]]/1000)&{tracker}]]}}"
+              name="roll_00-Inintiative"></button>
+     </td>
+     <td style="border-right: 1px black solid">Parry: <input type="number" name="attr_ParryAC"/></td>
+    </tr>
+    <tr>
+     <td>Dex Modifier:<input type="number" readonly="true" name="attr_dexmod"/></td>
+     <td>Dodge: <input type="number" name="attr_DodgeAC"/></td>
+    </tr>
+    <tr>
+     <td>Initiative Bonus: <input type="number" name="attr_InitBonus"/></td>
+     <td>Insight: <input type="number" name="attr_InsightAC"/></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td>Misc. <input type="number" name="attr_MiscAC"/></td>
+    </tr>
    </table>
+   <div class="clearfix">
+    <div class="rightgrid">
+     <div class="griditem">
+      Base Attack:<input type="number" name="attr_BAB" readonly/><br>
+     </div>
+     <div class="griditem">
+     <span>
+      Grapple Total: <input type="number" name="attr_GrappleTotal" readonly/>
+      <button class="button"
+              title="Opposed Grapple"
+              type="roll"
+              value="&{template:custom}{{title=Opposed Grapple}}{{subtitle= @{charname} }}{{Result=[[1d20+@{GrappleTotal}]]}}"
+              name="roll_opposed-grapple"></button>
+     </span>
+      <span>Grapple Bonuses: <input type="number" name="attr_GrappleMisc"/></span>
+     </div>
+    </div>
+   </div>
   </div>
-  <hr>
+ </div>
   <div class="Save-Selection">
    <table>
     <tr>
@@ -278,121 +294,66 @@
     </tr>
    </table>
   </div>
-  <div class="clearfix">
-   <div class="title">
-    Saving Throws
-   </div>
+  <div>
    <div class="saves">
-    <div>Fortitude: <input type="number" readonly name="attr_FortTotal"/></div>
-    <div>Base: <input type="number" name="attr_FortBaseNum" readonly="true"/></div>
-    <div>Con: <input type="number" name="attr_conmod" readonly="true"/></div>
-    <div>Magic: <input type="number" name="attr_FortMagic"/></div>
-    <div>Misc: <input type="number" name="attr_FortMiscNum"/></div>
-    <div><button title="Fortitude Save"
-                 type="roll"
-                 value="&{template:custom}{{title=Fortitude Save}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{FortTotal}]]}}"
-                 name="roll_Fortitude-save"></button></div>
-    <div>Reflex: <input type="number" readonly name="attr_RefTotal"/></div>
-    <div>Base: <input type="number" name="attr_RefBaseNum" readonly="true"/></div>
-    <div>Dex: <input type="number" name="attr_dexmod" readonly="true"/></div>
-    <div>Magic: <input type="number" name="attr_RefMagic"/></div>
-    <div>Misc: <input type="number" name="attr_RefMiscNum"/></div>
-    <div><button title="Reflex Save"
-                 type="roll"
-                 value="&{template:custom}{{title=Reflex Save}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{RefTotal}]]}}"
-                 name="roll_Reflex-save"></button></div>
-    <div>Will: <input type="number" readonly name="attr_WilTotal"/></div>
-    <div>Base: <input type="number" name="attr_WilBaseNum" readonly="true"/></div>
-    <div>Wis: <input type="number" name="attr_wismod" readonly="true"/></div>
-    <div>Magic: <input type="number" name="attr_WilMagic"/></div>
-    <div>Misc: <input type="number" name="attr_WilMiscNum"/></div>
-    <div><button title="Will Save"
-                 type="roll"
-                 value="&{template:custom}{{title=Will Save}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{WilTotal}]]}}"
-                 name="roll_Will-save"></button></div>
-   </div>
-  </div>
- </div>
- <div class="clearfix rightsideblock">
-  <table class="clearfix">
-   <tr>
-    <th>Hit Points</th>
-    <th>Armor Class</th>
-   </tr>
-   <tr>
-    <td>Current HP: <input type="number" name="attr_hp"/></td>
-    <td style="border-right: 1px black solid">Total AC: <input type="number" readonly="true" name="attr_TotalAC"/></td>
-   </tr>
-   <tr>
-    <td>Max HP:<input type="number" readonly="true" name="attr_hp_max"/></td>
-    <td style="border-right: 1px black solid">Touch AC: <input type="number" readonly="true" name="attr_TouchAC"/></td>
-   </tr>
-   <tr>
-    <td>Constitution HP:<input type="number" readonly="true" name="attr_ConHP"/></td>
-    <td style="border-right: 1px black solid;border-bottom: 1px solid white">
-     Flat-Footed AC:<input type="number" readonly="true" name="attr_FlatFAC"/>
-    </td>
-   </tr>
-   <tr>
-    <td>Progression HP:<input type="number" readonly="true" name="attr_ProgHP"/></td>
-    <td style="border-right: 1px black solid">Armor: <input type="number" readonly="true" name="attr_ArmorBonus"/></td>
-   </tr>
-   <tr>
-    <td>Misc. HP:<input type="number" name="attr_MiscHP"/></td>
-    <td style="border-right: 1px black solid">Shield: <input type="number" readonly="true" name="attr_Shield"/></td>
-   </tr>
-   <tr>
-    <td>Rolled HP:<input type="number" name="attr_RollHP"/></td>
-    <td style="border-right: 1px black solid">Natural:<input type="number" name="attr_NaturalAC"></td>
-   </tr>
-   <tr>
-    <th style="border-right: white solid 1px; border-top: white solid 1px">Initiative</th>
-    <td style="border-right: 1px black solid">Deflection: <input type="number" name="attr_Deflection"/></td>
-   </tr>
-   <tr>
-    <td>
-     Initiative Total:
-     <input type="number" readonly="true" name="attr_InitTotal"/>
-     <button class="button tokenaction"
-             title="Initiative"
-             type="roll"
-             value="&{template:custom}{{title=Initiative}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{InitTotal}+(@{InitTotal}/100)+([[d10-1]]/1000)&{tracker}]]}}"
-             name="roll_00-Inintiative"></button>
-    </td>
-    <td style="border-right: 1px black solid">Parry: <input type="number" name="attr_ParryAC"/></td>
-   </tr>
-   <tr>
-    <td>Dex Modifier:<input type="number" readonly="true" name="attr_dexmod"/></td>
-    <td>Dodge: <input type="number" name="attr_DodgeAC"/></td>
-   </tr>
-   <tr>
-    <td>Initiative Bonus: <input type="number" name="attr_InitBonus"/></td>
-    <td>Insight: <input type="number" name="attr_InsightAC"/></td>
-   </tr>
-   <tr>
-    <td></td>
-    <td>Misc. <input type="number" name="attr_MiscAC"/></td>
-   </tr>
-  </table>
-  <div class="clearfix">
-   <div class="rightgrid">
-    <div class="griditem">
-     Base Attack:<input type="number" name="attr_BAB" readonly/><br>
+    <div class="Save-H">
+     <div>Saving Throws</div>
     </div>
-    <div class="griditem">
-     <span>
-      Grapple Total: <input type="number" name="attr_GrappleTotal" readonly/>
-      <button class="button"
-              title="Opposed Grapple"
+    <div class="Save-0">
+     <div>Fortitude<br><input type="number" readonly name="attr_FortTotal"/></div>
+     <div>Reflex<br><input type="number" readonly name="attr_RefTotal"/></div>
+     <div>Will<br><input type="number" readonly name="attr_WilTotal"/></div>
+    </div>
+    <div class="Save-1">
+     <div>Base<br><input type="number" name="attr_FortBaseNum" readonly="true"/></div>
+     <div>Base<br><input type="number" name="attr_RefBaseNum" readonly="true"/></div>
+     <div>Base<br><input type="number" name="attr_WilBaseNum" readonly="true"/></div>
+    </div>
+    <div class="Save-2">
+     <div>Con<br><input type="number" name="attr_conmod" readonly="true"/></div>
+     <div>Dex<br><input type="number" name="attr_dexmod" readonly="true"/></div>
+     <div>Wis<br><input type="number" name="attr_wismod" readonly="true"/></div>
+    </div>
+    <div class="Save-3">
+     <div>Magic<br><input type="number" name="attr_FortMagic"/></div>
+     <div>Magic<br><input type="number" name="attr_RefMagic"/></div>
+     <div>Magic<br><input type="number" name="attr_WilMagic"/></div>
+    </div>
+    <div class="Save-4">
+     <div>Misc<br><input type="number" name="attr_FortMiscNum"/></div>
+     <div>Misc<br><input type="number" name="attr_RefMiscNum"/></div>
+     <div>Misc<br><input type="number" name="attr_WilMiscNum"/></div>
+    </div>
+    <div class="Save-5">
+     <div>Temp<br><input type="number" name="attr_FortTempNum"/></div>
+     <div>Temp<br><input type="number" name="attr_RefTempNum"/></div>
+     <div>Temp<br><input type="number" name="attr_WilTempNum"/></div>
+    </div>
+    <div class="Save-6">
+     <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+      <button title="Fortitude Save"
               type="roll"
-              value="&{template:custom}{{title=Opposed Grapple}}{{subtitle= @{charname} }}{{Result=[[1d20+@{GrappleTotal}]]}}"
-              name="roll_opposed-grapple"></button>
-     </span>
-     <span>Grapple Bonuses: <input type="number" name="attr_GrappleMisc"/></span>
+              value="&{template:custom}{{title=Fortitude Save}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{FortTotal}]]}}"
+              name="roll_Fortitude-save"></button>
+     </div>
+     <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+      <button title="Reflex Save"
+              type="roll"
+              value="&{template:custom}{{title=Reflex Save}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{RefTotal}]]}}"
+              name="roll_Reflex-save"></button>
+     </div>
+     <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+      <button title="Will Save"
+              type="roll"
+              value="&{template:custom}{{title=Will Save}}{{subtitle=@{Charname}}}{{Result:= [[1d20+@{WilTotal}]]}}"
+              name="roll_Will-save"></button>
+     </div>
     </div>
    </div>
+   </div>
   </div>
- </div>
+
+
 </div>
 <!--</editor-fold>-->
 
@@ -1470,7 +1431,7 @@
       <div>Range: <input type="text" name="attr_range"/></div>
       <div>Duration: <input type="text" name="attr_duration"/></div>
       <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
-       <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
+       <input style="text-align:right" type="text" name="attr_dicenum" placeholder="#"></div>
       <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
      </div>
      <div class="Description">
@@ -1539,7 +1500,7 @@
         <div>Range: <input type="text" name="attr_range"/></div>
         <div>Duration: <input type="text" name="attr_duration"/></div>
         <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
-         <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
+         <input style="text-align:right" type="text" name="attr_dicenum" placeholder="#"></div>
         <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
        </div>
        <div class="Description">
@@ -1608,7 +1569,7 @@
         <div>Range: <input type="text" name="attr_range"/></div>
         <div>Duration: <input type="text" name="attr_duration"/></div>
         <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
-         <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
+         <input style="text-align:right" type="text" name="attr_dicenum" placeholder="#"></div>
         <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
        </div>
        <div class="Description">
@@ -1677,7 +1638,7 @@
         <div>Range: <input type="text" name="attr_range"/></div>
         <div>Duration: <input type="text" name="attr_duration"/></div>
         <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
-         <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
+         <input style="text-align:right" type="text" name="attr_dicenum" placeholder="#"></div>
         <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
        </div>
        <div class="Description">
@@ -1746,7 +1707,7 @@
         <div>Range: <input type="text" name="attr_range"/></div>
         <div>Duration: <input type="text" name="attr_duration"/></div>
         <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
-         <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
+         <input style="text-align:right" type="text" name="attr_dicenum" placeholder="#"></div>
         <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
        </div>
        <div class="Description">
@@ -1817,7 +1778,7 @@
         <div>Range: <input type="text" name="attr_range"/></div>
         <div>Duration: <input type="text" name="attr_duration"/></div>
         <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
-         <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
+         <input style="text-align:right" type="text" name="attr_dicenum" placeholder="#"></div>
         <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
        </div>
        <div class="Description">
@@ -1886,7 +1847,7 @@
         <div>Range: <input type="text" name="attr_range"/></div>
         <div>Duration: <input type="text" name="attr_duration"/></div>
         <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
-         <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
+         <input style="text-align:right" type="text" name="attr_dicenum" placeholder="#"></div>
         <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
        </div>
        <div class="Description">
@@ -1955,7 +1916,7 @@
         <div>Range: <input type="text" name="attr_range"/></div>
         <div>Duration: <input type="text" name="attr_duration"/></div>
         <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
-         <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
+         <input style="text-align:right" type="text" name="attr_dicenum" placeholder="#"></div>
         <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
        </div>
        <div class="Description">
@@ -2024,7 +1985,7 @@
        <div>Range: <input type="text" name="attr_range"/></div>
        <div>Duration: <input type="text" name="attr_duration"/></div>
        <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
-        <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
+        <input style="text-align:right" type="text" name="attr_dicenum" placeholder="#"></div>
        <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
       </div>
       <div class="Description">
@@ -2093,7 +2054,7 @@
        <div>Range: <input type="text" name="attr_range"/></div>
        <div>Duration: <input type="text" name="attr_duration"/></div>
        <div>Dice Rolled:<input style="text-align: left" type="text" name="attr_dicetype" placeholder="d#">
-        <input style="text-align:right" type="number" name="attr_dicenum" placeholder="#"></div>
+        <input style="text-align:right" type="text" name="attr_dicenum" placeholder="#"></div>
        <div>Spell Resistance?<input type="checkbox" name="attr_sr" value="1"/></div>
       </div>
       <div class="Description" >
@@ -2208,16 +2169,81 @@
 </div>
 <!--</editor-fold>-->
 
+<!--<editor-fold desc="Inventory"-->
+<div class="sheet-inventory">
+ <div class="inventory-grid">
+  <div class="Header-I">
+   <div><h3>Inventory</h3>Gold: <input style="width:104px" type="number" step="any" name="attr_GP"/></div>
+  </div>
+  <div class="Column-I">
+   <div><h4>Primary Inventory</h4></div>
+   <div class="sheet-repeating-fields">
+    <fieldset class="repeating_maininventory">
+     <div class="bag-grid bags">
+     <div class="name">
+      <div><textarea name="attr_main-inv-name" placeholder="Item name, description, notes etc..."/></div>
+     </div>
+     <div class="quantity">
+      <div>Quantity: <input type="text" name="attr_mainquantity"/></div>
+     </div>
+     <div class="piece-weight">
+      <div>Unit Weight: <input type="text" name="attr_mainpieceweight"/></div>
+     </div>
+     <div class="total-weight">
+      <div>Total Weight: <input type="text" name="attr_maintotalweight" readonly/></div>
+     </div>
+     </div>
+    </fieldset>
+    <span style="float:right">Total Inventory Weight:<input name="attr_totalweight" type="text" readonly></span>
+   </div>
+  </div>
+ </div>
+</div>
+
+<!--</editor-fold>-->
+
 <!--<editor-fold desc="Java Script">-->
-
-
-
 
 <!--type="text/worker"-->
 
 <script>
 
     <!--<script type="text/worker">-->
+
+    //<editor-fold desc="Inventory Calculations">
+
+    on("change:repeating_maininventory remove:repeating_maininventory", function(){
+        getSectionIDs("repeating_maininventory",function(array){
+            let AttrsToGet = [];
+            for (let arrayID of array){
+                AttrsToGet.push(`repeating_maininventory_${arrayID}_maintotalweight`);
+            }console.log("got to before getAttrs");
+            getAttrs(AttrsToGet,function(values){
+                let total = 0;
+                for (let [key, value] of Object.entries(values)){
+                 total += parseFloat(value)||0;
+                }
+                setAttrs({
+                    totalweight:total
+                });console.log("got to the end");
+            });
+        });
+    });
+
+    on("change:repeating_maininventory:mainquantity " +
+        "change:repeating_maininventory:mainpieceweight", function(){
+        getAttrs(["repeating_maininventory_mainquantity",
+            "repeating_maininventory_mainpieceweight"], function(values){
+            let quantity = parseFloat(values.repeating_maininventory_mainquantity)||0;
+            let weight = parseFloat(values.repeating_maininventory_mainpieceweight)||0;
+            let total = (quantity * weight);
+            setAttrs({
+                repeating_maininventory_maintotalweight : total
+            });
+        });
+    })
+
+    //</editor-fold>
 
     //<editor-fold desc="Base Attack and Grapple Calculations">
     on("change:hd change:strmod change:dexmod change:attackcurve sheet:opened", function(){
@@ -2977,13 +3003,14 @@
     });
 
     on("change:fortbasestr change:conmod change:constitution change:hd change:fortbasenum " +
-        "change:fortmiscnum change:fortmagic sheet:opened",function (){
-        getAttrs(["FortBaseNum","conmod","FortMagic","FortMiscNum"],function(values){
+        "change:fortmiscnum change:fortmagic change:forttempnum sheet:opened",function (){
+        getAttrs(["FortBaseNum","conmod","FortMagic","FortMiscNum","FortTempNum"],function(values){
             let base = parseFloat(values.FortBaseNum)||0;
             let stat = parseFloat(values.conmod)||0;
             let magic = parseFloat(values.FortMagic)||0;
             let misc = parseFloat(values.FortMiscNum)||0;
-            let total = base + stat + magic + misc;
+            let temp = parseFloat(values.FortTempNum)||0;
+            let total = base + stat + magic + temp + misc;
             setAttrs({
                 FortTotal: total
             });
@@ -2991,13 +3018,14 @@
     });
 
     on("change:refbasestr change:dexmod change:dexterity change:hd change:refbasenum " +
-        "change:refmiscnum change:refmagic sheet:opened",function (){
-        getAttrs(["RefBaseNum","dexmod","RefMagic","RefMiscNum"],function(values){
+        "change:refmiscnum change:refmagic change:reftempnum sheet:opened",function (){
+        getAttrs(["RefBaseNum","dexmod","RefMagic","RefMiscNum","RefTempNum"],function(values){
             let base = parseFloat(values.RefBaseNum)||0;
             let stat = parseFloat(values.dexmod)||0;
             let magic = parseFloat(values.RefMagic)||0;
             let misc = parseFloat(values.RefMiscNum)||0;
-            let total = base + stat + magic + misc;
+            let temp = parseFloat(values.RefTempNum)||0;
+            let total = base + stat + magic + misc + temp;
             setAttrs({
                 RefTotal: total
             });
@@ -3005,13 +3033,14 @@
     });
 
     on("change:wilbasestr change:wismod change:wisdom change:hd change:wilbasenum " +
-        "change:wilmiscnum change:wilmagic sheet:opened",function (){
-        getAttrs(["WilBaseNum","wismod","WilMagic","WilMiscNum"],function(values){
+        "change:wilmiscnum change:wilmagic change:wiltempnum sheet:opened",function (){
+        getAttrs(["WilBaseNum","wismod","WilMagic","WilMiscNum","WilTempNum"],function(values){
             let base = parseFloat(values.WilBaseNum)||0;
             let stat = parseFloat(values.wismod)||0;
             let magic = parseFloat(values.WilMagic)||0;
             let misc = parseFloat(values.WilMiscNum)||0;
-            let total = base + stat + magic + misc;
+            let temp = parseFloat(values.WilTempNum)||0;
+            let total = base + stat + magic + misc + temp;
             setAttrs({
                 WilTotal: total
             });
@@ -3097,7 +3126,7 @@
             })
         })
     })
-    const buttonlist = ["main","skills","gear","definitions","abilities","spells","accessories"];
+    const buttonlist = ["main","skills","gear","definitions","abilities","spells","accessories","inventory"];
     buttonlist.forEach(button => {
         on(`clicked:${button}`, function() {
             setAttrs({
@@ -3371,8 +3400,8 @@
     const SpellMacroLevel = [0,1,2,3,4,5,6,7,8,9];
     SpellMacroLevel.forEach(level => {
         on(`change:repeating_spells-${level}:spellsaving change:repeating_spells-${level}:category `+
-        `change:repeating_spells-${level}:harmless change:repeating_spells-${level}:sr `+
-         `change:repeating_spells-${level}:minimizetoggle`, function () {
+        `change:repeating_spells-${level}:harmless change:repeating_spells-${level}:sr change:repeating_spells-${level}:spell${level}minimizetoggle `+
+         `change:repeating_spells-${level}:minimizetoggle change:repeating_spells-${level}:spellname`, function () {
             getAttrs([`repeating_spells-${level}_spellsaving`,`repeating_spells-${level}_category`,
                     `repeating_spells-${level}_harmless`, `repeating_spells-${level}_sr`],
                 function (values) {
