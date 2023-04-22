@@ -21,6 +21,9 @@
  </div>
 </rolltemplate>
 <!-- </editor-fold -->
+
+<!--<editor-fold desc=" HTML"-->
+
 <input type="hidden" class="sheet-tabstoggle" name="attr_sheetTab"  value="main"/>
 <div class="SAbutton">
  <button type="action" name="act_main">Main</button>
@@ -1096,7 +1099,7 @@
        name="roll_attack1"
        value=
         "
-         &{template:custom}{{title=Critical Confirm}}{{subtitle= Attack 1}}{{with a=[[1d20cs>@{critlow}+(0@{BAB})[Base Attack]+(0@{weapontohit})[Key Ability]+(0@{bonustoattack})[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
+         &{template:custom}{{title=Critical Confirm}}{{subtitle= Attack 1}}{{with a=[[1d20cs>@{critlow}+@{BAB}[Base Attack]+@{weapontohit}[Key Ability]+@{bonustoattack}[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
          "
       ></button>
      </div>
@@ -1106,7 +1109,7 @@
        name="roll_attack2"
        value=
         "
-         &{template:custom}{{title=Critical Confirm:}}{{subtitle=Attack 2}}{{with a=[[1d20cs>@{critlow}+(0@{BAB}-5)[Base Attack]+(0@{weapontohit})[Key Ability]+(0@{bonustoattack})[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
+         &{template:custom}{{title=Critical Confirm:}}{{subtitle=Attack 2}}{{with a=[[1d20cs>@{critlow}+(@{BAB}-5)[Base Attack]+@{weapontohit}[Key Ability]+@{bonustoattack}[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
          "
       ></button><br>
      </div>
@@ -1116,7 +1119,7 @@
        name="roll_attack3"
        value=
         "
-        &{template:custom}{{title=Critical Confirm:}}{{subtitle= Attack 3}}{{with a=[[1d20cs>@{critlow}+(0@{BAB}-10)[Base Attack]+(0@{weapontohit})[Key Ability]+(0@{bonustoattack})[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
+        &{template:custom}{{title=Critical Confirm:}}{{subtitle= Attack 3}}{{with a=[[1d20cs>@{critlow}+(@{BAB}-10)[Base Attack]+@{weapontohit}[Key Ability]+@{bonustoattack}[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
         "
       ></button><br>
      </div >
@@ -1126,7 +1129,7 @@
        name="roll_attack4"
        value=
         "
-        &{template:custom}{{title=Critical Confirm:}}{{subtitle= Attack 4}}{{with a=[[1d20cs>@{critlow}+(0@{BAB}-15)[Base Attack]+(0@{weapontohit})[Key Ability]+(0@{bonustoattack})[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
+        &{template:custom}{{title=Critical Confirm:}}{{subtitle= Attack 4}}{{with a=[[1d20cs>@{critlow}+(@{BAB}-15)[Base Attack]+@{weapontohit}[Key Ability]+@{bonustoattack}[Feats and Magic]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
         "
       ></button><br>
      </div>
@@ -2202,6 +2205,8 @@
 
 <!--</editor-fold>-->
 
+<!--</editor-fold>-->
+
 <!--<editor-fold desc="Java Script">-->
 
 <!--type="text/worker"-->
@@ -2268,23 +2273,23 @@
             let Misc = parseFloat(values.GrappleMisc) || 0;
             let size = 0;
             if (values.size === "Sub Tiny") {
-                size = -32;
-            }if (values.size === "Tiny") {
-                size = -16;
-            }if (values.size === "Very Small") {
                 size = -8;
-            }if (values.size === "Small") {
+            }if (values.size === "Tiny") {
                 size = -4;
+            }if (values.size === "Very Small") {
+                size = -2;
+            }if (values.size === "Small") {
+                size = -1;
             }if (values.size === "Medium") {
                 size = 0;
             }if (values.size === "Large") {
-                size = 4;
+                size = 1;
             }if (values.size === "Very Large") {
-                size = 8;
+                size = 2;
             }if (values.size === "Gargantuan") {
-                size = 16;
+                size = 4;
             }if (values.size === "Super Gargantuan") {
-                size = 32;
+                size = 8;
             }
             let total = BAB + Misc + size + Str;
             setAttrs({
@@ -3090,8 +3095,8 @@
                 size = -8;
             }
             let total = 10 + Math.min(DexLimit,dex) + armor + natural + shield + haste + parry + dodge + deflection + insight + misc + size - slow;
-            let flat = 10 + armor + natural + shield + deflection + insight + misc + size;
-            let touch = 10 + Math.min(DexLimit,dex) + parry + dodge + deflection + insight + misc + size + haste - slow;
+            let flat = 10 + armor + natural + shield + deflection + misc + size;
+            let touch = 10 + Math.min(DexLimit,dex) + dodge + deflection + insight + misc + size + haste - slow;
             setAttrs({
                 TotalAC: total,
                 FlatFAC: flat,
@@ -3399,7 +3404,7 @@
 
     const SpellMacroLevel = [0,1,2,3,4,5,6,7,8,9];
     SpellMacroLevel.forEach(level => {
-        on(`change:repeating_spells-${level}:spellsaving change:repeating_spells-${level}:category `+
+        on(`change:repeating_spells-${level}:spellsaving change:repeating_spells-${level}:category change:repeating_spells`+
         `change:repeating_spells-${level}:harmless change:repeating_spells-${level}:sr change:repeating_spells-${level}:spell${level}minimizetoggle `+
          `change:repeating_spells-${level}:minimizetoggle change:repeating_spells-${level}:spellname`, function () {
             getAttrs([`repeating_spells-${level}_spellsaving`,`repeating_spells-${level}_category`,
@@ -3456,7 +3461,7 @@
 
     on("change:repeating_abilities:minimizeability change_repeating_abilities:absavethrow " +
         "change:repeating_abilities:abilitytype change:repeating_abilities:abilitysrconfirm " +
-        "change:repeating_abilities:asprof", function(){
+        "change:repeating_abilities:asprof change:repeating_abilities", function(){
        getAttrs(["repeating_abilities_absavethrow","repeating_abilities_abilitytype",
        "repeating_abilities_abilitysrconfirm","repeating_abilities_asprof"],function(values){
            let savethrow = (values.repeating_abilities_absavethrow);
@@ -3503,7 +3508,7 @@
 
     // <editor-fold desc="Attack Bonuses">
 
-    on("sheet:opened change:bab change:slow change:haste",function(){
+    on("change:repeating_weapons sheet:opened change:bab change:slow change:haste",function(){
         getAttrs(["BAB","slow","haste"],function(values){
             getSectionIDs("repeating_weapons",function(array){
                 let rows = {};
@@ -3524,7 +3529,7 @@
         function(){
         getAttrs(["repeating_weapons_bonustoattack","repeating_weapons_critlow","repeating_weapons_weaponhaste"
             ,"repeating_weapons_weaponbab","repeating_weapons_weaponslow"],function(values){
-            let attackbonus = parseFloat(values.repeating_weapons_bonustoattack)||0;
+            let attackbonus = values.repeating_weapons_bonustoattack;
             let mincrit = parseFloat(values.repeating_weapons_critlow)||0;
             let BAB = parseFloat(values.repeating_weapons_weaponbab);
             let Macro = `&{template:custom}{{title=Attack(s)}}{{subtitle=@{charname}'s @{weaponname}}}`+
