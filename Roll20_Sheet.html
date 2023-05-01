@@ -1145,7 +1145,7 @@
        name="roll_weapondamage"
        value=
         "
-        &{template:custom}{{title=Damage}}{{subtitle= with @{charname}'s @{weaponname} }} {{Deals [[(0@{dnum}@{dtype})[Dice]+(0@{weapontodamage})+(floor(0@{weapontodamage}*@{twohanded}))[Key Ability]+(0@{bonustodamage})[Feats and Magic]+(0@{enchdamagedice}[Bonus])+(0?{Do you have a miscellaneaous bonus to damage?|0})]] damage to their target.}}
+        &{template:custom}{{title=Damage}}{{subtitle= with @{charname}'s @{weaponname} }} {{Deals [[(@{dnum}@{dtype})[Dice]+(@{weapontodamage})+(floor(@{weapontodamage}*@{twohanded}))[Key Ability]+(@{bonustodamage})[Feats and Magic]+(@{enchdamagedice}[Bonus])+(?{Do you have a miscellaneaous bonus to damage?|0})]] damage to their target.}}
         "
       ></button><br>
      </div>
@@ -1156,7 +1156,7 @@
        name="roll_critweapondamage"
        value=
         "
-        &{template:custom}{{title=Damage}}{{subtitle= with @{charname}'s @{weaponname} }} {{Deals an astonishing [[[[@{weaponcritmod}*@{dnum}]]@{dtype}[Dice]+(0@{weaponcritmod}*(@{weapontodamage}+(floor(0@{weapontodamage}*@{twohanded}))))[Key Ability]+(@{weaponcritmod}*@{bonustodamage})[Feats and Magic]+(0@{enchdamagedice})+(0@{extraenchdicecrit})+(0?{Do you have a miscellaneaous bonus to damage?|0})]] damage to their target.}}
+        &{template:custom}{{title=Damage}}{{subtitle= with @{charname}'s @{weaponname} }} {{Deals an astonishing [[[[@{weaponcritmod}*@{dnum}]]@{dtype}[Dice]+(0@{weaponcritmod}*(@{weapontodamage}+(floor(0@{weapontodamage}*@{twohanded}))))[Key Ability]+(@{weaponcritmod}*@{bonustodamage})[Feats and Magic]+(0@{enchdamagedice})+(0@{extraenchdicecrit})+(?{Do you have a miscellaneaous bonus to damage?|0})]] damage to their target.}}
         "
       ></button><br>
      </div>
@@ -3537,20 +3537,20 @@
             `Do you have any miscellaneous bonuses?|0})]]}}`;
             if(values.repeating_weapons_weaponhaste === "1"){
                 Macro = Macro + `{{Haste Attack=[[1d20cs>${mincrit}+${BAB}[Base Attack]+@{weapontohit}[Key Attribute]` +
-                    `+${attackbonus}[Other Bonuses]+?(0?{Do you have any miscellaneous bonuses?|0})]]}}`;
+                    `+${attackbonus}[Other Bonuses]+?(?{Do you have any miscellaneous bonuses?|0})]]}}`;
             }
             if(values.repeating_weapons_weaponslow === "0") {
                 if (BAB - 5 > 0) {
                     Macro = Macro + `{{Second Attack=[[1d20cs>${mincrit}+${BAB - 5}[Base Attack]+@{weapontohit}[Key Attribute]` +
-                        `+${attackbonus}[Other Bonuses]+?(0?{Do you have any miscellaneous bonuses?|0})]]}}`;
+                        `+${attackbonus}[Other Bonuses]+?(?{Do you have any miscellaneous bonuses?|0})]]}}`;
                 }
                 if (BAB - 10 > 0) {
                     Macro = Macro + `{{Third Attack=[[1d20cs>${mincrit}+${BAB - 10}[Base Attack]+@{weapontohit}[Key Attribute]` +
-                        `+${attackbonus}[Other Bonuses]+?(0?{Do you have any miscellaneous bonuses?|0})]]}}`;
+                        `+${attackbonus}[Other Bonuses]+?(?{Do you have any miscellaneous bonuses?|0})]]}}`;
                 }
                 if (BAB - 15 > 0) {
                     Macro = Macro + `{{Fourth Attack=[[1d20cs>${mincrit}+${BAB - 15}[Base Attack]+@{weapontohit}[Key Attribute]` +
-                        `+${attackbonus}[Other Bonuses]+?(0?{Do you have any miscellaneous bonuses?|0})]]}}`;
+                        `+${attackbonus}[Other Bonuses]+?(?{Do you have any miscellaneous bonuses?|0})]]}}`;
                 }
             }
             setAttrs({
