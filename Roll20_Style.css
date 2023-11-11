@@ -23,20 +23,6 @@
   display: inline-block;
 }
 
-.color{
-  display: inline-block;
-}
-.titleinputhidden[value=""] ~ .color{
-  display: None;
-}
-
-.shadow{
-  display: None;
-}
-.titleinputhidden[value=""] ~ .shadow{
-  display: inline-block;
-}
-
 .small-select{
   height: 20px;
   width: 42px;
@@ -45,9 +31,6 @@
   padding: 1px;
   margin: 1px;
 }
-
-
-
 
 .Small-Button{
   width: 14px;
@@ -1747,6 +1730,7 @@ input.sptoggle[value="1"] ~ .sheet-repeating-fields{
   margin-left: -37px;
   color:rgba(0,0,0,1);
 }
+
 .withoutavatars .sheet-rolltemplate-custom {
   margin-left: -7px;
 }
@@ -1800,6 +1784,7 @@ input.sptoggle[value="1"] ~ .sheet-repeating-fields{
   /* this is the default color */
   --header-bg-color: #800020;
   --header-text-color: #FFF;
+  color: #000000;
   border: solid 3px black;
   border-radius:  8px;
 }
@@ -1845,6 +1830,18 @@ input.sptoggle[value="1"] ~ .sheet-repeating-fields{
   background: #f6efe4;
 }
 
+.sheet-rolltemplate-custom .sheet-content > div.sheet-key:nth-last-child(2) {
+  border-radius: 0 0 0 4px;
+}
+
+.sheet-rolltemplate-custom .sheet-content > div.sheet-value:last-child{
+  border-radius: 0 0 4px 0;
+}
+
+.sheet-rolltemplate-custom .sheet-content > div.sheet-desc:last-child{
+  border-radius: 0 0 4px 4px;
+}
+
 .sheet-rolltemplate-custom .sheet-content a:link{
   background: rgba(0,0,0,0);
   color: #0000EE;
@@ -1870,4 +1867,10 @@ input.sptoggle[value="1"] ~ .sheet-repeating-fields{
   grid-column: span 2;
   padding: 5px;
   text-align: center;
+}
+
+.sheet-rolltemplate-custom .sheet-desc .inlinerollresult,
+.sheet-rolltemplate-custom .sheet-value .inlinerollresult{
+  background-color: #f6efe4;
+  border-radius: 4px;
 }

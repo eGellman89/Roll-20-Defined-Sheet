@@ -31,7 +31,7 @@
  <button type="action" name="act_abilities">Abillities</button>
  <button type="action" name="act_spells">Spells</button>
  <button type="action" name="act_skills">Skills</button>
- <button type="action" name="act_gear">Gear</button>
+ <button type="action" name="act_gear">Armor/Weapons</button>
  <button type="action" name="act_accessories">Accessories</button>
  <button type="action" name="act_inventory">Inventory</button>
 </div>
@@ -252,6 +252,7 @@
     <div class="rightgrid">
      <div class="griditem">
       Base Attack:<input type="number" name="attr_BAB" readonly/><br>
+      Wound DC: <input type="number" name="attr_WoundDC" readonly/>
      </div>
      <div class="griditem">
      <span>
@@ -1029,7 +1030,7 @@
     <td><input style="width:140px" type="text" name="attr_FocusName"/></td>
     <td><input type="number" name="attr_FocusSR"/></td>
     <td><input type="number" name="attr_FocusHP"/></td>
-    <td><input type="number" name="attr_FocusEnch"/></td>
+    <td><input value="0" type="number" name="attr_FocusEnch"/></td>
     <td colspan="2"><input style="width: 180px" type="text" name="attr_FocusNotes"/></td>
    </tr>
   </table>
@@ -2299,6 +2300,19 @@
     });
     //</editor-fold>
 
+    //<editor-fold desc="Wound DC Calc"">
+    on("change:conmod change:hd sheet:opened",function(){
+        getAttrs(["HD","conmod"],function(values){
+            let HD = parseFloat(values.HD)||0;
+            let Con = parseFloat(values.conmod)||0;
+            let WoundDC = 12 + HD - Con;
+            setAttrs({
+                WoundDC: WoundDC
+            });
+        });
+    });
+    //</editor-fold>
+
     //<editor-fold desc="Skill Fuster Cluck">
 
     //Max Skill Points per HD
@@ -2794,8 +2808,8 @@
         });
     });
 
-    on("change:movesilentlysp change:movesilentlysmisc change:dexmod change:checkpen change:shieldcheckpen sheet:opened",function(){
-        getAttrs(["MoveSilentlySP","MoveSilentlyMisc","dexmod","HD","AcrobaticsTrained","CheckPen","ShieldCheckPen"],function(values){
+    on("change:movesilentlysp change:movesilentlymisc change:dexmod change:checkpen change:shieldcheckpen sheet:opened",function(){
+        getAttrs(["MoveSilentlySP","MoveSilentlyMisc","dexmod","MoveSilentlyTrained","HD","CheckPen","ShieldCheckPen"],function(values){
             let SP = parseFloat(values.MoveSilentlySP)||0;
             let misc = parseFloat(values.MoveSilentlyMisc)||0;
             let key = parseFloat(values.dexmod)||0;
@@ -3426,7 +3440,7 @@
                         macro = macro + `{{Spell Penetration=[[1d20+@{cl}+@{spellpenetrationbonus}+`+
                             `(0?{Do you have any Spell penetration Bonuses?|0})]]}}`;
                     }
-                macro = macro + `{{Description=@{spelldescription}}}`
+                macro = macro + `{{desc= @{spelldescription}}}`
                 toSetAttrs = {};
                 toSetAttrs[`repeating_spells-${level}_spellcard`] = macro;
                 setAttrs(toSetAttrs);
