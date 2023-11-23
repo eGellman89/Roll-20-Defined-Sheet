@@ -163,7 +163,6 @@
 .charsheet .sheet-accessories,
 .charsheet .sheet-inventory{
     display: none;
-    width: 800px;
     text-align: center;
 }
 
@@ -171,13 +170,16 @@
 .charsheet .sheet-tabstoggle[value="main"] ~ div.sheet-main,
 .charsheet .sheet-tabstoggle[value="skills"] ~ div.sheet-skills,
 .charsheet .sheet-tabstoggle[value="gear"] ~ div.sheet-gear,
-.charsheet .sheet-tabstoggle[value="definitions"] ~ div.sheet-definitions,
 .charsheet .sheet-tabstoggle[value="abilities"] ~ div.sheet-abilities,
 .charsheet .sheet-tabstoggle[value="spells"] ~ div.sheet-spells,
 .charsheet .sheet-tabstoggle[value="accessories"] ~ div.sheet-accessories,
 .charsheet .sheet-tabstoggle[value="inventory"] ~ div.sheet-inventory{
     display: grid;
     width: 800px;
+}
+
+.charsheet .sheet-tabstoggle[value="definitions"] ~ div.sheet-definitions{
+    display: inline-block;
 }
 
 .SAbutton button{
@@ -207,11 +209,44 @@
 
 /*<editor-fold desc="General Styles"*/
 
+.color{
+    display: inline-block;
+}
+
+.titleinputhidden[value=""] ~ .color{
+    display: None;
+}
+
+.shadow{
+    display: None;
+}
+
+.titleinputhidden[value=""] ~ .shadow{
+    display: inline-block;
+}
+
 .titleblock {
     font-weight: bold;
     color: #FFFFFF;
     background-color: #000000;
 }
+
+.wrapped-div{
+    border-radius: 15px 15px 0 0;
+    border: 1px solid black;
+}
+
+.midline-right-div{
+    border-radius: 15px 15px 0 0;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+}
+
+.bottom-border-div{
+    border-bottom: 1px solid black;
+}
+
 .column-header {
     background-color: #323232;
     color: #FFFFFF;
@@ -220,6 +255,44 @@
     text-align: center;
     border-radius: 12px 12px 0 0;
     width: 100%;
+}
+
+.column-header-dark {
+    background-color: #000000;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: medium;
+    text-align: center;
+    border-radius: 12px 12px 0 0;
+    width: 100%;
+}
+
+.row-header{
+    background-color: #323232;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: medium;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+}
+
+.row-header-dark{
+    background-color: #000000;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: medium;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+}
+
+.ui-dialog .charsheet .column-header button[type=roll],
+.ui-dialog .charsheet .column-header button[type=compendium]{
+    height: 16px;
+    width: 16px;
+    padding: 0;
+    margin: 0;
 }
 
 .ui-dialog .charsheet .Small-Button{
@@ -327,17 +400,32 @@
     grid-template-columns: repeat(auto-fit, auto);
 }
 
+.ggridc{
+    display: grid;
+    grid-template-rows: repeat(auto-fit, auto);
+}
+
 /*End General Grid -- End*/
 
 /*General Columns*/
 
 .grcsa{grid-column: 1/-1;}
 .grc1{grid-column: 1;}
-.grc2{grid-column:2;}
+.grc2{grid-column: 2;}
 .grc3{grid-column: 3;}
 .grc4{grid-column: 4;}
 .grc5{grid-column: 5;}
 .grc6{grid-column: 6;}
+.grc7{grid-column: 7;}
+.grc8{grid-column: 8;}
+
+.grr1{grid-row: 1;}
+.grr2{grid-row: 2;}
+.grr3{grid-row: 3;}
+.grr4{grid-row: 4;}
+.grr5{grid-row: 5;}
+.grr6{grid-row: 6;}
+.grr7{grid-row: 7;}
 
 /*End General columns -- End*/
 .flex-input{
@@ -345,6 +433,17 @@
     width: 96%;
     border: 0;
     padding: 0;
+    text-align: center;
+    color: #000000;
+}
+
+.flex-bordered-input{
+    height: 18px;
+    width: 96%;
+    border: 1px solid black;
+    padding: 0;
+    margin: 2px;
+    text-align: center;
 }
 
 .ui-dialog .charsheet .flex-input[type=number]{
@@ -357,8 +456,8 @@
 .small-input{
     height: 18px;
     width: 24px;
-    border: 0;
     padding: 0;
+    text-align: center;
 }
 
 .ui-dialog .charsheet .small-input[type=number]{
@@ -366,6 +465,29 @@
     width: 24px;
     border: 0;
     padding: 0;
+}
+
+.standard-input{
+    height: 18px;
+    width: 60px;
+    padding: 0;
+    text-align: center;
+}
+
+.standard-input [type=number]{
+    height: 18px;
+    width: 60px;
+    padding: 0;
+    text-align: center;
+}
+
+.standard-select {
+    width: 60px;
+    height: 18px;
+    text-align: center;
+    padding: 0;
+    font-size: 12px;
+    margin: 0;
 }
 
 /*</editor-fold>*/
@@ -509,6 +631,8 @@
     padding: 0;
     margin: 0;
 }
+
+
 /* End Attribute Block Styles -- End*/
 
 /*Saving Throw Block*/
@@ -608,6 +732,88 @@
 }
 
 /* End HP and Armor Block Styles -- End*/
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Definitions and Traits"*/
+.sheet-definitions{
+    width: 800px;
+    border-radius: 12px;
+    border: 1px solid;
+    padding-bottom: 8px;
+}
+
+.ui-dialog .charsheet .sheet-definitions .DTA-name{
+    background-color: #323232;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: bold;
+    border: 0;
+}
+
+.ui-dialog .charsheet .sheet-definitions .DTA-name-dark{
+    background-color: #000000;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: bold;
+    border: 0;
+}
+
+.ui-dialog .charsheet .sheet-definitions textarea{
+    vertical-align: top;
+    text-align: left;
+    height: 54px;
+    min-height: 54px;
+    width: 94%;
+    border: 1px solid black;
+    border-radius: 5px 5px 5px 5px;
+    resize: vertical;
+    padding: 0;
+}
+
+.sheet-definitions .ggrid .grr3.ggrid .dta-toggle[value="1"] ~ .dta-shrink{
+    display: none;
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Abilities/Feats"*/
+
+.sheet-abilities{
+    width: 800px;
+    border-radius: 12px;
+    border: 1px solid;
+    padding-bottom: 8px;
+}
+
+.ui-dialog .charsheet .sheet-abilities .Ability-name{
+    background-color: #000000;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: bold;
+    border: 0;
+    font-size: medium;
+}
+
+.ui-dialog .charsheet .sheet-abilities textarea{
+    vertical-align: top;
+    text-align: left;
+    height: 54px;
+    min-height: 54px;
+    width: 94%;
+    border: 1px solid black;
+    border-radius: 5px 5px 5px 5px;
+    resize: vertical;
+    padding: 0;
+}
+
+.sheet-abilities .ggrid .grr3.ggridc .ability-toggle[value="1"] ~ div.ability_description.ggrid{
+    display: none;
+}
+
+.sheet-abilities .ggrid .grr3.ggridc .feats-toggle[value="1"] ~ div.feats_description{
+    display: none;
+}
 
 /*</editor-fold>*/
 
@@ -717,7 +923,7 @@ input.sptoggle[value="1"] ~ .sheet-repeating-fields{
     background-color: #FFFFFF;
     color: #000000;
     border: 1px solid black;
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px;
     text-align: center;
     justify-content: center;
     display: none;
@@ -807,6 +1013,7 @@ input.sptoggle[value="1"] ~ .sheet-repeating-fields{
     vertical-align: top;
     text-align: left;
     height: 54px;
+    min-height: 54px;
     width: 94%;
     border: 1px solid black;
     border-radius: 5px 5px 5px 5px;
@@ -820,26 +1027,12 @@ input.sptoggle[value="1"] ~ .sheet-repeating-fields{
 
 /*<editor-fold desc="Accessories">*/
 
-.color{
-    display: inline-block;
-}
-.titleinputhidden[value=""] ~ .color{
-    display: None;
-}
-
-.shadow{
-    display: None;
-}
-.titleinputhidden[value=""] ~ .shadow{
-    display: inline-block;
-}
-
 .sheet-accessories .accessories-grid{
     width: 800px;
     background-color: #FFFFFF;
     color: #000000;
     border: 1px solid black;
-    border-radius: 5px;
+    border-radius: 12px;
     text-align: center;
     justify-content: center;
     display: grid;
@@ -852,6 +1045,9 @@ input.sptoggle[value="1"] ~ .sheet-repeating-fields{
     "Column1 Column2";
 }
 
+.sheet-accessories .accessories-grid > div{
+    border-radius: 10px 10px 0 0;
+}
 .sheet-accessories .accessories-grid .crown-check{
     height: 24px;
     width: 24px;
@@ -951,6 +1147,7 @@ input.sptoggle[value="1"] ~ .sheet-repeating-fields{
 }
 
 .ui-dialog .charsheet .name textarea{
+    min-height: 18px;
     height: 18px;
     width: 240px;
     text-align: center;
@@ -989,3 +1186,157 @@ input.sptoggle[value="1"] ~ .sheet-repeating-fields{
 .bag-grid .total-weight{grid-area: total-weight; display: inline-block;vertical-align: bottom}
 
 /*</editor-fold>*/
+
+/*<editor-fold desc="skill page">*/
+.SkillsPage{
+    width: 800px;
+    border: 1px solid black;
+    border-radius: 12px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.ui-dialog .charsheet .SkillsPage button[type=roll],
+.ui-dialog .charsheet .SkillsPage button[type=compendium]{
+    padding: 0;
+    border: #909090 solid 1px;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    background-image: none;
+    content: "";
+    float: right;
+    transition-duration: 0.4s;
+    box-shadow: 0 2px #909090;
+}
+
+.ui-dialog .charsheet .SkillsPage button[type=roll]:hover,
+.ui-dialog .charsheet .SkillsPage button[type=compendium]:hover {
+    background-color: #323232;
+    color: #FFFFFF;
+}
+
+.ui-dialog .charsheet .SkillsPage button[type=roll]:active,
+.ui-dialog .charsheet .SkillsPage button[type=compendium]:active {
+    background-color: #000000;
+    color: #db1c1c;
+    box-shadow: 0 0;
+    transform: translateY(2px);
+}
+
+.SkillsPage .skill-desc{
+    background-color: #A2A2A2;
+    color: #000000;
+    font-weight: bold;
+    margin: 6px auto;
+}
+
+.SkillsPage input[type=text]{
+    text-align: left;
+    width: 100px;
+    height: 20px;
+}
+
+.ui-dialog .charsheet .SkillsPage input[type=number]{
+    -moz-appearance: textfield;
+    text-align: center;
+    font-weight: bold;
+}
+
+.ui-dialog .charsheet .SkillsPage input::-webkit-outer-spin-button,
+.ui-dialog .charsheet .SkillsPage input::-webkit-inner-spin-button {
+    display: none;
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.ui-dialog .charsheet .SkillsPage input[readonly]{
+    background-color: #5A5A5A;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.ui-dialog .charsheet .SkillsPage th{
+    text-align: center;
+    width: 800px;
+    border-radius: 10px 10px 0 0;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.ui-dialog .charsheet .SkillsPage td{
+    padding: 1px;
+}
+
+.ui-dialog .charsheet .hoverskill{
+    transition-duration: .05s;
+}
+
+.ui-dialog .charsheet .hoverskill:hover{
+    background-color: #323232;
+    color: #FFFFFF;
+}
+
+/*</editor-fold>*/
+
+/* <editor-fold desc="Weapons/Armor Tab">*/
+.sheet-gear{
+    width: 800px;
+    border-radius: 12px;
+    border: 1px solid;
+    padding-bottom: 8px;
+}
+
+.sheet-gear .weapon-shrink > div{
+    padding-bottom: 3px;
+    padding-right: 1px;
+    height: 18px;
+}
+
+
+.ui-dialog .charsheet .sheet-gear textarea{
+    padding: 0;
+    border: 1px solid black;
+    width: 177px;
+    resize: vertical;
+    height: 18px;
+    min-height: 18px;
+}
+
+.ui-dialog .charsheet .sheet-gear .weapon-name{
+    background-color: #323232;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: bold;
+    font-size: medium;
+    border: 0;
+    padding: 3px;
+}
+
+.weapon-column-span{
+    grid-column: 1/5;
+    margin-bottom: 3px;
+}
+
+.weapon-repeat-box{
+    border: 1px solid black;
+    border-radius: 15px 15px 0 0;
+    padding-bottom: 3px;
+}
+
+.sheet-gear .ggrid .weapon-toggle[value="0"] ~ .weapon-shrink{
+    display: none;
+}
+
+.sheet-gear .ggridc .grr1.ggrid .critconfirm-toggle[value="0"] ~ .crit-shrink{
+    display: none;
+}
+
+.sheet-gear .grr7{
+    grid-template-columns: repeat(2,1fr);
+}
+
+    /*</editor-fold>*/

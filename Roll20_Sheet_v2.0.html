@@ -26,11 +26,11 @@
 <input type="hidden" class="sheet-tabstoggle" name="attr_sheetTab"  value="main"/>
 <div style="text-align: center; width: 800px;" class="SAbutton">
  <button type="action" name="act_main">Main</button>
- <button type="action" name="act_definitions">Definitions & Traits</button>
- <button type="action" name="act_abilities">Abillities</button>
+ <button type="action" name="act_definitions">Definitions</button>
+ <button type="action" name="act_abilities">Abilities & Feats</button>
  <button type="action" name="act_spells">Spells</button>
  <button type="action" name="act_skills">Skills</button>
- <button type="action" name="act_gear">Armor/Weapons</button>
+ <button type="action" name="act_gear">Gear</button>
  <button type="action" name="act_accessories">Accessories</button>
  <button type="action" name="act_inventory">Inventory</button>
 </div>
@@ -491,6 +491,243 @@
    <div class="column-header grcsa">Notes</div>
    <div>
     <textarea name="attr_Main-Notes" placeholder="Pertinent information, notes, and bonuses..."/>
+   </div>
+  </div>
+</div>
+<!--</editor-fold>-->
+
+<!--<editor-fold desc="Definitions and Traits">-->
+<div class="sheet-definitions">
+ <div class="ggrid">
+   <div class="grr1 row-header">Definitions, Traits, & Afflictions</div>
+   <div class="grr2 ggrid titleblock">
+    <div class="grc1">
+     <div>Attack Curve</div>
+     <div><select class="standard-input" type="text" name="attr_AttackCurve" list="AttackOptions">
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+     </select></div>
+    </div>
+    <div class="grc2">
+     <div>Magic Type</div>
+     <div><select class="standard-input" type="text" name="attr_MagicCurve" list="MagicOptions">
+      <option value="None">None</option>
+      <option value="Basic">Basic</option>
+      <option value="Standard">Standard</option>
+      <option value="Advanced">Advanced</option>
+     </select></div>
+    </div>
+    <div class="grc3">
+     <div>Specialty</div>
+     <div><select class="standard-input" type="text" name="attr_Specialty" list="SpecialtyOptions">
+      <option value="Combatant">Combatant</option>
+      <option value="Generalist">Generalist</option>
+      <option value="Specialist">Specialist</option>
+     </select></div>
+    </div>
+    <div class="grc4">
+     <div>Natural Int Mod</div>
+     <div><input type="number" name="attr_NatIntMod" readonly/></div>
+    </div>
+    <div class="grc5">
+     <div>Base Skill Growth</div>
+     <div><input type="number" name="attr_BaseSkillGrowth" readonly/></div>
+    </div>
+    <div class="grc6">
+     <div>Skills Known</div>
+     <div><input type="number" name="attr_SkillsKnown" readonly/></div>
+    </div>
+    <div class="grc7">
+     <div>Total Skill Points</div>
+     <div><input type="number" name="attr_TotalPossibleSkillPoints" readonly/></div>
+    </div>
+    <div class="grc8">
+     <div>Unspent Skill Point</div>
+     <div><input type="number" name="attr_RemainingSkillPoints" readonly/></div>
+    </div>
+   </div>
+  <div class="grr3 ggrid">
+   <div class="grc1 bottom-border-div">
+    <div class="column-header">Species Info/Traits</div>
+    <div>Versitile?<input type="checkbox" name="attr_Versatile"/></div>
+    <div>
+     <fieldset class="repeating_DTA1">
+      <div class="column-header-dark">
+       <button type="action" class="Small-Button" name="act_dta1minimize">-</button><input class="DTA-name-dark" type="text" name="attr_speciestraitname" placeholder="<Trait name here>"/>
+      </div>
+      <input type="hidden" class="dta-toggle" name="attr_dta1minimizetoggle" value="0"/>
+      <div class="dta-shrink">
+       <textarea name="attr_speciestraitdescription" placeholder="<Description here>"></textarea>
+      </div>
+     </fieldset>
+    </div>
+   </div>
+   <div class="grc2 wrapped-div">
+    <div class="column-header">Definitions</div>
+    <div class="titleblock" style="font-size: medium">Primary</div>
+    <div class="column-header"><input class="DTA-name" type="text" name="attr_primarydefinitionname" placeholder="<Primary Definition here>"></div>
+    <div><textarea name="attr_primarydescription" placeholder="<Description here>"></textarea></div>
+    <div class="column-header-dark">Secondary</div>
+    <div>
+     <fieldset class="repeating_DTA2">
+      <div class="column-header"><button type="action" class="Small-Button" name="act_dta2minimize">-</button><input class="DTA-name"  type="text" name="attr_secdefname" placeholder="<Secondary Definition here>"/>
+      </div>
+      <input type="hidden" class="dta-toggle" name="attr_dta2minimizetoggle" value="0"/>
+      <div class="dta-shrink">
+       <textarea name="attr_secdefdescription" placeholder="<Description here>"></textarea>
+      </div>
+     </fieldset>
+    </div>
+   </div>
+   <div class="grc3 bottom-border-div">
+    <div class="column-header">Afflictions</div>
+    <div>
+     <fieldset class="repeating_DTA3">
+      <input type="hidden" class="afflictions-toggle" name="attr_minafflictionsval" value="0"/>
+      <div class="column-header-dark"><button type="action" class="Small-Button" name="act_dta3minimize">-</button><input class="DTA-name-dark"  type="text" name="attr_afflictionsname" placeholder="<Affliction name here>"/>
+      </div>
+      <input type="hidden" class="dta-toggle" name="attr_dta3minimizetoggle" value="0"/>
+      <div class="dta-shrink">
+       <textarea name="attr_afflictionsdescription" placeholder="<Description here>"></textarea>
+      </div>
+     </fieldset>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+
+ <!-- This is the feats list
+  <div class="sheet-repeating-fields">
+   <fieldset class="repeating_feats">
+    <input type="hidden" class="feats-toggle" name="attr_minfeatval" value="0"/>
+    <div class="feats_title"><button style="color:black" type="action" class="Small-Button" name="act_minfeats">-</button><input type="text" name="attr_featsname" placeholder="<Feat name here>">
+    </div>
+    <div class="feats_description">
+     <textarea name="attr_featsdescription" placeholder="<Description here>"></textarea>
+    </div>
+   </fieldset>
+  </div>
+ </div>
+   </fieldset>
+  </div>
+ </div>
+</div>
+-->
+
+<!--</editor-fold>-->
+
+<!--<editor-fold desc="Abilities">-->
+<div class="sheet-abilities">
+ <div class="ggrid">
+  <div class="grr1 row-header">
+   Abilities and Feats
+  </div>
+  <div class="titleblock grr2 ggrid">
+   <div class="grc1">
+    <div>Close Range</div>
+    <div><input type="number" name="attr_CloseRange" readonly/></div>
+   </div>
+   <div class="grc2">
+    <div>Medium Range</div>
+    <div><input type="number" name="attr_MediumRange" readonly/></div>
+   </div>
+   <div class="grc3">
+    <div>Long Range</div>
+    <div><input type="number" name="attr_LongRange" readonly/></div>
+   </div>
+   <div class="grc4">
+    <div>Spell Proficiency</div>
+    <div><input type="number" name="attr_SpellProf" readonly/></div>
+   </div>
+   </div>
+   <div class="grr3 ggridc">
+    <div class="grc1">
+     <div class="column-header">Abilities</div>
+      <fieldset class="repeating_abilities">
+       <div class="midline-right-div ggrid">
+        <div class="row-header-dark grr1">
+         <div>
+        <button type="action" class="Small-Button" name="act_minabilitytog">-</button>
+        <input type="text" class="Ability-name" name="attr_abilityname" placeholder="<Ability Name Here>"/>
+        <button type="roll" name="roll_ability_card" value="@{abilityroll}"></button>
+        </div>
+        <div class="grr2 titleblock" style="font-size: small; font-weight: normal">
+         Uses Remaining: <input class="standard-input" type="text" name="attr_userdescription" placeholder="per day"/>
+         Max Uses: <input class="standard-input" type="text" name="attr_uses"/>
+         <input type="hidden" name="attr_abilityroll"/>
+        </div>
+       </div>
+       <input type="hidden" class="ability-toggle" name="attr_minimizeability" value="0"/>
+       <div class="ability_description ggrid">
+        <div class="grr1 ggridc">
+         <div class="grc1">
+         <div>Target:</div>
+         <div>Duration:</div>
+         <div>DC:</div>
+         <div>Ability Type?</div>
+          <div>Dice Rolled?</div>
+          <div>Spell Resistance?</div>
+         </div>
+         <div class="grc2">
+          <div><input class="standard-input" type="text" name="attr_abilitytarget"/></div>
+          <div><input class="standard-input" type="text" name="attr_abilityduration" placeholder="Rounds"/></div>
+          <div><input class="standard-input" type="text" name="attr_abilitydc"/></div>
+          <div>
+           <select class="fixed-select" name="attr_abilitytype">
+            <option value="0">Utility</option>
+            <option value="Damage">Damage</option>
+            <option value="Healing">Healing</option>
+            <option value="Warding">Warding</option>
+           </select>
+          </div>
+          <div>
+           <span>
+            <input class="small-input" type="text" name="attr_abilitydicenum" placeholder="#"/><input class="small-input" type="text" name="attr_abilitydicetype" placeholder="d#"/>
+           </span>
+          </div>
+          <div><input type="checkbox" name="attr_abilitysrconfirm" value="1"/></div>
+         </div>
+         <div class="grc3">
+          <div>Range:</div>
+          <div>Action:</div>
+          <div>Saving Throw:</div>
+          <div>Spell Proficiency?</div>
+        </div>
+         <div class="grc4">
+          <div><input class="standard-input" type="text" name="attr_abilityrange"/></div>
+          <div><input class="standard-input" type="text" name="attr_abilityaction"/></div>
+          <div>
+           <select class="fixed-select" name="attr_absavethrow" value="N/A" class="abilitysaving">
+            <option value="N/A">N/A</option>
+            <option value="Fortitude">Fortitude</option>
+            <option value="Reflex">Reflex</option>
+            <option value="Will">Will</option>
+           </select>
+          </div>
+          <div><input type="checkbox" name="attr_asprof" value="1"/></div>
+         </div>
+        </div>
+        <div class="grr2">
+         Ability Description:<br><textarea name="attr_abilitydescriptiontext"></textarea><br>
+        </div>
+       </div>
+      </div>
+     </fieldset>
+    </div>
+    <div class="grc2">
+     <div class="column-header">Feats</div>
+      <fieldset class="repeating_feats">
+       <div class="column-header-dark">
+        <button style="color:black" type="action" class="Small-Button" name="act_minfeats">-</button><input class="Ability-name" type="text" name="attr_featsname" placeholder="<Feat name here>">
+       </div>
+       <input type="hidden" class="feats-toggle" name="attr_minfeatval" value="0"/>
+       <div class="feats_description">
+        <textarea name="attr_featsdescription" placeholder="<Description here>"></textarea>
+       </div>
+      </fieldset>
+     </div>
    </div>
   </div>
 </div>
@@ -1199,6 +1436,964 @@
 
 <!--</editor-fold>-->
 
+<!--<editor-fold desc="Skill-Sheet">-->
+<div class="sheet-skills">
+ <div class="SkillsPage">
+  <table>
+   <tr>
+    <th colspan="9">Skills</th>
+   </tr>
+   <tr>
+    <td class="titleblock" colspan="4">Unspent Skill Points</td>
+    <td class="titleblock" colspan="5">Total Skill Points</td>
+   </tr>
+   <tr>
+    <td class="titleblock" colspan="4">
+     <input type="number" name="attr_RemainingSkillPoints" readonly/>
+    </td>
+    <td class="titleblock" colspan="5">
+     <input type="number" name="attr_TotalPossibleSkillPoints" readonly/>
+    </td>
+   </tr>
+   <tr class="skill-desc">
+    <td>Trained?</td>
+    <td>Skill Name</td>
+    <td>Use Untrained?</td>
+    <td>Key</td>
+    <td>Roll</td>
+    <td>Total</td>
+    <td>Attribute</td>
+    <td>Skill Points</td>
+    <td>Misc.</td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_AcrobaticsTrained"/></td>
+    <td>Acrobatics*</td>
+    <td>Yes</td>
+    <td>Str<input type="hidden" name="attr_KeyStr"/></td>
+    <td><button class="button"
+                title="Acrobatics"
+                type="roll"
+                value="&{template:custom}{{title=Acrobatics}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{AcrobaticsTotal}]]}}"
+                name="roll_Acrobatics-check"></button></td>
+    <td><input type="number" readonly name="attr_AcrobaticsTotal"/></td>
+    <td><input type="number" readonly name="attr_strmod"/></td>
+    <td><input type="number" name="attr_AcrobaticsSP"/></td>
+    <td><input type="number" name="attr_AcrobaticsMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_BalanceTrained"/></td>
+    <td>Balance</td>
+    <td>Yes</td>
+    <td>Dex<input type="hidden" name="attr_KeyDex"/></td>
+    <td><button class="button"
+                title="Balance"
+                type="roll"
+                value="&{template:custom}{{title=Balance}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{BalanceTotal}]]}}"
+                name="roll_Balance-check"></button></td>
+    <td><input type="number" readonly name="attr_BalanceTotal"/></td>
+    <td><input type="number" readonly name="attr_dexmod"/></td>
+    <td><input type="number" name="attr_BalanceSP"/></td>
+    <td><input type="number" name="attr_BalanceMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_BeguileTrained"/></td>
+    <td>Beguile</td>
+    <td>Yes</td>
+    <td>Cha<input type="hidden" name="attr_KeyCha"/></td>
+    <td><button class="button"
+                title="Beguile"
+                type="roll"
+                value="&{template:custom}{{title=Beguile}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{BeguileTotal}]]}}"
+                name="roll_Beguile-check"></button></td>
+    <td><input type="number" readonly name="attr_BeguileTotal"/></td>
+    <td><input type="number" readonly name="attr_chamod"/></td>
+    <td><input type="number" name="attr_BeguileSP"/></td>
+    <td><input type="number" name="attr_BeguileMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_BushcraftTrained"/></td>
+    <td>Bushcraft</td>
+    <td>No</td>
+    <td>Wis<input type="hidden" name="attr_KeyWis"/></td>
+    <td><button class="button"
+                title="Bushcraft"
+                type="roll"
+                value="&{template:custom}{{title=Bushcraft}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{BushcraftTotal}]]}}"
+                name="roll_Bushcraft-check"></button></td>
+    <td><input type="number" readonly name="attr_BushcraftTotal"/></td>
+    <td><input type="number" readonly name="attr_wismod"/></td>
+    <td><input type="number" name="attr_BushcraftSP"/></td>
+    <td><input type="number" name="attr_BushcraftMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_ConcealTrained"/></td>
+    <td>Conceal</td>
+    <td>Yes</td>
+    <td>Dex<input type="hidden" name="attr_KeyDex"/></td>
+    <td><button class="button"
+                title="Conceal"
+                type="roll"
+                value="&{template:custom}{{title=Conceal}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{ConcealTotal}]]}}"
+                name="roll_Conceal-check"></button></td>
+    <td><input type="number" readonly name="attr_ConcealTotal"/></td>
+    <td><input type="number" readonly name="attr_dexmod"/></td>
+    <td><input type="number" name="attr_ConcealSP"/></td>
+    <td><input type="number" name="attr_ConcealMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_ConcentrationTrained"/></td>
+    <td>Concentration</td>
+    <td>Yes</td>
+    <td>Con<input type="hidden" name="attr_KeyCon"/></td>
+    <td><button class="button"
+                title="Concentration"
+                type="roll"
+                value="&{template:custom}{{title=Concentration}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{ConcentrationTotal}]]}}"
+                name="roll_Concentration-check"></button></td>
+    <td><input type="number" readonly name="attr_ConcentrationTotal"/></td>
+    <td><input type="number" readonly name="attr_conmod"/></td>
+    <td><input type="number" name="attr_ConcentrationSP"/></td>
+    <td><input type="number" name="attr_ConcentrationMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_CounterfeitTrained"/></td>
+    <td>Counterfeit</td>
+    <td>No</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
+    <td><button class="button"
+                title="Counterfeit"
+                type="roll"
+                value="&{template:custom}{{title=Counterfeit}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{CounterfeitTotal}]]}}"
+                name="roll_Counterfeit-check"></button></td>
+    <td><input type="number" readonly name="attr_CounterfeitTotal"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_CounterfeitSP"/></td>
+    <td><input type="number" name="attr_CounterfeitMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_Craft1Trained"/></td>
+    <td>Craft: <input type="text" name="attr_Craft1Name"/></td>
+    <td>No</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
+    <td><button class="button"
+                title="Craft1"
+                type="roll"
+                value="&{template:custom}{{title=Craft: @{Craft1Name}}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{Craft1Total}]]}}"
+                name="roll_Craft1-check"></button></td>
+    <td><input type="number" readonly name="attr_Craft1Total"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_Craft1SP"/></td>
+    <td><input type="number" name="attr_Craft1Misc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_Craft2Trained"/></td>
+    <td>Craft: <input type="text" name="attr_Craft2Name"/></td>
+    <td>No</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
+    <td><button class="button"
+                title="Craft2"
+                type="roll"
+                value="&{template:custom}{{title=Craft: @{Craft2Name}}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{Craft2Total}]]}}"
+                name="roll_Craft2-check"></button></td>
+    <td><input type="number" readonly name="attr_Craft2Total"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_Craft2SP"/></td>
+    <td><input type="number" name="attr_Craft2Misc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_Craft3Trained"/></td>
+    <td>Craft: <input type="text" name="attr_Craft3Name"/></td>
+    <td>No</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
+    <td><button class="button"
+                title="Craft3"
+                type="roll"
+                value="&{template:custom}{{title=Craft: @{Craft3Name}}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{Craft3Total}]]}}"
+                name="roll_Craft3-check"></button></td>
+    <td><input type="number" readonly name="attr_Craft3Total"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_Craft3SP"/></td>
+    <td><input type="number" name="attr_Craft3Misc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_DiscernIntentTrained"/></td>
+    <td>Discern Intent</td>
+    <td>Yes</td>
+    <td>Wis<input type="hidden" name="attr_KeyWis"/></td>
+    <td><button class="button"
+                title="DiscernIntent"
+                type="roll"
+                value="&{template:custom}{{title=Discern Intent}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{DiscernIntentTotal}]]}}"
+                name="roll_DiscernIntent-check"></button></td>
+    <td><input type="number" readonly name="attr_DiscernIntentTotal"/></td>
+    <td><input type="number" readonly name="attr_wismod"/></td>
+    <td><input type="number" name="attr_DiscernIntentSP"/></td>
+    <td><input type="number" name="attr_DiscernIntentMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_DiplomacyTrained"/></td>
+    <td>Diplomacy</td>
+    <td>Yes</td>
+    <td>Cha<input type="hidden" name="attr_KeyCha"/></td>
+    <td><button class="button"
+                title="Diplomacy"
+                type="roll"
+                value="&{template:custom}{{title=Diplomacy}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{DiplomacyTotal}]]}}"
+                name="roll_Diplomacy-check"></button></td>
+    <td><input type="number" readonly name="attr_DiplomacyTotal"/></td>
+    <td><input type="number" readonly name="attr_chamod"/></td>
+    <td><input type="number" name="attr_DiplomacySP"/></td>
+    <td><input type="number" name="attr_DiplomacyMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_DisguiseTrained"/></td>
+    <td>Disguise</td>
+    <td>Yes</td>
+    <td>Cha<input type="hidden" name="attr_KeyCha"/></td>
+    <td><button class="button"
+                title="Disguise"
+                type="roll"
+                value="&{template:custom}{{title=Disguise}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{DisguiseTotal}]]}}"
+                name="roll_Disguise-check"></button></td>
+    <td><input type="number" readonly name="attr_DisguiseTotal"/></td>
+    <td><input type="number" readonly name="attr_chamod"/></td>
+    <td><input type="number" name="attr_DisguiseSP"/></td>
+    <td><input type="number" name="attr_DisguiseMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_EscapeArtistTrained"/></td>
+    <td>Escape Artist</td>
+    <td>Yes</td>
+    <td>Dex<input type="hidden" name="attr_KeyDex"/></td>
+    <td><button class="button"
+                title="Escape Artist"
+                type="roll"
+                value="&{template:custom}{{title=EscapeArtist}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{EscapeArtistTotal}]]}}"
+                name="roll_EscapeArtist-check"></button></td>
+    <td><input type="number" readonly name="attr_EscapeArtistTotal"/></td>
+    <td><input type="number" readonly name="attr_dexmod"/></td>
+    <td><input type="number" name="attr_EscapeArtistSP"/></td>
+    <td><input type="number" name="attr_EscapeArtistMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_GatherInformationTrained"/></td>
+    <td>Gather Information</td>
+    <td>Yes</td>
+    <td>Cha<input type="hidden" name="attr_KeyCha"/></td>
+    <td><button class="button"
+                title="Gather Information"
+                type="roll"
+                value="&{template:custom}{{title=GatherInformation}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{GatherInformationTotal}]]}}"
+                name="roll_GatherInformation-check"></button></td>
+    <td><input type="number" readonly name="attr_GatherInformationTotal"/></td>
+    <td><input type="number" readonly name="attr_chamod"/></td>
+    <td><input type="number" name="attr_GatherInformationSP"/></td>
+    <td><input type="number" name="attr_GatherInformationMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_HaggleTrained"/></td>
+    <td>Haggle</td>
+    <td>Yes</td>
+    <td>Cha<input type="hidden" name="attr_KeyCha"/></td>
+    <td><button class="button"
+                title="Haggle"
+                type="roll"
+                value="&{template:custom}{{title=Haggle}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{HaggleTotal}]]}}"
+                name="roll_Haggle-check"></button></td>
+    <td><input type="number" readonly name="attr_HaggleTotal"/></td>
+    <td><input type="number" readonly name="attr_chamod"/></td>
+    <td><input type="number" name="attr_HaggleSP"/></td>
+    <td><input type="number" name="attr_HaggleMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_HealTrained"/></td>
+    <td>Heal</td>
+    <td>No</td>
+    <td>Wis<input type="hidden" name="attr_KeyWis"/></td>
+    <td><button class="button"
+                title="Heal"
+                type="roll"
+                value="&{template:custom}{{title=Heal}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{HealTotal}]]}}"
+                name="roll_Heal-check"></button></td>
+    <td><input type="number" readonly name="attr_HealTotal"/></td>
+    <td><input type="number" readonly name="attr_wismod"/></td>
+    <td><input type="number" name="attr_HealSP"/></td>
+    <td><input type="number" name="attr_HealMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_IntimidateTrained"/></td>
+    <td>Intimidate</td>
+    <td>Yes</td>
+    <td>Cha<input type="hidden" name="attr_KeyCha"/></td>
+    <td><button class="button"
+                title="Intimidate"
+                type="roll"
+                value="&{template:custom}{{title=Intimidate}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{IntimidateTotal}]]}}"
+                name="roll_Intimidate-check"></button></td>
+    <td><input type="number" readonly name="attr_IntimidateTotal"/></td>
+    <td><input type="number" readonly name="attr_chamod"/></td>
+    <td><input type="number" name="attr_IntimidateSP"/></td>
+    <td><input type="number" name="attr_IntimidateMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_InvestigateTrained"/></td>
+    <td>Investigate</td>
+    <td>Yes</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
+    <td><button class="button"
+                title="Investigate"
+                type="roll"
+                value="&{template:custom}{{title=Investigate}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{InvestigateTotal}]]}}"
+                name="roll_Investigate-check"></button></td>
+    <td><input type="number" readonly name="attr_InvestigateTotal"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_InvestigateSP"/></td>
+    <td><input type="number" name="attr_InvestigateMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_Knowledge1Trained"/></td>
+    <td>Knowledge <input type="text" name="attr_Knowledge1Name"/></td>
+    <td>No</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
+    <td><button class="button"
+                title="Knowledge1"
+                type="roll"
+                value="&{template:custom}{{title=Knowledge: @{Knowledge1Name}}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{Knowledge1Total}]]}}"
+                name="roll_Knowledge1-check"></button></td>
+    <td><input type="number" readonly name="attr_Knowledge1Total"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_Knowledge1SP"/></td>
+    <td><input type="number" name="attr_Knowledge1Misc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_Knowledge2Trained"/></td>
+    <td>Knowledge <input type="text" name="attr_Knowledge2Name"/></td>
+    <td>No</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
+    <td><button class="button"
+                title="Knowledge2"
+                type="roll"
+                value="&{template:custom}{{title=Knowledge: @{Knowledge2Name}}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{Knowledge2Total}]]}}"
+                name="roll_Knowledge2-check"></button></td>
+    <td><input type="number" readonly name="attr_Knowledge2Total"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_Knowledge2SP"/></td>
+    <td><input type="number" name="attr_Knowledge2Misc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_Knowledge3Trained"/></td>
+    <td>Knowledge <input type="text" name="attr_Knowledge3Name"/></td>
+    <td>No</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
+    <td><button class="button"
+                title="Knowledge3"
+                type="roll"
+                value="&{template:custom}{{title=Knowledge: @{Knowledge3Name}}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{Knowledge3Total}]]}}"
+                name="roll_Knowledge3-check"></button></td>
+    <td><input type="number" readonly name="attr_Knowledge3Total"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_Knowledge3SP"/></td>
+    <td><input type="number" name="attr_Knowledge3Misc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_Knowledge4Trained"/></td>
+    <td>Knowledge <input type="text" name="attr_Knowledge4Name"/></td>
+    <td>No</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
+    <td><button class="button"
+                title="Knowledge4"
+                type="roll"
+                value="&{template:custom}{{title=Knowledge: @{Knowledge4Name}}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{Knowledge4Total}]]}}"
+                name="roll_Knowledge4-check"></button></td>
+    <td><input type="number" readonly name="attr_Knowledge4Total"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_Knowledge4SP"/></td>
+    <td><input type="number" name="attr_Knowledge4Misc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_Knowledge5Trained"/></td>
+    <td>Knowledge <input type="text" name="attr_Knowledge5Name"/></td>
+    <td>No</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
+    <td><button class="button"
+                title="Knowledge5"
+                type="roll"
+                value="&{template:custom}{{title=Knowledge: @{Knowledge5Name}}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{Knowledge5Total}]]}}"
+                name="roll_Knowledge5-check"></button></td>
+    <td><input type="number" readonly name="attr_Knowledge5Total"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_Knowledge5SP"/></td>
+    <td><input type="number" name="attr_Knowledge5Misc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_Knowledge6Trained"/></td>
+    <td>Knowledge <input type="text" name="attr_Knowledge6Name"/></td>
+    <td>No</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
+    <td><button class="button"
+                title="Knowledge6"
+                type="roll"
+                value="&{template:custom}{{title=Knowledge: @{Knowledge6Name}}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{Knowledge6Total}]]}}"
+                name="roll_Knowledge6-check"></button></td>
+    <td><input type="number" readonly name="attr_Knowledge6Total"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_Knowledge6SP"/></td>
+    <td><input type="number" name="attr_Knowledge6Misc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_ListenTrained"/></td>
+    <td>Listen</td>
+    <td>Yes</td>
+    <td>Wis<input type="hidden" name="attr_KeyWis"/></td>
+    <td><button class="button"
+                title="Listen"
+                type="roll"
+                value="&{template:custom}{{title=Listen}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{ListenTotal}]]}}"
+                name="roll_Listen-check"></button></td>
+    <td><input type="number" readonly name="attr_ListenTotal"/></td>
+    <td><input type="number" readonly name="attr_wismod"/></td>
+    <td><input type="number" name="attr_ListenSP"/></td>
+    <td><input type="number" name="attr_ListenMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_LockpickingTrained"/></td>
+    <td>Lockpicking</td>
+    <td>No</td>
+    <td>Dex<input type="hidden" name="attr_KeyDex"/></td>
+    <td><button class="button"
+                title="Lockpicking"
+                type="roll"
+                value="&{template:custom}{{title=Lockpicking}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{LockpickingTotal}]]}}"
+                name="roll_Lockpicking-check"></button></td>
+    <td><input type="number" readonly name="attr_LockpickingTotal"/></td>
+    <td><input type="number" readonly name="attr_dexmod"/></td>
+    <td><input type="number" name="attr_LockpickingSP"/></td>
+    <td><input type="number" name="attr_LockpickingMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_MoveSilentlyTrained"/></td>
+    <td>Move Silently*</td>
+    <td>Yes</td>
+    <td>Dex<input type="hidden" name="attr_KeyDex"/></td>
+    <td><button class="button"
+                title="MoveSilently"
+                type="roll"
+                value="&{template:custom}{{title=MoveSilently}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{MoveSilentlyTotal}]]}}"
+                name="roll_MoveSilently-check"></button></td>
+    <td><input type="number" readonly name="attr_MoveSilentlyTotal"/></td>
+    <td><input type="number" readonly name="attr_dexmod"/></td>
+    <td><input type="number" name="attr_MoveSilentlySP"/></td>
+    <td><input type="number" name="attr_MoveSilentlyMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_Perform1Trained"/></td>
+    <td>Perform <input type="text" name="attr_Perform1Name"/></td>
+    <td>No</td>
+    <td>Cha<input type="hidden" name="attr_KeyCha"/></td>
+    <td><button class="button"
+                title="Perform1"
+                type="roll"
+                value="&{template:custom}{{title=Perform: @{Perform1Name}}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{Perform1Total}]]}}"
+                name="roll_Perform1-check"></button></td>
+    <td><input type="number" readonly name="attr_Perform1Total"/></td>
+    <td><input type="number" readonly name="attr_chamod"/></td>
+    <td><input type="number" name="attr_Perform1SP"/></td>
+    <td><input type="number" name="attr_Perform1Misc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_Perform2Trained"/></td>
+    <td>Perform <input type="text" name="attr_Perform2Name"/></td>
+    <td>No</td>
+    <td>Cha<input type="hidden" name="attr_KeyCha"/></td>
+    <td><button class="button"
+                title="Perform2"
+                type="roll"
+                value="&{template:custom}{{title=Perform: @{Perform2Name}}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{Perform2Total}]]}}"
+                name="roll_Perform2-check"></button></td>
+    <td><input type="number" readonly name="attr_Perform2Total"/></td>
+    <td><input type="number" readonly name="attr_chamod"/></td>
+    <td><input type="number" name="attr_Perform2SP"/></td>
+    <td><input type="number" name="attr_Perform2Misc"/></td>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_Perform3Trained"/></td>
+    <td>Perform <input type="text" name="attr_Perform3Name"/></td>
+    <td>No</td>
+    <td>Cha<input type="hidden" name="attr_KeyCha"/></td>
+    <td><button class="button"
+                title="Perform3"
+                type="roll"
+                value="&{template:custom}{{title=Perform: @{Perform3Name}}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{Perform3Total}]]}}"
+                name="roll_Perform3-check"></button></td>
+    <td><input type="number" readonly name="attr_Perform3Total"/></td>
+    <td><input type="number" readonly name="attr_chamod"/></td>
+    <td><input type="number" name="attr_Perform3SP"/></td>
+    <td><input type="number" name="attr_Perform3Misc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_Profession1Trained"/></td>
+    <td>Profession <input type="text" name="attr_Profession1Name"/></td>
+    <td>No</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
+    <td><button class="button"
+                title="Profession1"
+                type="roll"
+                value="&{template:custom}{{title=Profession: @{Profession1Name}}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{Profession1Total}]]}}"
+                name="roll_Profession1-check"></button></td>
+    <td><input type="number" readonly name="attr_Profession1Total"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_Profession1SP"/></td>
+    <td><input type="number" name="attr_Profession1Misc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_Profession2Trained"/></td>
+    <td>Profession <input type="text" name="attr_Profession2Name"/></td>
+    <td>No</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
+    <td><button class="button"
+                title="Profession2"
+                type="roll"
+                value="&{template:custom}{{title=Profession: @{Profession2Name}}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{Profession2Total}]]}}"
+                name="roll_Profession2-check"></button></td>
+    <td><input type="number" readonly name="attr_Profession2Total"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_Profession2SP"/></td>
+    <td><input type="number" name="attr_Profession2Misc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_RideTrained"/></td>
+    <td>Ride*</td>
+    <td>Yes</td>
+    <td>Dex<input type="hidden" name="attr_KeyDex"/></td>
+    <td><button class="button"
+                title="Ride"
+                type="roll"
+                value="&{template:custom}{{title=Ride}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{RideTotal}]]}}"
+                name="roll_Ride-check"></button></td>
+    <td><input type="number" readonly name="attr_RideTotal"/></td>
+    <td><input type="number" readonly name="attr_dexmod"/></td>
+    <td><input type="number" name="attr_RideSP"/></td>
+    <td><input type="number" name="attr_RideMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_SleightOfHandTrained"/></td>
+    <td>Sleight Of Hand</td>
+    <td>Yes</td>
+    <td>Dex<input type="hidden" name="attr_KeyDex"/></td>
+    <td><button class="button"
+                title="SleightOfHand"
+                type="roll"
+                value="&{template:custom}{{title=SleightOfHand}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{SleightOfHandTotal}]]}}"
+                name="roll_SleightOfHand-check"></button></td>
+    <td><input type="number" readonly name="attr_SleightOfHandTotal"/></td>
+    <td><input type="number" readonly name="attr_dexmod"/></td>
+    <td><input type="number" name="attr_SleightOfHandSP"/></td>
+    <td><input type="number" name="attr_SleightOfHandMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_SpotTrained"/></td>
+    <td>Spot</td>
+    <td>Yes</td>
+    <td>Wis<input type="hidden" name="attr_KeyWis"/></td>
+    <td><button class="button"
+                title="Spot"
+                type="roll"
+                value="&{template:custom}{{title=Spot}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{SpotTotal}]]}}"
+                name="roll_Spot-check"></button></td>
+    <td><input type="number" readonly name="attr_SpotTotal"/></td>
+    <td><input type="number" readonly name="attr_wismod"/></td>
+    <td><input type="number" name="attr_SpotSP"/></td>
+    <td><input type="number" name="attr_SpotMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_SabotageDeviceTrained"/></td>
+    <td>SabotageDevice</td>
+    <td>No</td>
+    <td>Int<input type="hidden" name="attr_KeyInt"/></td>
+    <td><button class="button"
+                title="SabotageDevice"
+                type="roll"
+                value="&{template:custom}{{title=SabotageDevice}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{SabotageDeviceTotal}]]}}"
+                name="roll_SabotageDevice-check"></button></td>
+    <td><input type="number" readonly name="attr_SabotageDeviceTotal"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_SabotageDeviceSP"/></td>
+    <td><input type="number" name="attr_SabotageDeviceMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_SwimTrained"/></td>
+    <td>Swim*</td>
+    <td>Yes</td>
+    <td>Str<input type="hidden" name="attr_KeyStr"/></td>
+    <td><button class="button"
+                title="Swim"
+                type="roll"
+                value="&{template:custom}{{title=Swim}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{SwimTotal}]]}}"
+                name="roll_Swim-check"></button></td>
+    <td><input type="number" readonly name="attr_SwimTotal"/></td>
+    <td><input type="number" readonly name="attr_strmod"/></td>
+    <td><input type="number" name="attr_SwimSP"/></td>
+    <td><input type="number" name="attr_SwimMisc"/></td>
+   </tr>
+   <tr class="hoverskill">
+    <td><input type="checkbox" name="attr_UseRopeTrained"/></td>
+    <td>Use Rope</td>
+    <td>Yes</td>
+    <td>Dex<input type="hidden" name="attr_KeyDex"/></td>
+    <td><button class="button"
+                title="UseRope"
+                type="roll"
+                value="&{template:custom}{{title=UseRope}}{{subtitle=@{charname}}}{{Result:= [[1d20+@{UseRopeTotal}]]}}"
+                name="roll_UseRope-check"></button></td>
+    <td><input type="number" readonly name="attr_UseRopeTotal"/></td>
+    <td><input type="number" readonly name="attr_intmod"/></td>
+    <td><input type="number" name="attr_UseRopeSP"/></td>
+    <td><input type="number" name="attr_UseRopeMisc"/></td>
+   </tr>
+  </table>
+ </div>
+</div>
+<!--</editor-fold>-->
+
+<!-- <editor-fold desc="Gear Tab"-->
+
+<div class="sheet-gear">
+ <div class="grr1 row-header">Armor/Weapons</div>
+ <div class="grr2 row-header-dark">Armor, Shield, and Focus</div>
+ <div class="grr3 ggrid">
+  <div class="grc1">Armor<br><input class="flex-bordered-input" type="text" name="attr_ArmorName"/></div>
+  <div class="grc2">Shatter Resistance<br><input type="number" name="attr_ArmorSR"/></div>
+  <div class="grc3">Hit Points<br><input  type="number" name="attr_ArmorHP"/></div>
+  <div class="grc4">Armor Bonus<br><input type="number" name="attr_ArmorBonus"/></div>
+  <div class="grc5">AC Dex Limit<br><input type="number" name="attr_DexACLimit"/></div>
+  <div class="grc6">Skill Penalty<br><input type="number" name="attr_CheckPen"/></div>
+ </div>
+ <div class ="grr4 ggrid">
+  <div class="grc1">Shield<br><input class="flex-bordered-input" type="text" name="attr_ShieldName"/></div>
+  <div class="grc2">Shatter Resistance<br><input type="number" name="attr_ShieldSR"/></div>
+  <div class="grc3">Hit Points<br><input  type="number" name="attr_ShieldHP"/></div>
+  <div class="grc4">Shield Bonus<br><input type="number" name="attr_Shield"/></div>
+  <div class="grc5">AC Dex Limit<br><input type="number" name="attr_ShieldDexACLimit"/></div>
+  <div class="grc6">Skill Penalty<br><input type="number" name="attr_ShieldCheckPen"/></div>
+ </div>
+ <div class="grr5 ggrid">
+  <div class="grc1">Focus<br><input class="flex-bordered-input" type="text" name="attr_FocusName"/></div>
+  <div class="grc2">Shatter Resistance<br><input type="number" name="attr_FocusSR"/></div>
+  <div class="grc3">Hit Points<br><input type="number" name="attr_FocusHP"/></div>
+  <div class="grc4">Enhancement<br><input value="0" type="number" name="attr_FocusEnch"/></div>
+  <div class="grc5">Notes<br><textarea name="attr_FocusNotes"/></div>
+ </div>
+ <div class="grr6 ggrid row-header-dark">
+  Weapon(s)<br>
+  <span style="font-weight: normal; font-size: small">
+  Hasted&nbsp;<input type="checkbox" name="attr_haste" value="1"/>&nbsp;or
+  Slowed?<input type="checkbox" name="attr_slow" value="1"/>
+  </span>
+ </div>
+ <div class="grr7 ggrid">
+  <div class="grc1">
+   <fieldset class="repeating_weapons1">
+    <div class="weapon-repeat-box">
+     <input type="hidden" name="attr_fullattackroll"/>
+     <div style="margin: 0" class="column-header weapon-column-span">
+      <button type="action" class="Small-Button" name="act_weaponminimize">-</button>
+      <input class="weapon-name" type="text" name="attr_weaponname" placeholder="<Weapon Name>"/>
+      <span style="font-weight: normal; font-size:small">
+       Full Attack:&nbsp;<button
+       type="roll"
+       name="roll_fullattackroll"
+       value="@{fullattackroll}"></button>
+      </span>
+     </div>
+     <div class="ggrid">
+      <input type="hidden" class="weapon-toggle" name="attr_weaponminimizetoggle" value="0"/>
+      <div class="grc1 weapon-shrink">
+       <div>Attack Modifier:</div>
+       <div>Feat/Misc Attack:</div>
+       <div>Enhancement:</div>
+       <div>Critical Multiplier:</div>
+       <div>Critical Range:</div>
+       <div>Extra Critical Dice:</div>
+      </div>
+     <div class="grc2 weapon-shrink">
+      <div>
+       <select name="attr_weapontohit" value="" class="standard-select">
+        <option value="@{strmod}">Str</option>
+        <option value="@{dexmod}">Dex</option>
+        <option value="@{wismod}">Wis</option>
+        <option value="@{intmod}">Int</option>
+        <option value="@{chamod}">Cha</option>
+       </select>
+      </div>
+      <div><input class="standard-input" type="text" name="attr_bonustoattack" value=""/></div>
+      <div><input class="standard-input" type="text" name="attr_enhancetoattack"/></div>
+      <div><input class="standard-input" type="text" name="attr_weaponcritmod" value=""/></div>
+      <div>
+       <input type="text" name="attr_critlow" class="small-input" value="20"/>&nbsp;-
+       <input type="number" class="small-input" value="20" readonly/>
+      </div>
+      <div><input type="text" name="attr_extraenchdicecrit" class="standard-input" value=""/></div>
+     </div>
+     <div class="grc3 weapon-shrink">
+      <div>Damage Modifier:</div>
+      <div>Damage Die:</div>
+      <div>Feat Damage:</div>
+      <div>Imbuement Dice:</div>
+      <div>Damage Type?</div>
+      <div>Two Handed?</div>
+     </div>
+     <div class="grc4 weapon-shrink">
+      <div>
+       <select name="attr_weapontodamage" value="" class="standard-select">
+        <option value="@{strmod}">Str</option>
+        <option value="@{dexmod}">Dex</option>
+        <option value="@{wismod}">Wis</option>
+        <option value="@{intmod}">Int</option>
+        <option value="@{chamod}">Cha</option>
+       </select>
+      </div>
+      <div>
+       <input type="text" name="attr_dnum" class="small-input" placeholder="#"/>
+       <input type="text" name="attr_dtype" class="small-input" placeholder="d#"/>
+      </div>
+      <div><input type="text" name="attr_bonustodamage" class="standard-input" value="0"/></div>
+      <div><input type="text" name="attr_enchdamagedice" class="standard-input" value=""/></div>
+      <div><input type="text" name="attr_weapondamagtype" class="standard-input" value=""/></div>
+      <div><input type="checkbox" name="attr_twohanded" value=".5"/></div>
+     </div>
+     </div>
+     <div style="margin: 0;" class="column-header weapon-column-span">
+      Damage
+     </div>
+     <div class="ggridc">
+      <div class="grr1 ggrid">
+       <div style="padding-bottom: 3px;" class="grc1 titleblock">Normal Damage:&nbsp;<button
+        type="roll"
+        name="roll_weapondamage"
+        value=
+         "
+        &{template:custom}{{title=Damage}}{{subtitle= with @{charname}'s @{weaponname} }} {{Deals [[(@{dnum}@{dtype})[Dice]+(@{weapontodamage})+(floor(@{weapontodamage}*@{twohanded}))[Key Ability]+(@{bonustodamage})[Feats]+@{enhancetoattack}[Magic]+(@{enchdamagedice}[Bonus])+(?{Do you have a miscellaneaous bonus to damage?|0})]] damage to their target.}}
+        "
+       ></button></div>
+       <div style="padding-bottom: 3px;" class="grc2 titleblock">Critical Damage:&nbsp;<button
+        type="roll"
+        name="roll_critweapondamage"
+        value=
+         "
+        &{template:custom}{{title=Damage}}{{subtitle= with @{charname}'s @{weaponname} }} {{Deals an astonishing [[[[@{weaponcritmod}*@{dnum}]]@{dtype}[Dice]+(0@{weaponcritmod}*(@{weapontodamage}+(floor(0@{weapontodamage}*@{twohanded}))))[Key Ability]+(@{weaponcritmod}*@{bonustodamage})[Feats]+@{enhancetoattack}[Magic]+(0@{enchdamagedice})+(0@{extraenchdicecrit})+(?{Do you have a miscellaneaous bonus to damage?|0})]] damage to their target.}}
+        "
+       ></button></div>
+      </div>
+     </div>
+     <div style="margin:0; border-radius: 0" class="column-header weapon-column-span">
+      <button type="action" class="Small-Button" name="act_critconfirmminimize">-</button>Critical Confirmation Rolls
+     </div>
+     <div class="ggridc">
+      <div class="grr1 ggrid">
+       <input type="hidden" class="critconfirm-toggle" name="attr_critconfirmminimizetoggle" value="0"/>
+       <div class="grc1 crit-shrink">
+        First Attack:
+        <button
+         type="roll"
+         name="roll_attack1"
+         value=
+          "
+         &{template:custom}{{title=Critical Confirm}}{{subtitle= Attack 1}}{{with a=[[1d20cs>@{critlow}+@{BAB}[Base Attack]+@{weapontohit}[Key Ability]+@{bonustoattack}[Feats]+@{enhancetoattack}[Enhancement]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
+         "
+        ></button>
+       </div>
+       <div class="grc2 crit-shrink">
+        Second Attack:
+        <button
+         type="roll"
+         name="roll_attack2"
+         value=
+          "
+         &{template:custom}{{title=Critical Confirm:}}{{subtitle=Attack 2}}{{with a=[[1d20cs>@{critlow}+(@{BAB}-5)[Base Attack]+@{weapontohit}[Key Ability]+@{bonustoattack}[Feats]+@{enhancetoattack}[Enhancement]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
+         "
+        ></button>
+       </div>
+       <div class="grc3 crit-shrink">
+        Third Attack:
+        <button
+         type="roll"
+         name="roll_attack3"
+         value=
+          "
+        &{template:custom}{{title=Critical Confirm:}}{{subtitle= Attack 3}}{{with a=[[1d20cs>@{critlow}+(@{BAB}-10)[Base Attack]+@{weapontohit}[Key Ability]+@{bonustoattack}[Feats]+@{enhancetoattack}[Enhancement]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
+        "
+        ></button>
+       </div>
+       <div class="grc4 crit-shrink">
+        Fourth Attack:
+        <button
+         type="roll"
+         name="roll_attack4"
+         value=
+          "
+        &{template:custom}{{title=Critical Confirm:}}{{subtitle= Attack 4}}{{with a=[[1d20cs>@{critlow}+(@{BAB}-15)[Base Attack]+@{weapontohit}[Key Ability]+@{bonustoattack}[Feats]+@{enhancetoattack}[Enhancement]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
+        "
+        ></button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </fieldset>
+  </div>
+  <div class="grc2">
+   <fieldset class="repeating_weapons2">
+    <div class="weapon-repeat-box">
+     <input type="hidden" name="attr_fullattackroll"/>
+     <div style="margin: 0" class="column-header weapon-column-span">
+      <button type="action" class="Small-Button" name="act_weaponminimize">-</button>
+      <input class="weapon-name" type="text" name="attr_weaponname" placeholder="<Weapon Name>"/>
+      <span style="font-weight: normal; font-size:small">
+       Full Attack:&nbsp;<button
+       type="roll"
+       name="roll_fullattackroll"
+       value="@{fullattackroll}"></button>
+      </span>
+     </div>
+     <div class="ggrid">
+      <input type="hidden" class="weapon-toggle" name="attr_weaponminimizetoggle" value="0"/>
+      <div class="grc1 weapon-shrink">
+       <div>Attack Modifier:</div>
+       <div>Feat/Misc Attack:</div>
+       <div>Enhancement:</div>
+       <div>Critical Multiplier:</div>
+       <div>Critical Range:</div>
+       <div>Extra Critical Dice:</div>
+      </div>
+      <div class="grc2 weapon-shrink">
+       <div>
+        <select name="attr_weapontohit" value="" class="standard-select">
+         <option value="@{strmod}">Str</option>
+         <option value="@{dexmod}">Dex</option>
+         <option value="@{wismod}">Wis</option>
+         <option value="@{intmod}">Int</option>
+         <option value="@{chamod}">Cha</option>
+        </select>
+       </div>
+       <div><input class="standard-input" type="text" name="attr_bonustoattack" value=""/></div>
+       <div><input class="standard-input" type="text" name="attr_enhancetoattack"/></div>
+       <div><input class="standard-input" type="text" name="attr_weaponcritmod" value=""/></div>
+       <div>
+        <input type="text" name="attr_critlow" class="small-input" value="20"/>&nbsp;-
+        <input type="number" class="small-input" value="20" readonly/>
+       </div>
+       <div><input type="text" name="attr_extraenchdicecrit" class="standard-input" value=""/></div>
+      </div>
+      <div class="grc3 weapon-shrink">
+       <div>Damage Modifier:</div>
+       <div>Damage Die:</div>
+       <div>Feat Damage:</div>
+       <div>Imbuement Dice:</div>
+       <div>Damage Type?</div>
+       <div>Two Handed?</div>
+      </div>
+      <div class="grc4 weapon-shrink">
+       <div>
+        <select name="attr_weapontodamage" value="" class="standard-select">
+         <option value="@{strmod}">Str</option>
+         <option value="@{dexmod}">Dex</option>
+         <option value="@{wismod}">Wis</option>
+         <option value="@{intmod}">Int</option>
+         <option value="@{chamod}">Cha</option>
+        </select>
+       </div>
+       <div>
+        <input type="text" name="attr_dnum" class="small-input" placeholder="#"/>
+        <input type="text" name="attr_dtype" class="small-input" placeholder="d#"/>
+       </div>
+       <div><input type="text" name="attr_bonustodamage" class="standard-input" value="0"/></div>
+       <div><input type="text" name="attr_enchdamagedice" class="standard-input" value=""/></div>
+       <div><input type="text" name="attr_weapondamagtype" class="standard-input" value=""/></div>
+       <div><input type="checkbox" name="attr_twohanded" value=".5"/></div>
+      </div>
+     </div>
+     <div style="margin: 0;" class="column-header weapon-column-span">
+      Damage
+     </div>
+     <div class="ggridc">
+      <div class="grr1 ggrid">
+       <div style="padding-bottom: 3px;" class="grc1 titleblock">Normal Damage:&nbsp;<button
+        type="roll"
+        name="roll_weapondamage"
+        value=
+         "
+        &{template:custom}{{title=Damage}}{{subtitle= with @{charname}'s @{weaponname} }} {{Deals [[(@{dnum}@{dtype})[Dice]+(@{weapontodamage})+(floor(@{weapontodamage}*@{twohanded}))[Key Ability]+(@{bonustodamage})[Feats]+@{enhancetoattack}[Magic]+(@{enchdamagedice}[Bonus])+(?{Do you have a miscellaneaous bonus to damage?|0})]] damage to their target.}}
+        "
+       ></button></div>
+       <div style="padding-bottom: 3px;" class="grc2 titleblock">Critical Damage:&nbsp;<button
+        type="roll"
+        name="roll_critweapondamage"
+        value=
+         "
+        &{template:custom}{{title=Damage}}{{subtitle= with @{charname}'s @{weaponname} }} {{Deals an astonishing [[[[@{weaponcritmod}*@{dnum}]]@{dtype}[Dice]+(0@{weaponcritmod}*(@{weapontodamage}+(floor(0@{weapontodamage}*@{twohanded}))))[Key Ability]+(@{weaponcritmod}*@{bonustodamage})[Feats]+@{enhancetoattack}[Magic]+(0@{enchdamagedice})+(0@{extraenchdicecrit})+(?{Do you have a miscellaneaous bonus to damage?|0})]] damage to their target.}}
+        "
+       ></button></div>
+      </div>
+     </div>
+     <div style="margin:0;border-radius: 0" class="column-header weapon-column-span">
+      <button type="action" class="Small-Button" name="act_critconfirmminimize">-</button>Critical Confirmation Rolls
+     </div>
+     <div class="ggridc">
+      <div class="grr1 ggrid">
+       <input type="hidden" class="critconfirm-toggle" name="attr_critconfirmminimizetoggle" value="0"/>
+       <div class="grc1 crit-shrink">
+        First Attack:
+        <button
+         type="roll"
+         name="roll_attack1"
+         value=
+          "
+         &{template:custom}{{title=Critical Confirm}}{{subtitle= Attack 1}}{{with a=[[1d20cs>@{critlow}+@{BAB}[Base Attack]+@{weapontohit}[Key Ability]+@{bonustoattack}[Feats]+@{enhancetoattack}[Enhancement]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
+         "
+        ></button>
+       </div>
+       <div class="grc2 crit-shrink">
+        Second Attack:
+        <button
+         type="roll"
+         name="roll_attack2"
+         value=
+          "
+         &{template:custom}{{title=Critical Confirm:}}{{subtitle=Attack 2}}{{with a=[[1d20cs>@{critlow}+(@{BAB}-5)[Base Attack]+@{weapontohit}[Key Ability]+@{bonustoattack}[Feats]+@{enhancetoattack}[Enhancement]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
+         "
+        ></button>
+       </div>
+       <div class="grc3 crit-shrink">
+        Third Attack:
+        <button
+         type="roll"
+         name="roll_attack3"
+         value=
+          "
+        &{template:custom}{{title=Critical Confirm:}}{{subtitle= Attack 3}}{{with a=[[1d20cs>@{critlow}+(@{BAB}-10)[Base Attack]+@{weapontohit}[Key Ability]+@{bonustoattack}[Feats]+@{enhancetoattack}[Enhancement]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
+        "
+        ></button>
+       </div>
+       <div class="grc4 crit-shrink">
+        Fourth Attack:
+        <button
+         type="roll"
+         name="roll_attack4"
+         value=
+          "
+        &{template:custom}{{title=Critical Confirm:}}{{subtitle= Attack 4}}{{with a=[[1d20cs>@{critlow}+(@{BAB}-15)[Base Attack]+@{weapontohit}[Key Ability]+@{bonustoattack}[Feats]+@{enhancetoattack}[Enhancement]+(0?{Do you have miscellaneous attack bonus?|0})]] to hit.}}
+        "
+        ></button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </fieldset>
+  </div>
+ </div>
+</div>
+
+<!--</editor-fold>-->
+
 <!--<editor-fold desc="Accessories">-->
 <div class="sheet-accessories">
  <div class="accessories-grid">
@@ -1506,6 +2701,22 @@
         });
     });
 
+    on("change:strmod change:dexmod change:trampleopposedmisc change:trampleopposedfeat " +
+        "change:trampleopposedtemp change:sizemod sheet:opened",function(){
+        getAttrs(["strmod","dexmod","TrampleOpposedMisc","TrampleOpposedFeat","TrampleOpposedTemp","SizeMod"],function (values){
+            let Str = parseFloat(values.strmod)||0;
+            let Dex = parseFloat(values.dexmod)||0;
+            let Misc = parseFloat(values.TrampleOpposedMisc)||0;
+            let Feat = parseFloat(values.TrampleOpposedFeat)||0;
+            let Temp = parseFloat(values.TrampleOpposedTemp)||0;
+            let Size = parseFloat(values.SizeMod)||0;
+            let total = Math.max(Str,Dex) + Misc + Feat + Temp + Size;
+            setAttrs({
+                TrampleOpposed: total
+            });
+        });
+    });
+
     //</editor-fold>
 
     //<editor-fold desc="Wound DC Calc"">
@@ -1521,7 +2732,7 @@
     });
     //</editor-fold>
 
-    //<editor-fold desc="Skill Fuster Cluck">
+    //<editor-fold desc="Skill Mess">
 
     //Max Skill Points per HD
 
@@ -2365,17 +3576,6 @@
         });
     });
 
-    const maxAfflictionsList = ["minafflictions"];
-    maxAfflictionsList.forEach(button => {
-        on(`clicked:repeating_afflictions:${button}`, function() {
-            getAttrs(['repeating_afflictions_minafflictionsval'], function(v) {
-                setAttrs({
-                    repeating_afflictions_minafflictionsval: 1 - parseInt(v.repeating_afflictions_minafflictionsval)
-                });
-            });
-        });
-    });
-
     const maxFeatsList = ["minfeats"];
     maxFeatsList.forEach(button => {
         on(`clicked:repeating_feats:${button}`, function() {
@@ -2387,35 +3587,31 @@
         });
     });
 
-    const maxSecDefList = ["minsecdefdesc"];
-    maxSecDefList.forEach(button => {
-        on(`clicked:repeating_definitions:${button}`, function() {
-            getAttrs(['repeating_definitions_minsecdef'], function(v) {
-                setAttrs({
-                    repeating_definitions_minsecdef: 1 - parseInt(v.repeating_definitions_minsecdef)
-                });
-            });
-        });
+    const WeaponCol = [1,2]
+
+    WeaponCol.forEach(col => {
+       const maxMinWeaponList = ["weaponminimize","critconfirmminimize"];
+       maxMinWeaponList.forEach(button => {
+           on(`clicked:repeating_weapons${col}:${button}`, function() {
+               getAttrs([`repeating_weapons${col}_${button}toggle`], function(v) {
+                   let toSetAttrs = {};
+                   toSetAttrs[`repeating_weapons${col}_${button}toggle`] = 1 - parseInt(v[`repeating_weapons${col}_${button}toggle`]);
+                   setAttrs(toSetAttrs);
+               });
+           });
+       });
     });
 
-    const maxMinSpeciesList = ["minspecies"];
-    maxMinSpeciesList.forEach(button => {
-        on(`clicked:repeating_species:${button}`, function() {
-            getAttrs(['repeating_species_minspeciestrait'], function(v) {
-                setAttrs({
-                    repeating_species_minspeciestrait: 1 - parseInt(v["repeating_species_minspeciestrait"])
+    const DTACol = [1,2,3,4]
+    DTACol.forEach(col => {
+        const maxMinDTAList = ["dta1minimize","dta2minimize","dta3minimize","dta4minimize"];
+        maxMinDTAList.forEach(button => {
+            on(`clicked:repeating_DTA${col}:${button}`,function (){
+                getAttrs([`repeating_DTA${col}_${button}toggle`], function(value){
+                    let toSetAttrs = {};
+                    toSetAttrs[`repeating_DTA${col}_${button}toggle`] = 1 - parseInt(value[`repeating_DTA${col}_${button}toggle`]);
+                    setAttrs(toSetAttrs);
                 });
-            });
-        });
-    });
-
-    const maxMinWeaponList = ["weaponminimize","critconfirmminimize"];
-    maxMinWeaponList.forEach(button => {
-        on(`clicked:repeating_weapons:${button}`, function() {
-            getAttrs([`repeating_weapons_${button}toggle`], function(v) {
-                let toSetAttrs = {};
-                toSetAttrs[`repeating_weapons_${button}toggle`] = 1 - parseInt(v[`repeating_weapons_${button}toggle`]);
-                setAttrs(toSetAttrs);
             });
         });
     });
@@ -2687,7 +3883,7 @@
                 Macro = Macro + `{{Spell Resistance=[[1d20+@{HD}+@{spellpenetrationbonus}+`+
                     `(0?{Do you have any Spell penetration Bonuses?|0})]]}}`;
             }
-            Macro = Macro + `{{Description=@{abilitydescriptiontext}}}`
+            Macro = Macro + `{{desc=@{abilitydescriptiontext}}}`
             setAttrs({
                 repeating_abilities_abilityroll: Macro
             });
@@ -2711,14 +3907,15 @@
 
     // <editor-fold desc="Attack Bonuses">
 
-    on("change:repeating_weapons sheet:opened change:bab change:slow change:haste",function(){
+    WeaponCol.forEach(col => {
+    on(`change:repeating_weapons${col} sheet:opened change:bab change:slow change:haste`,function(){
         getAttrs(["BAB","slow","haste"],function(values){
-            getSectionIDs("repeating_weapons",function(array){
+            getSectionIDs(`repeating_weapons${col}`,function(array){
                 let rows = {};
                 for (let arrayID of array){
-                    rows['repeating_weapons_' + arrayID + `_weaponbab`] = values.BAB;
-                    rows['repeating_weapons_' + arrayID + `_`+`weaponhaste`] = values.haste;
-                    rows['repeating_weapons_' + arrayID + `_`+`weaponslow`] = values.slow;
+                    rows[`repeating_weapons${col}_` + arrayID + `_weaponbab`] = values.BAB;
+                    rows[`repeating_weapons${col}_` + arrayID + `_`+`weaponhaste`] = values.haste;
+                    rows[`repeating_weapons${col}_` + arrayID + `_`+`weaponslow`] = values.slow;
                 }
                 if(rows){
                     setAttrs(rows);
@@ -2726,41 +3923,45 @@
             });
         });
     });
+    });
 
-    on("change:repeating_weapons:bonustoattack change:repeating_weapons:weaponhaste change:repeating_weapons:weaponslow" +
-        "change:repeating_weapons:critlow change:repeating_weapons:weaponbab change:repeating_weapons:weaponminimize",
-        function(){
-            getAttrs(["repeating_weapons_bonustoattack","repeating_weapons_critlow","repeating_weapons_weaponhaste"
-                ,"repeating_weapons_weaponbab","repeating_weapons_weaponslow"],function(values){
-                let attackbonus = values.repeating_weapons_bonustoattack;
-                let mincrit = parseFloat(values.repeating_weapons_critlow)||0;
-                let BAB = parseFloat(values.repeating_weapons_weaponbab);
+    WeaponCol.forEach(col => {
+    on(`change:repeating_weapons${col}:bonustoattack change:repeating_weapons${col}:weaponhaste change:repeating_weapons${col}:weaponslow` +
+        ` change:repeating_weapons${col}:critlow change:repeating_weapons${col}:weaponbab change:repeating_weapons${col}:weaponminimize` +
+        ` change:repeating_weapons${col}:enhancetoattack`, function(){
+            getAttrs([`repeating_weapons${col}_bonustoattack`,`repeating_weapons${col}_critlow`,`repeating_weapons${col}_weaponhaste`
+                ,`repeating_weapons${col}_weaponbab`,`repeating_weapons${col}_weaponslow`,`repeating_weapons${col}_enhancetoattack`],function(values){
+                let featbonus = values[`repeating_weapons${col}_bonustoattack`] || 0;
+                let enhance = parseFloat(values[`repeating_weapons${col}_enhancetoattack`]) || 0;
+                let mincrit = parseFloat(values[`repeating_weapons${col}_critlow`]) || 0;
+                let BAB = parseFloat(values[`repeating_weapons${col}_weaponbab`]);
                 let Macro = `&{template:custom}{{title=Attack(s)}}{{subtitle=@{charname}'s @{weaponname}}}`+
-                    `{{First Attack=[[1d20cs>${mincrit}+${BAB}[Base Attack]+@{weapontohit}[Key Attribute]+${attackbonus}[Other Bonuses]+?(0?{`+
+                    `{{First Attack=[[1d20cs>${mincrit}+${BAB}[Base Attack]+@{weapontohit}[Key Attribute]+${featbonus}[Feat Bonuses]+${enhance}[Enhancement]+(0?{`+
                     `Do you have any miscellaneous bonuses?|0})]]}}`;
-                if(values.repeating_weapons_weaponhaste === "1"){
+                if(values[`repeating_weapons${col}_weaponhaste`] === `1`){
                     Macro = Macro + `{{Haste Attack=[[1d20cs>${mincrit}+${BAB}[Base Attack]+@{weapontohit}[Key Attribute]` +
-                        `+${attackbonus}[Other Bonuses]+?(?{Do you have any miscellaneous bonuses?|0})]]}}`;
+                        `+${featbonus}[Feat Bonuses]+${enhance}[Enhancement]+(0?{Do you have any miscellaneous bonuses?|0})]]}}`;
                 }
-                if(values.repeating_weapons_weaponslow === "0") {
+                if(values[`repeating_weapons${col}_weaponslow`] === `0`) {
                     if (BAB - 5 > 0) {
                         Macro = Macro + `{{Second Attack=[[1d20cs>${mincrit}+${BAB - 5}[Base Attack]+@{weapontohit}[Key Attribute]` +
-                            `+${attackbonus}[Other Bonuses]+?(?{Do you have any miscellaneous bonuses?|0})]]}}`;
+                            `+${featbonus}[Feat Bonuses]+${enhance}[Enhancement]+(0?{Do you have any miscellaneous bonuses?|0})]]}}`;
                     }
                     if (BAB - 10 > 0) {
                         Macro = Macro + `{{Third Attack=[[1d20cs>${mincrit}+${BAB - 10}[Base Attack]+@{weapontohit}[Key Attribute]` +
-                            `+${attackbonus}[Other Bonuses]+?(?{Do you have any miscellaneous bonuses?|0})]]}}`;
+                            `+${featbonus}[Feat Bonuses]+${enhance}[Enhancement]+(0?{Do you have any miscellaneous bonuses?|0})]]}}`;
                     }
                     if (BAB - 15 > 0) {
                         Macro = Macro + `{{Fourth Attack=[[1d20cs>${mincrit}+${BAB - 15}[Base Attack]+@{weapontohit}[Key Attribute]` +
-                            `+${attackbonus}[Other Bonuses]+?(?{Do you have any miscellaneous bonuses?|0})]]}}`;
+                            `+${featbonus}[Feat Bonuses]+${enhance}[Enhancement]+(0?{Do you have any miscellaneous bonuses?|0})]]}}`;
                     }
                 }
-                setAttrs({
-                    repeating_weapons_fullattackroll: Macro
-                });
+                toSetAttrs = {};
+                toSetAttrs[`repeating_weapons${col}_fullattackroll`] = Macro;
+                setAttrs(toSetAttrs);
             });
         });
+    });
     // </editor-fold>
 
 </script>
