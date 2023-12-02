@@ -1,27 +1,3 @@
-<!-- <editor-fold desc="Roll Template" -->
-<rolltemplate class="sheet-rolltemplate-custom">
- <div class="sheet-container sheet-color-{{color}}">
-  <div class="sheet-header">
-   {{#title}}
-   <div class="sheet-title">{{title}}</div>
-   {{/title}}
-   {{#subtitle}}
-   <div class="sheet-subtitle">{{subtitle}}</div>
-   {{/subtitle}}
-  </div>
-  <div class="sheet-content">
-   {{#allprops() title subtitle desc color}}
-   <div class="sheet-key">{{key}}</div>
-   <div class="sheet-value">{{value}}</div>
-   {{/allprops() title subtitle desc color}}
-   {{#desc}}
-   <div class="sheet-desc">{{desc}}</div>
-   {{/desc}}
-  </div>
- </div>
-</rolltemplate>
-<!-- </editor-fold -->
-
 <!-- <editor-fold desc="ButtonBar"> -->
 <input type="hidden" class="sheet-tabstoggle" name="attr_sheetTab"  value="main"/>
 <div style="text-align: center; width: 800px;" class="SAbutton">
@@ -845,7 +821,7 @@
     <input class="sptoggle" type="hidden" name="attr_spell2minimizetoggle" value="1"/>
     <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell2minimize">-</button>
      <span>Level 2 Spells</span><br>
-     Per Day: <input type="number" name="attr_2perday"/>
+     Per Day: <input readonly type="number" name="attr_2perday"/>
      Remaining: <input type="number" name="attr_2remaining"/>
     </div>
     <div class="sheet-repeating-fields">
@@ -938,7 +914,7 @@
     <input class="sptoggle" type="hidden" name="attr_spell4minimizetoggle" value="1"/>
     <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell4minimize">-</button>
      <span>Level 4 Spells</span><br>
-     Per Day: <input type="number" name="attr_4perday"/>
+     Per Day: <input readonly type="number" name="attr_4perday"/>
      Remaining: <input type="number" name="attr_4remaining"/>
     </div>
     <div class="sheet-repeating-fields">
@@ -1031,7 +1007,7 @@
     <input class="sptoggle" type="hidden" name="attr_spell6minimizetoggle" value="1"/>
     <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell6minimize">-</button>
      <span>Level 6 Spells</span><br>
-     Per Day: <input type="number" name="attr_6perday"/>
+     Per Day: <input readonly type="number" name="attr_6perday"/>
      Remaining: <input type="number" name="attr_6remaining"/>
     </div>
     <div class="sheet-repeating-fields">
@@ -1124,7 +1100,7 @@
     <input class="sptoggle" type="hidden" name="attr_spell8minimizetoggle" value="1"/>
     <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell8minimize">-</button>
      <span>Level 8 Spells</span><br>
-     Per Day: <input type="number" name="attr_8perday"/>
+     Per Day: <input readonly type="number" name="attr_8perday"/>
      Remaining: <input type="number" name="attr_8remaining"/>
     </div>
     <div class="sheet-repeating-fields">
@@ -1219,7 +1195,7 @@
     <input class="sptoggle" type="hidden" name="attr_spell1minimizetoggle" value="1"/>
     <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell1minimize">-</button>
      <span>Level 1 Spells</span><br>
-     Per Day: <input type="number" name="attr_1perday"/>
+     Per Day: <input readonly type="number" name="attr_1perday"/>
      Remaining: <input type="number" name="attr_1remaining"/>
     </div>
     <div class="sheet-repeating-fields">
@@ -1312,7 +1288,7 @@
     <input class="sptoggle" type="hidden" name="attr_spell3minimizetoggle" value="1"/>
     <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell3minimize">-</button>
      <span>Level 3 Spells</span><br>
-     Per Day: <input type="number" name="attr_3perday"/>
+     Per Day: <input readonly type="number" name="attr_3perday"/>
      Remaining: <input type="number" name="attr_3remaining"/>
     </div>
     <div class="sheet-repeating-fields">
@@ -1405,7 +1381,7 @@
     <input class="sptoggle" type="hidden" name="attr_spell5minimizetoggle" value="1"/>
     <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell5minimize">-</button>
      <span>Level 5 Spells</span><br>
-     Per Day: <input type="number" name="attr_5perday"/>
+     Per Day: <input readonly type="number" name="attr_5perday"/>
      Remaining: <input type="number" name="5attr_5remaining"/>
     </div>
     <div class="sheet-repeating-fields">
@@ -1498,7 +1474,7 @@
     <input class="sptoggle" type="hidden" name="attr_spell7minimizetoggle" value="1"/>
     <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell7minimize">-</button>
      <span>Level 7 Spells</span><br>
-     Per Day: <input type="number" name="attr_7perday"/>
+     Per Day: <input readonly type="number" name="attr_7perday"/>
      Remaining: <input type="number" name="attr_7remaining"/>
     </div>
     <div class="sheet-repeating-fields">
@@ -1591,7 +1567,7 @@
     <input class="sptoggle" type="hidden" name="attr_spell9minimizetoggle" value="1"/>
     <div class="Spell-Level-Name"><button type="action" class="Small-Button" name="act_spell9minimize">-</button>
      <span>Level 9 Spells</span><br>
-     Per Day: <input type="number" name="attr_9perday"/>
+     Per Day: <input readonly type="number" name="attr_9perday"/>
      Remaining: <input type="number" name="attr_9remaining"/>
     </div>
     <div class="sheet-repeating-fields">
@@ -2775,6 +2751,30 @@
 
  <!--</editor-fold>-->
 
+<!-- <editor-fold desc="Roll Template" -->
+<rolltemplate class="sheet-rolltemplate-custom">
+ <div class="sheet-container sheet-color-{{color}}">
+  <div class="sheet-header">
+   {{#title}}
+   <div class="sheet-title">{{title}}</div>
+   {{/title}}
+   {{#subtitle}}
+   <div class="sheet-subtitle">{{subtitle}}</div>
+   {{/subtitle}}
+  </div>
+  <div class="sheet-content">
+   {{#allprops() title subtitle desc color}}
+   <div class="sheet-key">{{key}}</div>
+   <div class="sheet-value">{{value}}</div>
+   {{/allprops() title subtitle desc color}}
+   {{#desc}}
+   <div class="sheet-desc">{{desc}}</div>
+   {{/desc}}
+  </div>
+ </div>
+</rolltemplate>
+<!-- </editor-fold -->
+
 <!--<editor-fold desc="Java Script">-->
 
 <!--type="text/worker"-->
@@ -2786,7 +2786,7 @@
     //<editor-fold desc="Inventory Calculations">
 
     on("change:repeating_maininventory remove:repeating_maininventory", function(){
-        getSectionIDs("repeating_maininventory",function(array){
+        getSectionIDs("repeating_maininventory",function(array){ //getting the section IDs
             let AttrsToGet = [];
             for (let arrayID of array){
                 AttrsToGet.push(`repeating_maininventory_${arrayID}_maintotalweight`);
@@ -4037,6 +4037,121 @@
 
     // <editor-fold desc="Spellcasting Calculations">
 
+    //Block of Constants used by the sheet for spell casting
+    const BasicMagicSPD = [ /*Vertical Index is 0 - 19 || Horizontal index is 0 - 3 */
+        [null,null,null,null],
+        [0,null,null,null],
+        [1,null,null,null],
+        [1,null,null,null],
+        [2,null,null,null],
+        [2,0,null,null],
+        [2,1,null,null],
+        [2,1,null,null],
+        [2,1,null,null],
+        [3,2,0,null],
+        [3,2,1,null],
+        [3,2,1,null],
+        [3,2,1,null],
+        [3,3,1,0],
+        [4,3,1,1],
+        [4,3,2,1],
+        [4,4,2,1],
+        [4,4,2,2],
+        [4,4,2,2],
+        [5,4,2,2]
+    ];
+    const StandardMagicSPD = [ /*Vertical Index is 0 - 19 || Horizontal index is 0 - 5 */
+        [0,null,null,null,null,null],
+        [1,null,null,null,null,null],
+        [2,0,null,null,null,null],
+        [3,1,null,null,null,null],
+        [3,2,0,null,null,null],
+        [3,2,1,null,null,null],
+        [3,2,2,0,null,null],
+        [4,2,2,1,null,null],
+        [4,3,2,2,null,null],
+        [4,3,2,2,0,null],
+        [4,3,3,2,1,null],
+        [5,3,3,2,2,null],
+        [5,4,3,3,2,0],
+        [5,4,3,3,2,1],
+        [5,4,4,3,2,2],
+        [5,4,4,3,3,2],
+        [5,5,4,4,3,2],
+        [5,5,4,4,3,2],
+        [5,5,5,4,3,3],
+        [5,5,5,4,4,3]
+    ];
+    const AdvancedMagicSPD = [ /*Vertical Index is 0 - 19 || Horizontal index is 0 - 8 */
+        [2,null,null,null,null,null,null,null,null],
+        [3,null,null,null,null,null,null,null,null],
+        [3,1,null,null,null,null,null,null,null],
+        [3,2,null,null,null,null,null,null,null],
+        [4,2,1,null,null,null,null,null,null],
+        [4,3,2,null,null,null,null,null,null],
+        [4,3,2,1,null,null,null,null,null],
+        [4,3,3,2,null,null,null,null,null],
+        [5,4,3,2,1,null,null,null,null],
+        [5,4,3,3,2,null,null,null,null],
+        [5,4,4,3,3,1,null,null,null],
+        [5,4,4,3,3,2,null,null,null],
+        [5,5,4,4,3,2,1,null,null],
+        [5,5,4,4,4,3,2,null,null],
+        [5,5,5,4,4,3,2,1,null],
+        [5,5,5,4,4,3,3,2,null],
+        [5,5,5,5,4,4,3,2,1],
+        [5,5,5,5,5,4,4,3,2],
+        [5,5,5,5,5,4,4,4,3],
+        [5,5,5,5,5,5,5,5,4]
+    ];
+    const SpellsPerDayLevel = [1,2,3,4,5,6,7,8,9];
+    const SpellMacroLevel = [0,1,2,3,4,5,6,7,8,9];
+
+    SpellsPerDayLevel.forEach(level => {  //setting the spells per day
+        on(`change:hd change:magiccurve sheet:opened change:pma change:dexmod change:strmod `+
+            `change:intmod change:wismod change:chamod`, function () {
+            getAttrs(["HD", "PMA", "MagicCurve","strmod","dexmod","wismod","intmod","chamod"], function (values) {
+               let HD = parseInt(values.HD)||1;
+               let PMA;
+                switch(values.PMA){
+                    case "@{strmod}" :
+                        PMA = values.strmod;
+                        break;
+                    case "@{dexmod}":
+                        PMA = values.dexmod;
+                        break;
+                    case "@{wismod}" :
+                        PMA = values.wismod;
+                        break;
+                    case "@{intmod}" :
+                        PMA = values.intmod;
+                        break;
+                    case "@{chamod}" :
+                        PMA = values.chamod;
+                        break;
+                }
+                let HDSpellsPerDay = null;
+                let bonusspell = Math.max(Math.ceil((PMA + 1 - level)/4),0);
+                switch (values.MagicCurve){
+                    case "Basic":
+                        HDSpellsPerDay  = BasicMagicSPD[HD-1][level-1]; /*[ArrayID 1][ArrayID 2]*/
+                        break;
+                    case "Standard":
+                        HDSpellsPerDay  = StandardMagicSPD[HD-1][level-1];
+                        break;
+                    case "Advanced":
+                        HDSpellsPerDay  = AdvancedMagicSPD[HD-1][level-1];
+                        break;
+                }
+                let FinalSPD;
+                if(HDSpellsPerDay === null) FinalSPD = 0;
+                else FinalSPD = HDSpellsPerDay + bonusspell;
+                toSetAttrs = {};
+                toSetAttrs[`${level}perday`] = FinalSPD
+                setAttrs(toSetAttrs);
+            });
+        });
+    });
 
     on(`change:hd change:magiccurve sheet:opened`,function(){
         getAttrs(["HD","MagicCurve"], function(values){
@@ -4054,7 +4169,7 @@
         });
     });
 
-    const SpellMacroLevel = [0,1,2,3,4,5,6,7,8,9];
+
     SpellMacroLevel.forEach(level => {
         on(`change:repeating_spells-${level}:spellsaving change:repeating_spells-${level}:category change:repeating_spells change:repeating_spells-${level}:savesucces `+
             `change:repeating_spells-${level}:harmless change:repeating_spells-${level}:sr change:repeating_spells-${level}:spell${level}minimizetoggle `+
