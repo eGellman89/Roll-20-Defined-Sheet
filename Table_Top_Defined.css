@@ -920,6 +920,7 @@ input.sptoggle[value="1"] ~ .sheet-repeating-fields{
 
 .minimizable-repeat-spells .spells_description{
     width: 388px;
+    overflow: clip;
     background-color: #FFFFFF;
     color: #000000;
     border: 1px solid black;
@@ -1316,7 +1317,7 @@ input.sptoggle[value="1"] ~ .sheet-repeating-fields{
 }
 
 .ui-dialog .charsheet .sheet-gear .weapon-name{
-    background-color: #323232;
+    background-color: #000000;
     color: #FFFFFF;
     text-align: center;
     font-weight: bold;
@@ -1343,6 +1344,11 @@ input.sptoggle[value="1"] ~ .sheet-repeating-fields{
 .sheet-gear .ggridc .grr1.ggrid .critconfirm-toggle[value="0"] ~ .crit-shrink{
     display: none;
 }
+
+.sheet-gear .ggridc .grr1.ggrid .advancedweapon-toggle[value="0"] ~ .advancedweapon-shrink{
+    display: none;
+}
+
 
 .sheet-gear .grr7{
     grid-template-columns: repeat(2,1fr);
